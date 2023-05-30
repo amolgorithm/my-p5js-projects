@@ -1,0 +1,204 @@
+var pacMouthClose = 0;
+var isUpPressed = false;
+var isDownPressed = false;
+var isLeftPressed = false;
+var isRightPressed = false;
+var eat = [];
+var score = 0;
+var room = 1;
+var pacmanTitle = "PACMAN!";
+var pacmanTitleSize = [50, 40, 30, 25, 30, 40, 50];
+pacmanTitle.split("");
+
+var Pacman = function() {
+    this.x = 200;
+    this.y = 200;
+    this.chompSpeed = 5;
+    this.pacMouth = 1;
+    this.pacMouthClose = 0;
+    this.size = 80;
+    this.speedX = 5;
+    this.speedY = 5;
+};
+var pacman = new Pacman();
+
+
+
+var startingPage = function() {
+    background(0);
+    fill(255, 255, 0);
+    noStroke();
+    arc(pacman.x, pacman.y, pacman.size, pacman.size, 40, 319);
+    noFill();
+    stroke();
+    strokeWeight(3);
+    rect(150, 300, 100, 40);
+    fill();
+    textSize(30);
+    textAlign(CORNER);
+    text("Play!", 165, 330);
+    
+    
+    for (var i = 0; i < pacmanTitle.length; i++) {
+        fill(255, 255, 0);
+        textAlign(CENTER, CENTER);
+        textSize(pacmanTitleSize[i]);
+        text(pacmanTitle[i], i*22 + 136, 80);
+    }
+    
+};
+
+var instructionsPage = function() {
+    background(0);
+    textSize(30);
+    textAlign(CENTER);
+    text("Instructions:", 200, 30);
+    textSize(20);
+    text(" \nPress arrows to move.\n\nEat the dot the get more points.", 200, 60);
+    
+    noFill();
+    stroke();
+    strokeWeight(3);
+    rect(270, 300, 100, 40);
+    fill();
+    textSize(30);
+    textAlign(CORNER);
+    text("Start", 290, 330);
+};
+
+
+var pacmanChomp = function() {
+    background(0);
+    fill(255, 255, 0);
+    pacman.pacMouthClose = 360 - pacman.pacMouth;
+    arc(pacman.x, pacman.y, pacman.size, pacman.size, pacman.pacMouth, pacman.pacMouthClose);
+    
+    if (pacman.pacMouth >= 45 || pacman.pacMouth <= 0) {
+        pacman.chompSpeed *= -1;
+    }
+    pacman.pacMouth += pacman.chompSpeed;
+};
+
+var playSound = function() {
+    var url = "http://www.digitpress.com/dpsoundz/dp_superpac_wakka.wav";
+    var sound = new Audio(url);
+    sound.play();
+};
+
+var displayScore = function() {
+    fill();
+    textSize(14);
+    text("Score\n" + score, 50, 50);
+};
+
+var Dot = function() {
+    this.x = random(0, 400);
+    this.y = random(0, 400);
+    this.colour = random(0, 400);
+    this.size = 10;
+};
+
+var makeDot = function() {
+    if (eat.length < 1) {
+        eat.push(new Dot());
+    }    
+    for (var i = 0; i < eat.length; i++) {
+        fill(255, 255, 255);
+        ellipse(eat[i].x, eat[i].y, eat[i].size, eat[i].size);
+        
+        if (dist(eat[i].x, eat[i].y, pacman.x, pacman.y) < 40) {
+            eat[i] = new Dot();
+            playSound();
+            score++;
+        }
+    }
+};
+
+
+var movePacMan = function() {
+    if (isUpPressed === true) {
+       pacman.y -= pacman.speedY;
+    }
+    if (isDownPressed === true) {
+        pacman.y += pacman.speedY;
+    }
+    if (isLeftPressed === true) {
+        pacman.x -= pacman.speedX;
+    }
+    if (isRightPressed === true) {
+        pacman.x += pacman.speedX;
+    }
+    
+};
+
+var endlessScreen = function() {
+    if (pacman.y < -40) {
+        pacman.y = 400;
+    } else if (pacman.y > 400 + 40) {
+        pacman.y = 0;
+    }
+    
+    if (pacman.x < 0 - 40) {
+        pacman.x = 400;
+    } else if (pacman.x > 400 + 40) {
+        pacman.x = 0;
+    }
+    
+};
+
+var draw = function() {
+    if (room === 1) {
+        startingPage();
+    }
+    
+    if (room === 2) {
+        instructionsPage();
+    }
+    
+    if (room === 3) {
+        movePacMan();
+        pacmanChomp();
+        makeDot();
+        displayScore();
+        endlessScreen();
+    }
+};
+
+var keyPressed = function() {
+    
+    if (keyCode === LEFT) {
+        isLeftPressed = true;
+        
+    }
+    
+    if (keyCode === RIGHT) {
+        isRightPressed = true;
+    }
+    if (keyCode === UP) {
+        isUpPressed = true;
+    }
+    if (keyCode === DOWN) {
+        isDownPressed = true;
+    }
+};
+
+var keyReleased = function() {
+    isLeftPressed = false;
+    isRightPressed = false;
+    isUpPressed = false;
+    isDownPressed = false;
+};
+
+var mouseClicked  = function() {
+    if (room === 1) {
+        if (mouseX >= 148 && mouseX <= 248 && mouseY >= 299 && mouseX <= 338) {
+            room = 2;
+        }
+    }
+    
+    if (room === 2) {
+        if (mouseX >= 268 && mouseX <= 390 && mouseY >= 299 && mouseX <= 338) {
+            room = 3;
+        }
+    }
+};

@@ -1,0 +1,7 @@
+var draw = function() {
+    background(0);
+    for (var i = 0; i < 50; i++) {
+        stroke(100, 255, 100, 50);
+        line(random(0, 300), random(0, 300), mouseX / 4, mouseY * 4);
+    }
+};

@@ -1,0 +1,36 @@
+var maxTrailSize = 60;
+var xPos = [];
+var yPos = [];
+
+
+var saveLastPosition = function() {
+    xPos[maxTrailSize-1] = mouseX;
+    yPos[maxTrailSize-1] = mouseY;
+};
+
+var saveTrialPositions = function() {
+    for (var i = 1; i < maxTrailSize; i++) {
+        xPos[i-1] = xPos[i];
+        yPos[i-1] = yPos[i];
+    }
+};
+
+var drawTrail = function() {
+    for (var i = 0; i < maxTrailSize; i++) {
+        fill(0, 255, 255);
+        ellipse(xPos[i], yPos[i], i/2, i/2);
+        fill(0, 255, 0);
+        rect(xPos[i]+20, yPos[i]-10, i/2, i/2);
+    }
+};
+
+var draw = function() {
+    background(40);
+    saveLastPosition();
+    saveTrialPositions();
+    drawTrail();
+};
+
+var mouseClicked = function() {
+    saveTrialPositions();
+};

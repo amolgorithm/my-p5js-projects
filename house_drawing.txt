@@ -1,0 +1,58 @@
+var cloudX = 50;
+var dx = 0.1;
+var randCloudY = random(30, 100);
+
+
+var drawClouds = function(x, y) {
+    noStroke();
+    fill();
+    ellipse(x, y, 40, 40);
+    ellipse(x + 30, y - 10, 60, 60);
+    ellipse(x + 60, y, 40, 40);
+};
+
+
+var draw = function() {
+    stroke(0);
+    background(90, 230, 256);
+    
+    cloudX += dx;
+    
+    if (cloudX >= 100 && cloudX <= 340) {
+        fill(0, 0, 0, 30);
+        rect(0, 0, 400, 400);
+    }
+    
+    
+    
+    fill(0, 255, 0);
+    rect(0, 300, 400, 100);
+    fill(255, 255, 0);
+    ellipse(320, 50, 50, 50);
+    fill(255, 0, 0);
+    rect(120, 170, 150, 130);
+    fill(0, 0, 255);
+    triangle(195, 89, 120, 170, 266, 170);
+    fill(190, 150, 0);
+    ellipse(200, 260, 50, 80);
+    fill(235, 235, 0);
+    ellipse(215, 260, 10, 10);
+    fill(190, 150, 0);
+    rect(45, 200, 20, 100);
+    fill(25, 200, 30);
+    ellipse(55, 160, 100, 100);
+    
+    drawClouds(cloudX, randCloudY);
+    drawClouds(cloudX + 120, randCloudY - 10);
+    
+    if (cloudX >= 300) {
+        cloudX = -5;
+    }
+    
+    
+    for (var i = 0; i < 20; i++) {
+        stroke(0);
+        fill(190, 180, 0);
+        rect(i * 20, 340, 20, 60);
+    }
+};

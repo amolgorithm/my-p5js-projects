@@ -1,0 +1,8 @@
+var draw = function() {
+    rectMode(CENTER);
+    background(255, 255, 255, 20);
+    fill(255, 255, 255, 90);
+    triangle(width - mouseX, 200, width - mouseY + 10, width - mouseY + 20, width - mouseY, width - mouseY);
+    fill(100, 190, 255, 90);
+    triangle(mouseX, 200, mouseY + 10, mouseY + 20, width - mouseY + 20, width - mouseY);
+};

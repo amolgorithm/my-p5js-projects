@@ -1,0 +1,72 @@
+var timesClicked = 0;
+var timer = 60;
+var minBoundary = 0;
+var maxBoundary = width - 80;
+
+function Button() {
+    this.topX = round(random(minBoundary, maxBoundary));
+    this.topY = round(random(minBoundary, maxBoundary));
+    this.width = 80;
+    this.height = 30;
+    this.directionX = 1;
+    this.directionY = -1;
+    this.colour = [random(255), random(255), random(255)];
+    this.isClicked = function() {
+        return (mouseX >= this.topX && mouseX <= this.topX + this.width && mouseY >= this.topY && mouseY <= this.topY + this.height);
+    };
+    this.jumpToNewPosition = function() {
+        this.topX = round(random(minBoundary, maxBoundary));
+        this.topY = round(random(minBoundary, maxBoundary));
+    };
+    this.changeCurrentColour = function() {
+        this.colour = [random(0, 255), random(0, 255), random(0, 200)];
+    };
+    this.moveAroundCanvas = function() {
+        this.topX += this.directionX;
+        this.topY += this.directionY;
+        if (this.topX <= minBoundary) {
+            this.directionX = -this.directionX;
+        }
+        else if (this.topX >= maxBoundary) {
+            this.directionX = -this.directionX;
+        }
+        
+        if (this.topY <= minBoundary) {
+            this.directionY = -this.directionY;
+        }
+        else if (this.topY >= maxBoundary) {
+            this.directionY = -this.directionY;
+        }
+    };
+}
+
+//creating the Button object 
+var button = new Button();
+
+var draw = function() {
+    background(0);
+    // the timer decrements until it hits zero
+    if (timer > 0) {
+        timer -= 0.02;
+    }
+    button.moveAroundCanvas();
+    fill(button.colour[0], button.colour[1], button.colour[2]);
+    rect(button.topX, button.topY, button.width, button.height);
+    fill();
+    textSize(15);
+    text("Click me!", button.topX + 10, button.topY + 20);
+    text("Clicks: " + timesClicked, 20, 30);
+    text("Timer: " + round(timer), 100, 30);
+};
+
+
+// when the button is clicked the x and y of the rectangle is changed, whereas the timer goes on
+// the fill colour is also changed to a random rgb
+
+var mouseClicked = function() {
+    if (timer > 0 && button.isClicked()) {
+        timesClicked++; 
+        button.changeCurrentColour();
+        button.jumpToNewPosition();
+    }
+};

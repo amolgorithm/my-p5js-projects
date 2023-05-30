@@ -1,0 +1,30 @@
+noStroke();
+var numOfDots = 500;
+var angleChange = 140.3;
+var maxRadius = 179;
+var angleChangeByValue = 0.00040;
+
+var dots = function() {
+    translate(mouseX-width/2, mouseY-height/2);
+    scale(0.6);
+    for (var i = 0; i < numOfDots; i++) {
+        var radius = maxRadius * sqrt(i/numOfDots);
+        var theta  = angleChange * i;
+        var x = 207 + radius * cos(theta);
+        var y = 200 + radius * sin(theta);
+        fill(x, y, x-y);
+        ellipse(x, y, 5, 5);
+        fill(x, y, x+y);
+        ellipse(-x+100, y, 5, 5);
+    }
+};
+
+var draw = function() {
+    background(26);
+    dots();
+    angleChange += angleChangeByValue;
+};
+
+var mouseClicked = function() {
+    angleChangeByValue = -angleChangeByValue + random(0.00010);
+};

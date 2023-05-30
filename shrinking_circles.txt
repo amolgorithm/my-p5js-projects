@@ -1,0 +1,38 @@
+var ellipseArray = [];
+var diameter = 400;
+
+var circle = function(x, y)
+{
+    this.x = x;
+    this.y = y;
+    this.diam = diameter;
+    this.display = function() 
+    {
+        ellipse(this.x, this.y, this.diam, this.diam);
+    };
+};
+
+
+
+ellipseArray.push(new circle(mouseX, mouseY));
+
+var constructEllipse = function()
+{
+    noStroke();
+    fill(200, 180, 70);
+    ellipseArray.forEach(function(circle) {
+        circle.display();
+        circle.diam -= 3;
+    });
+};
+
+var draw = function()
+{
+    background(0, 80, 80);
+    constructEllipse();
+};
+
+
+var mouseClicked = function() {
+    ellipseArray.push(new circle(mouseX, mouseY));
+};

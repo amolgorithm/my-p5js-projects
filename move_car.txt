@@ -1,0 +1,111 @@
+var xPosition = 200;
+var yPosition = 252;
+
+var car2x = 0;
+var car2y = 221;
+var car2Speed = 2;
+
+var xSpeed = 0;
+var ySpeed = 0;
+noStroke();
+
+
+var drawCar = function() {
+    fill(255, 0, 0);
+    rect(xPosition, yPosition, 40, 10);
+    rect(xPosition + 10, yPosition-10, 20, 10);
+    fill(0);
+    ellipse(xPosition+10, yPosition+10, 10, 10);
+    ellipse(xPosition+30, yPosition+10, 10, 10);
+};
+
+var drawCar2 = function() {
+    fill(255, 255, 0);
+    rect(car2x, car2y, 40, 10);
+    rect(car2x + 10, car2y-10, 20, 10);
+    fill(0);
+    ellipse(car2x+10, car2y+10, 10, 10);
+    ellipse(car2x+30, car2y+10, 10, 10);
+    car2x+=car2Speed;
+    
+    if (car2x > 400) {
+        car2x = 0;
+    }
+    
+};
+
+var drawBackground = function() {
+    background(90,255,255);
+    fill(0, 255, 0);
+    rect(0, 200, 400, 200);
+    fill(80);
+    rect(0, 220, 400, 50);
+    for (var i = 0; i < 400; i += 40) {
+        fill(255, 255, 0);
+        rect(i, 240, 25, 8);
+    }
+};
+
+var hitCars = function() {
+    if (car2x >= xPosition && car2x <= xPosition + 50 && car2y >= yPosition && car2y <= yPosition + 40) {
+        fill(0);
+        textSize(30);
+        textAlign(CENTER);
+        text("Game Over!", 200, 100);
+        car2Speed = 0;
+        xSpeed = 0;
+        ySpeed = 0;
+    }
+};
+
+
+var moveCar = function() {
+    xPosition += xSpeed;
+    yPosition += ySpeed;
+    
+    if (xPosition >= 400) {
+        xPosition = -9;
+    }
+    if (xPosition <= -10) {
+        xPosition = 399;
+    }
+    if (yPosition <= 221) {
+        yPosition = 221;
+    }
+    if (yPosition >= 251) {
+        yPosition = 251;
+    }
+};
+
+var draw = function() {
+    drawBackground();
+    drawCar();
+    moveCar();
+    drawCar2();
+    hitCars();
+};
+
+var keyPressed = function() {
+    switch(keyCode) {
+        case 37:
+            xSpeed = -2;
+            break;
+            
+        case 39:
+            xSpeed = 2;
+            break;
+            
+        case 32:
+            xSpeed = 0;
+            ySpeed = 0;
+            break;
+            
+        case 38:
+            ySpeed = -0.5;
+            break;
+            
+        case 40:
+            ySpeed = 0.5;
+            break;
+    }
+};

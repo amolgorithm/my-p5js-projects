@@ -1,0 +1,9 @@
+var draw = function() {
+    background(255, 255, 255);
+    fill(255, 153, 0);
+    textSize(84);
+    text(second(), 101, 204);
+    fill(255, 191, 94);
+    textSize(26);
+    text("seconds", 101, 240);
+};

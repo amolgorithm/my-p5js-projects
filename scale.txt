@@ -1,0 +1,44 @@
+var s = 1;
+
+
+var drawShapes  = function() {
+    fill(0);
+    ellipse(60, 60, 15, 15);
+    arc(200, 200, 100, 100, -270, -90);
+    noFill();
+    rect(0, 0, 400, 400);
+    
+    fill(0);
+    resetMatrix();
+    triangle(35, 320, 25, 350, 45, 350);
+    triangle(35, 390, 25, 360, 45, 360);
+    
+};
+
+var draw = function() {
+    scale(s);
+    background(180, 220, 240);
+    drawShapes();
+    s+=0.05;
+    if (s > 8) {
+        s = 0.1;
+    }
+};
+
+var keyPressed = function() {
+    if (keyCode === DOWN) {
+        s = s /2;
+    }
+    if (keyCode === UP) {
+        s *= 2;
+    }
+};
+
+var mouseClicked = function() {
+    if (mouseX >= 25 && mouseX <= 45 && mouseY >= 320 && mouseY <= 350) {
+        s *= 2;
+    }
+    if (mouseX >= 25 && mouseX <= 45 && mouseY >= 360 && mouseY <= 390) {
+        s = s /2;
+    }
+};

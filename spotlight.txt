@@ -1,0 +1,45 @@
+imageMode(CENTER);
+var spotlightColour = [255, 255, 255];
+
+
+var draw = function() {
+    var spotlight = dist(mouseX, mouseY, 200, 200) + 100;
+    background(0);
+    noStroke();
+    fill(spotlightColour[0], spotlightColour[1], spotlightColour[2], 50);
+    tint(255 - spotlight, 255 - spotlight, 255 - spotlight);
+    ellipse(mouseX, mouseY, 200, 50);
+    ellipse(400 - mouseX, mouseY, 200, 50);
+    image(getImage("minecraft/zombie"), 200, 200, 130, 130);
+    image(getImage("minecraft/steve"), 100, 100, 130, 130);
+    triangle(0, 0, mouseX - 100, mouseY, mouseX + 100, mouseY);
+    triangle(400, 0, 400 - mouseX - 100, mouseY, 400 - mouseX + 100, mouseY);
+    fill();
+    rect(300, 50, 80, 330);
+    fill(0);
+    textSize(30);
+    text("Menu", 300, 80);
+    fill(0, 0, 255);
+    rect(315, 100, 50, 50);
+    fill(255, 190, 0);
+    rect(315, 170, 50, 50);
+    fill(0, 255, 255);
+    rect(315, 240, 50, 50);
+    fill(0, 255, 0);
+    rect(315, 310, 50, 50);
+};
+
+var mouseClicked = function() {
+    if (mouseX >= 314 && mouseX <= 364 && mouseY >= 99 && mouseY <= 150) {
+        spotlightColour = [0, 20, 255];
+    }
+    if (mouseX >= 314 && mouseX <= 364 && mouseY >= 169 && mouseY <= 220) {
+        spotlightColour = [255, 170, 0];
+    }
+    if (mouseX >= 314 && mouseX <= 364 && mouseY >= 241 && mouseY <= 290) {
+        spotlightColour = [0, 255, 255];
+    }
+    if (mouseX >= 314 && mouseX <= 364 && mouseY >= 309 && mouseY <= 361) {
+        spotlightColour = [0, 255, 0];
+    }
+};

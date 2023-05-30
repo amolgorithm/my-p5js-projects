@@ -1,0 +1,210 @@
+var cutSize = 1;
+var carvingMode = true;
+
+
+fill(100);
+rect(0, 0, 400, 400);
+
+noStroke();
+fill(200, 140, 0);
+ellipse(230, 200, 320, 320);
+fill(0, 100, 0);
+rect(210, 0, 40, 50);
+
+var draw = function() {
+    noStroke();
+    fill(100);
+    rect(325, 360, 75, 40);
+    rect(5, 300, 70, 100);
+    fill(255);
+    text("Toolsize:\n" + cutSize, 340, 380);
+    rect(10, 170, 57, 220, 10);
+    fill(100);
+    
+    if (carvingMode === "rect") {
+        strokeWeight(5);
+        stroke(0, 100, 240);
+    } else {
+        noStroke();
+    }
+    
+    if (mouseX >= 17 && mouseX <= 61 && mouseY >= 177 && mouseY <= 212 && carvingMode !== "rect") {
+        strokeWeight(5);
+        stroke(0, 100, 240, 140);
+        
+    }
+    
+    fill(100);
+    rect(17, 177, 44, 35, 5);
+    fill(0, 160, 200);
+    noStroke();
+    rect(25, 179, 30, 30);
+    noStroke();
+    
+ 
+    
+    
+    if (carvingMode === "triangle") {
+        strokeWeight(5);
+        stroke(0, 100, 240);
+    } else {
+        noStroke();
+    }
+    
+    if (mouseX >= 17 && mouseX <= 61 && mouseY >= 220 && mouseY <= 255 && carvingMode !== "triangle") {
+        strokeWeight(5);
+        stroke(0, 100, 240, 140);
+        
+    }
+    
+    fill(100);
+    rect(17, 220, 44, 35, 5);
+    fill(0, 160, 200);
+    noStroke();
+    triangle(39, 227, 25, 244, 53, 244);
+    
+    
+     
+    if (carvingMode === "circle") {
+        strokeWeight(5);
+        stroke(0, 100, 240);
+    } else {
+        noStroke();
+    }
+    
+    if (mouseX >= 17 && mouseX <= 61 && mouseY >= 263 && mouseY <= 297 && carvingMode !== "circle") {
+        strokeWeight(5);
+        stroke(0, 100, 240, 140);
+        
+    }
+    
+    fill(100);
+    rect(17, 265, 44, 35, 5);
+    fill(0, 160, 200);
+    noStroke();
+    ellipse(39, 282, 30, 30);
+    
+    fill(100);
+    
+    if (carvingMode === true) {
+        strokeWeight(5);
+        stroke(0, 100, 240);
+    } else {
+        noStroke();
+    }
+    
+    if (mouseX >= 17 && mouseX <= 61 && mouseY >= 308 && mouseY <= 342 && carvingMode !== true) {
+        strokeWeight(5);
+        stroke(0, 100, 240, 140);
+        
+    }
+    
+    rect(17, 308, 44, 35, 5);
+    if (carvingMode === "erase") {
+        strokeWeight(5);
+        stroke(0, 100, 240);
+    } else {
+        noStroke();
+    }
+    if (mouseX >= 17 && mouseX <= 61 && mouseY >= 348 && mouseY <= 382 && carvingMode !== "erase") {
+        strokeWeight(5);
+        stroke(0, 100, 240, 140);
+    }
+    
+    rect(17, 348, 44, 35, 5);
+    
+    noStroke();
+    fill(200, 40, 0);
+    rect(23, 322, 14, 7);
+    fill(200, 200, 200);
+    beginShape();
+    vertex(35, 321);
+    vertex(50, 321);
+    vertex(58, 325);
+    vertex(50, 329);
+    vertex(35, 329);
+    endShape(CLOSE);
+    fill(255, 0, 230);
+    stroke(0);
+    strokeWeight(1);
+    quad(24, 352, 48, 352, 46, 364, 20, 364);
+    quad(20, 364, 46, 364, 50, 372, 25, 372);
+    quad(46, 352, 50, 360, 50, 372, 46, 364);
+    
+    
+    if (cutSize >= 90) {
+        cutSize = 90;
+    }
+};
+
+
+
+var mouseDragged = function() {
+    if (dist(mouseX, mouseY, 200, 200) < 135) {
+            if (carvingMode === true || carvingMode === "erase") {
+            if (carvingMode === true) {
+                stroke(240, 150, 5);
+            } else if (carvingMode === "erase") {
+                stroke(200, 140, 0);
+            }
+            
+            strokeWeight(abs(cutSize));
+            
+            if (cutSize >= 90) {
+                cutSize = 90;
+            }
+            
+            line(mouseX, mouseY, pmouseX, pmouseY);
+        }
+    }
+};
+
+var mouseClicked = function() {
+    if (mouseX >= 17 && mouseX <= 61 && mouseY >= 308 && mouseY <= 342) {
+        carvingMode = true;
+    }
+    if (mouseX >= 17 && mouseX <= 61 && mouseY >= 348 && mouseY <= 382) {
+        carvingMode = "erase";
+    }
+    
+    if (mouseX >= 17 && mouseX <= 61 && mouseY >= 263 && mouseY <= 297) {
+        carvingMode = "circle";
+    }
+    
+    if (mouseX >= 17 && mouseX <= 61 && mouseY >= 220 && mouseY <= 255) {
+        carvingMode = "triangle";
+    }
+    
+    if (mouseX >= 17 && mouseX <= 61 && mouseY >= 177 && mouseY <= 212) {
+        carvingMode = "rect";
+    }
+    
+    if (dist(mouseX, mouseY, 200, 200) < 135) {
+        if (carvingMode === "circle") {
+            noStroke();
+            fill(240, 150, 5);
+            ellipse(mouseX, mouseY, cutSize, cutSize);
+        }
+        
+        if (carvingMode === "triangle") {
+            noStroke();
+            fill(240, 150, 5);
+            triangle(mouseX, mouseY - cutSize / 2, mouseX - cutSize / 2, mouseY + cutSize / 2, mouseX + cutSize / 2, mouseY + cutSize / 2);
+        }
+        
+        if (carvingMode === "rect") {
+            noStroke();
+            fill(240, 150, 5);
+            rect(mouseX - cutSize / 2, mouseY - cutSize / 2, cutSize, cutSize);
+        }
+        
+    }
+};
+
+var keyPressed = function() {
+    if (keyCode === 38) {
+        cutSize++;
+    } else if (keyCode === 40) {
+        cutSize--;
+    }
+};

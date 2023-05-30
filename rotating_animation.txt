@@ -1,0 +1,14 @@
+var angle = 0;
+
+var moveSquare = function() {
+    translate(200, 200);
+    rotate(angle);
+    fill(mouseX, mouseY, mouseX+mouseY);
+    rect(mouseX-200+20, mouseY-200, 100, 100);
+    angle += 5;
+    resetMatrix();
+};
+
+var draw = function() {
+    moveSquare();
+};

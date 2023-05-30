@@ -1,0 +1,23 @@
+var circleColor = [random(255), random(255), random(255)];
+var circle2Color = [random(255), random(255), random(255)];
+var backgroundColor = [random(255), random(255), random(100)];
+var circleParams = [mouseX, mouseY];
+
+var mouseClicked = function() {
+    circleColor = [random(255), random(255), random(255)];
+    circle2Color = [random(255), random(255), random(255)];
+    circleParams = [mouseX, mouseY, random(20, 80)];
+    backgroundColor = [random(255), random(255), random(100)];
+};
+
+var draw = function() {
+    circleParams[0] = mouseX;
+    circleParams[1] = mouseY;
+    
+    background(...backgroundColor);
+    fill(...circleColor);
+    ellipse(...circleParams, 40, 40);
+    fill(...circle2Color);
+    translate(100, 100);
+    ellipse(...circleParams, 50, 50);
+};

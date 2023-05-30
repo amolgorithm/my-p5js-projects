@@ -1,0 +1,41 @@
+var xPos = 0;
+var yPos = 0;
+var pixelSize = 40;
+var pixelColor = null;
+
+var draw = function() {
+    if (mousePressed === true) {
+        xPos = floor(mouseX / pixelSize) * pixelSize;
+        yPos = floor(mouseY / pixelSize) * pixelSize;
+        
+        if (pixelColor === null) {
+            fill(mouseX, mouseY, mouseX - mouseY, 100);
+            stroke(mouseX, mouseY, mouseX - mouseY, 255);
+        } else {
+            fill(pixelColor, 100);
+            stroke(pixelColor, 255);
+        }
+        rect(xPos, yPos, pixelSize, pixelSize);
+    }
+};
+
+
+var keyPressed = function() {
+    switch(keyCode) {
+        case 82:
+            pixelColor = color(255, 0, 0);
+            break;
+            
+        case 71:
+            pixelColor = color(0, 255, 0);
+            break;
+            
+        case 66:
+            pixelColor = color(0, 0, 255);
+            break;
+            
+        case 17:
+            pixelColor = null;
+            break;
+    }
+};

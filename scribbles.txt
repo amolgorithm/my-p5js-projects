@@ -1,0 +1,12 @@
+background(190, 190, 190, 10);
+
+var mouseDragged = function() {
+    var height = 10;
+    var width = 5;
+
+    
+    for (var i = 0; i < 5; i++) {
+        stroke(190, 190, 0);
+        line(mouseX + random(-width, 0), mouseY + random(-height, height), mouseX + random(0, width + 20), mouseY + random(-height, height + 3));
+    }
+};

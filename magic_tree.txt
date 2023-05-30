@@ -1,0 +1,21 @@
+var numOfDots = 200;
+var angleChange = 137;
+var maxRadius = 400;
+var img = getImage("cute/Star");
+noStroke();
+
+var draw = function() {
+    background(26);
+    
+    scale(0.3, 0.5);
+    translate(400, 370);
+    for (var i = 0; i < numOfDots; i++) {
+        var radius = maxRadius * (i / numOfDots);
+        var theta = angleChange * i;
+        var x = 200 + radius * cos(theta);
+        var y = 10 + radius;
+        image(img, x, y, 30, 30);
+        image(img, x, -y, 30, 30);
+    }
+    angleChange += 0.001;
+};

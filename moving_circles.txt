@@ -1,0 +1,58 @@
+noStroke();
+var x = 100;
+var y = 200;
+var xSpeed = 3;
+var ySpeed = 3;
+var onTop = false;
+
+
+var moveCircles = function() {
+    x += xSpeed;
+    
+    if (x > 300 || x < 100) {
+        xSpeed *= -1;
+        onTop = !onTop;
+    }
+    y += ySpeed;
+    if (y > 300 || y < 100) {
+        ySpeed *= -1;
+    }
+};
+
+
+var drawCircles = function() {
+    if (onTop === true) {
+        fill(x);
+        ellipse(x, height/2, y/2+10,y/2+10);
+        fill(x);
+        ellipse(width-x, height/2, ((height-y)/2)+10, ((height-y)/2)+10);
+    }
+    if (onTop === false) {
+        fill(x);
+        ellipse(width-x, height/2, ((height-y)/2)+10, ((height-y)/2)+10);
+        fill(x);
+        ellipse(x, height/2, y/2+10,y/2+10);
+    }
+};
+
+var drawCirclesVertical = function() {
+    if (onTop === true) {
+        fill(y);
+        ellipse(y, height/2, x/2+10,x/2+10);
+        fill(x);
+        ellipse(width-x, height/2, ((height-y)/2)+10, ((height-y)/2)+10);
+    }
+    if (onTop === false) {
+        fill(x);
+        ellipse(width-x, height/2, ((height-y)/2)+10, ((height-y)/2)+10);
+        fill(x);
+        ellipse(y, height/2, x/2+10,x/2+10);
+    }
+};
+
+
+var draw = function() {
+    background(90, 190, 190);
+    moveCircles();
+    drawCircles();
+};

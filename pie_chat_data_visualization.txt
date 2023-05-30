@@ -1,0 +1,35 @@
+var data = [30, 10, 45, 35, 60, 38, 75, 67];
+var labels = ["dog", "cat", "lizard", "chamelion", "lion", "eagle", "chipmunk", "gerbil"];
+var coords = [[175, 108], [268, 144], [293, 218], [272, 248], [231, 279], [176, 282], [109, 242], [102, 164]];
+var pieSize = 300;
+var r = 0;
+var g = 0;
+var b = 0;
+
+noStroke();
+background(100);
+
+
+var pieChart = function() {
+    var lastAngle = 0;
+    
+    for (var i = 0; i < data.length; i++) {
+        
+        r = map(i, 0, data.length, 0, 255);
+        g = map(i, 20, data.length, 0, 200);
+        b = map(i, 20, data.length, 0, 230);
+        fill(r, random(i, 255), random(i, 255));
+        arc(width/2, height/2, pieSize, pieSize, lastAngle, lastAngle+data[i]);
+        
+        lastAngle += data[i];
+        
+    }
+    
+    for (var j = 0; j < labels.length; j++) {
+        textAlign(CENTER, CENTER);
+        fill(0);
+        text(labels[j], coords[j][0], coords[j][1]);
+    }
+};
+
+pieChart();

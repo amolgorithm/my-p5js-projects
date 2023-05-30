@@ -1,0 +1,43 @@
+stroke(0);
+strokeWeight(2);
+fill(190);
+ellipse(200, 210, 80, 80);
+fill(255, 0, 0);
+ellipse(200, 200, 80, 80);
+fill();
+textSize(30);
+text("easy", 170, 205);
+
+var drawHand = function() {
+    fill(210, 180, 140);
+    rect(50, 90, 50, 50, 20);
+    fill(255, 255, 0);
+    rect(50, 100, 50, 100, 20);
+    rect(50, 170, 80, 150, 20);
+    stroke(0);
+    strokeWeight(5);
+    line(52, 225, 105, 225);
+    line(52, 258, 105, 258);
+    line(52, 293, 105, 293);
+};
+
+
+var mouseClicked = function() {
+    var audio = "https://www.myinstants.com/media/sounds/that_was_easy.mp3";
+    var playAud = new Audio(audio);
+    if (mouseX >= 157 && mouseX <= 237 && mouseY >= 158 && mouseY <= 240) {
+        fill(190);
+        ellipse(200, 210, 80, 80);
+        fill(random(255), random(255), random(255));
+        ellipse(200, 200, 80, 80);
+        fill();
+        textSize(30);
+        text("easy", 170, 205);
+        fill(0);
+        text("That was easy!", 100, 50);
+        fill(255, 0, 0);
+        text("STAPLES", 140, 350);
+        playAud.play();
+        drawHand();
+    }
+};

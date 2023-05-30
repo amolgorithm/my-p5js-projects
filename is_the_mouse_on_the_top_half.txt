@@ -1,0 +1,52 @@
+var drawYes = function() {
+    var x = random(10, 170);
+    var y = random(10, 170);
+    
+    fill(0, 200, 0);
+    textSize(20);
+    text("YES!", x, y);
+};
+
+var drawNo = function() {
+    var x = random(210, 370);
+    var y = random(10, 170);
+    
+    fill(255, 0, 0);
+    textSize(20);
+    text("NO!", x, y);
+
+};
+
+var drawUh = function() {
+    var x = random(10, 170);
+    var y = random(210, 370);
+    
+    fill(255, 130, 0);
+    textSize(20);
+    text("UH?", x, y);
+};
+
+var drawMaybe = function() {
+    var x = random(210, 370);
+    var y = random(210, 370);
+    
+    fill(0, 0, 255);
+    textSize(20);
+    text("Maybe", x, y);
+};
+
+var draw = function() {
+    fill(0);
+    line(200, 0, 200, 400);
+    line(0, 200, 400, 200);
+    
+    if (mouseX < 200 && mouseY < 200) {
+        drawYes();
+    } else if (mouseX > 200 && mouseY < 200) {
+        drawNo();
+    } else if (mouseX < 200 && mouseY > 200) {
+        drawUh();
+    } else {
+        drawMaybe();
+    }
+};

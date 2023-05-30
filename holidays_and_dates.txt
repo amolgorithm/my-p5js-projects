@@ -1,0 +1,58 @@
+var theMonth = month();
+
+
+var images = {
+    spring: getImage("landscapes/lotus-garden"),
+    summer: getImage("landscapes/sand-dunes"),
+    fall: getImage("landscapes/mountains-sunset"),
+    fridaythe13: getImage("animals/collies"),
+    winter: getImage("landscapes/mountain_matterhorn")
+};
+
+var showDate = function() {
+    textAlign(CENTER);
+    fill(0);
+    textSize(30);
+    text("Today is day " + day() + " of month " + theMonth, 200, 100);
+    text("in the year " + year(), 200, 150);
+};
+
+var drawImage = function() {
+    imageMode(CENTER);
+    
+    if (theMonth >= 3 && theMonth <= 5) {
+        image(images.spring, 200, 280, 200, 170);
+    }
+
+    else if (theMonth >= 6 && theMonth <= 8) {
+        image(images.summer, 200, 280, 200, 170);
+    }
+    
+    else if (theMonth >= 9 && theMonth <= 11) {
+        if (theMonth === 10 && day() === 13) {
+            image(images.fridaythe13, 200, 280, 200, 170);
+        }
+        else {
+            image(images.fall, 200, 280, 200, 170);
+        }
+    }
+    else if (theMonth > 11 || theMonth <= 2) {
+        image(images.winter, 200, 280, 200, 170);
+    }
+};
+
+var draw = function() {
+    background(255, 160, 0);
+    showDate();
+    drawImage();
+};
+
+
+var mouseClicked = function() {
+    if (theMonth <= 11) {
+        theMonth++;
+    }
+    else {
+        theMonth = 1;
+    }
+};

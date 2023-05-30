@@ -1,0 +1,11 @@
+var barWidth = 10;
+var hueC = 10;
+
+colorMode(RGB);
+noStroke();
+
+var draw = function() {
+    hueC = mouseY;
+    fill(hueC, mouseX, hueC, 10);
+    rect(mouseX, 0, barWidth, height);
+};

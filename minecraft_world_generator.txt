@@ -1,0 +1,52 @@
+var blockSize = 20;
+var blocks = {
+    color: [],
+    type: [],
+    posX: [],
+    posY: []
+};
+
+
+var grassBlock = {
+    blockType: "grass",
+    color: color(0, 255, 0),
+    maxHeight: 240,
+    minHeight: 240
+};
+
+var dirtBlock = {
+    blockType: "dirt",
+    color: color(138, 51, 11),
+    maxHeight: 240,
+    minHeight: 400
+};
+
+var addBlock = function(x, y, c, t) {
+    blocks.posX.push(x);
+    blocks.posY.push(y);
+    blocks.color.push(c);
+    blocks.type.push(t);
+};
+
+var generateBlock = function(block) {
+    for (var i = 400; i >= 0; i -= 20) {
+        for (var j = 400; j >= 0; j -= 20) {
+            if (j >= block.maxHeight && j <= block.minHeight) {
+                addBlock(i, j, block.color, block.type);
+            }
+        }
+    }
+};
+generateBlock(dirtBlock);
+generateBlock(grassBlock);
+
+var drawBlocks = function() {
+    for (var i = 0; i < blocks.posX.length; i++) {
+        fill(blocks.color[i]);
+        rect(blocks.posX[i], blocks.posY[i], blockSize, blockSize);
+    }
+};
+var draw = function() {
+    background(0, 200, 200);
+    drawBlocks();
+};

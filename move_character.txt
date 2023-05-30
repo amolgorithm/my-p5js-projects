@@ -1,0 +1,37 @@
+var posY = random(100, 400);
+var posX = random(100, 300);
+
+var draw = function() {
+    background();
+    
+    imageMode(CORNER);
+    image(getImage("avatars/old-spice-man-blue"), posX, posY, 250, 250);
+    
+    if (posY <= 0) {
+        posY += 10;
+    }
+    if (posY >= 150) {
+        posY -= 10;
+    }
+    if (posX <= -20) {
+        posX += 10;
+    }
+    if (posX >= 170) {
+        posX -= 10;
+    }
+};
+
+var keyPressed = function() {
+    if (keyCode === 38) {
+        posY -= 20;
+    }
+    else if (keyCode === 40) {
+        posY += 20;
+    }
+    else if (keyCode === 37) {
+        posX -= 20;
+    }
+    else if (keyCode === 39) {
+        posX += 20;
+    }
+};

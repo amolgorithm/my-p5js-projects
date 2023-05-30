@@ -1,0 +1,44 @@
+var playerX = 200;
+var playerY = 340;
+var dx = 2;
+var dy = -2;
+
+var draw = function() {
+    playerX += dx;
+    playerY += dy;
+    
+    if (playerX >= 340) {
+        dx = -2;
+    }
+    
+    if (playerY <= 50) {
+        dy = 0;
+        dx = 0;
+    }
+    noStroke();
+    background(255, 255, 255, 20);
+    stroke(0, 0, 255);
+    fill();
+    line(0, 50, 400, 50);
+    line(0, 350, 400, 350);
+    stroke(255, 0, 0);
+    ellipse(200, 180, 200, 100);
+    line(0, 180, 400, 180);
+    //goal
+    fill(190);
+    quad(126, 1, 249, 1, 258, 48, 119, 47);
+    stroke(0, 0, 255);
+    line(190, 0, 190, 45);
+    line(150, 0, 150, 45);
+    line(230, 0, 230, 45);
+    line(123, 10, 250, 10);
+    line(123, 20, 250, 20);
+    line(123, 30, 250, 30);
+    //puck
+    fill(0);
+    noStroke();
+    ellipse(playerX - 20, playerY, 50, 40);
+    fill(0, 0, 255);
+    rect(playerX, playerY, 60, 100);
+    ellipse(playerX + 30, playerY - 20, 50, 50);
+};

@@ -1,0 +1,20 @@
+var facesList = [[0, 180], [-180, 0], [180, 360]];
+var eyes = facesList[0][0];
+var mouth = facesList[0][1];
+
+var drawStamp = function() {
+    strokeWeight(4);
+    fill(255, 255, 0);
+    ellipse(mouseX, mouseY, 100, 100);
+    fill(0);
+    rect(mouseX - 30, mouseY - 20, 25, 20);
+    rect(mouseX - 1, mouseY - 20, 10, 5);
+    rect(mouseX + 10, mouseY - 20, 25, 20);
+    arc(mouseX, mouseY + 20, 30, 30, eyes, mouth);
+};
+background(20);
+
+
+var mouseClicked = function() {
+    drawStamp();
+};

@@ -1,0 +1,24 @@
+var wobble = 20;
+
+var draw = function() {
+    wobble = sin(Date.now() / 250)*height/25;
+    
+    
+    background(0, 0, 0);
+    fill(255, 255, 255);
+    translate(0, wobble + 10);
+    rect(125, 30, 150, 350, 80);
+    fill(0, 0, 0);
+    ellipse(170, 100, 30, 30);
+    ellipse(230, 100, 30, 30);
+    ellipse(200, 200, 60, 30);
+    fill(255, 255, 255);
+    noStroke();
+    triangle(160, 225, 124, 225, 0, 0);
+    triangle(235, 225, 274, 225, 360, 0);
+    
+    fill(0, 0, 0);
+    for (var i = 0; i < 4; i++) {
+        ellipse(150+i*35, 360, 60, 60);
+    }
+};

@@ -1,0 +1,66 @@
+var bgColor = color(249, 189, 242);
+var steamX = 0;
+var steamSpeed = 2;
+var steamColor = 0;
+var randomMarshMellowPos = [[random(160, 240), random(165, 175)], [random(160, 240), random(165, 175)], [random(160, 240), random(165, 175)]];
+var marshmellowTransparency = 255;
+
+
+var drawCup = function() {
+    noStroke();
+    
+    fill(160,82,45);
+    rect(0, 300, 400, 400);
+    
+    fill(255);
+    ellipse(270, 235, 90, 130);
+    
+    fill(bgColor);
+    ellipse(270, 235, 80, 100);
+    
+    fill(255);
+    rect(130, 150, 140, 170, 30);
+    
+    fill(53,40,30);
+    rect(140, 160, 120, 25, 15);
+    
+    
+    for (var i = 0; i < randomMarshMellowPos.length; i++) {
+        fill(255, marshmellowTransparency);
+        ellipse(randomMarshMellowPos[i][0], randomMarshMellowPos[i][1], 15, 15);
+    }
+    
+    marshmellowTransparency -= 0.2;
+};
+
+
+var drawStream = function() {
+    noFill();
+    
+    stroke(steamColor);
+    
+    for (var i = 0; i < 3; i++) {
+        bezier(180 + i * 20, 25, 180 + i * 20 - steamX, 75, 180 + i * 20 + steamX, 75, 180 + i * 20, 150);
+    }
+    
+    if (steamColor !== color(255, 0)) {
+        steamX += steamSpeed;
+    }
+    
+    steamColor += 0.5;
+    
+    if (steamColor >= 220) {
+        steamColor = color(255, 0);
+    }
+    
+    if (steamX > 40 || steamX <= -40) {
+        steamSpeed = -steamSpeed;
+    }
+};
+
+
+var draw = function() {
+    background(bgColor);
+    drawCup();
+    drawStream();
+};

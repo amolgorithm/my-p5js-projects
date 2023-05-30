@@ -1,0 +1,11 @@
+var draw = function() {
+    var shape = random(100, 200);
+    var size = random(0, 80);
+    fill(random(255), random(255), random(255));
+    if (shape >= 100 && shape <= 150) {
+        ellipse(random(0, width), random(0, height), size, size);
+    }
+    else {
+        rect(random(0, width), random(0, height), size, size);
+    }
+};

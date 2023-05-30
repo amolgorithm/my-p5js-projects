@@ -1,0 +1,9 @@
+var draw = function() {
+    var raindropSize = map(mouseX, 0, width, 18, 18);
+    var x = round(random(width));
+    var y = round(random(height));
+    fill(random(0, 255), random(0, 255), random(0, 255), 50);
+    ellipse(x, y, raindropSize, raindropSize);
+    fill(random(0, 115), random(0, 155), random(0, 135), 50);
+    ellipse(x + 30, y + 30, raindropSize, raindropSize);
+};

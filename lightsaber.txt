@@ -1,0 +1,47 @@
+var beamSize = 0;
+var beamOn = false;
+var beamColors = [color(255, 0, 0), color(0, 255, 0), color(0, 0, 255), color(0, 255, 255), color(255, 0, 180), color(180, 255, 255)];
+var beamColor = beamColors[round(random(0, beamColors.length-1))];
+
+
+var drawHilt = function() {
+    fill(190);
+    noStroke();
+    rect(193, 150, 15, 65);
+    fill(255, 0, 0);
+    arc(207, 180, 7, 15, 90, 270);
+    arc(207, 180, 7, 15, 270, 450);
+};
+
+var drawBeam = function() {
+    
+    if (beamSize >= 110) {
+        beamSize = 110;
+    }
+    
+    if (beamOn === true) {
+        beamSize += 15;
+        fill(beamColor);
+        rect(195, (150-beamSize), 7, beamSize);
+        rect(195, (90+beamSize), 7, beamSize);
+        
+        fill(beamColor, 140);
+        rect(202, (150-beamSize), 5, beamSize);
+        rect(202, (90+beamSize), 5, beamSize);
+        
+    } else {
+        beamSize = 0;
+        beamColor =  beamColor = beamColors[round(random(0, beamColors.length-1))];
+    }
+};
+
+var draw = function() {
+    background(255);
+    drawHilt();
+    drawBeam();
+};
+
+var mouseClicked = function() {
+    beamOn = !beamOn;
+    
+};

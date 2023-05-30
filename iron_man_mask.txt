@@ -1,0 +1,38 @@
+var showMode = false;
+var tonyStark = loadImage("https://lh3.googleusercontent.com/proxy/ueCFffoX7l-pWTzfyXFvXVlC1CoMU46t9fKr-27eUWRvkOCuXamwxodqCkJx92Qj3X_TDgvtJMMegM-Joc15FRO5dtjstlDpKtr7ZfjrIcFcFAndBOwVi9mccDso");
+
+var draw = function() {
+    background(200, 0, 0);
+    noStroke();
+    
+    
+    if (showMode === false) {
+        fill(0, random(10, 210), random(100, 255));
+        rect(100, 100, 200, 90, 10);
+        quad(82, 184, 314, 184, 274, 369, 121, 369);
+        rect(85, 360, 230, 300, 20);
+        fill(200, 0, 0);
+        rect(160, 100, 80, 90);
+        fill();
+        quad(133, 218, 183, 248, 159, 262, 116, 248);
+        quad(264, 218, 278, 248, 238, 262, 216, 248);
+        stroke(200, 0, 0);
+        strokeWeight(4);
+        line(50, 340, 350, 340);
+        
+    } else {
+        imageMode(CENTER);
+        image(tonyStark, 200, 340, 400, 450);
+        fill(0, random(10, 210), random(100, 255));
+        rect(85, 360, 230, 300, 20);
+        fill(200, 0, 0);
+        rect(315, 300, 100, 100);
+        rect(5, 300, 80, 100);
+    }
+    
+};
+
+
+var mouseClicked = function() {
+    showMode = !showMode;
+};

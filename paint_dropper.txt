@@ -1,0 +1,46 @@
+var drops = [];
+var lastColor = color(255, 255, 255);
+
+var Drop = function(x, y, smearX, smearY) {
+    this.x = x;
+    this.y = y;
+    this.color = color(random(255), random(255), random(255));
+    this.size = 0;
+    this.smearX = smearX;
+    this.smearY = smearY;
+};
+
+
+rectMode(CENTER);
+
+var drawDrops = function() {
+    for (var i = 0; i < drops.length; i++) {
+        drops[i].size++;
+        
+        noStroke();
+        
+        if (drops[i].x !== 0 && drops[i].y !== 0) {
+            fill(drops[i].color);
+            rect(drops[i].x, drops[i].y, drops[i].size, drops[i].size);
+        } else {
+            fill(lastColor);
+            rect(drops[i].smearX, drops[i].smearY, 70, 70);
+        }
+        
+    }
+};
+
+var draw = function() {
+    background(0);
+    drawDrops();
+};
+
+var mouseClicked = function() {
+    drops.push(new Drop(100, 200));
+    drops.push(new Drop(300, 300));
+    lastColor = drops[drops.length-1].color;
+};
+
+var mouseDragged = function() {
+    drops.push(new Drop(0, 0, mouseX, mouseY));
+};

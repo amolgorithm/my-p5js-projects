@@ -1,0 +1,52 @@
+var circleArrays = [[],[],[],[],[],[],[]];
+var numPerLevel = 6;
+var spinSpeed = 5;
+
+var circle = function(size, position, rotation, speed) {
+    this.color = color(random(100, 255), random(200, 255), random(200, 255));
+    this.size = size;
+    this.x = 0;
+    this.y = position;
+    this.rotation = rotation;
+    this.speed = speed;
+};
+
+var createCircleArray = function() {
+    for (var i = 0 ; i < circleArrays.length; i++) {
+        for (var j = 0; j < numPerLevel; j++) {
+            circleArrays[i].push(new circle((i+1)*5, i*30, (360/numPerLevel)*j, spinSpeed));
+        }
+        spinSpeed *= -1;
+    }
+};
+createCircleArray();
+
+
+var drawCircles = function() {
+    for (var i = 0; i < circleArrays.length; i++) {
+        for (var j = 0; j < numPerLevel; j++) {
+            translate(120, 120);
+            scale(0.5);
+            rotate(circleArrays[i][j].rotation);
+            circleArrays[i][j].rotation += circleArrays[i][j].speed;
+            circleArrays[i][j].color = color(random(i*20, i*j*37), random(i*25, i*j*37), random(i*25, i*j*37));
+            fill(circleArrays[i][j].color);
+            ellipse(0, circleArrays[i][j].y, circleArrays[i][j].size, circleArrays[i][j].size);
+            resetMatrix();
+        }
+        for (var j = 0; j < numPerLevel; j++) {
+            translate(280, 280);
+            scale(0.5);
+            rotate(circleArrays[i][j].rotation);
+            circleArrays[i][j].color = color(random(i*20, i*j*37), random(i*25, i*j*37), random(i*25, i*j*37));
+            fill(circleArrays[i][j].color);
+            ellipse(0, circleArrays[i][j].y, circleArrays[i][j].size, circleArrays[i][j].size);
+            resetMatrix();
+        }
+    }
+};
+
+var draw = function() {
+    background(0);
+    drawCircles();
+};

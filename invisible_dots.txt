@@ -1,0 +1,14 @@
+var squareSize = 50;
+var lineSize = 10;
+
+for (var x = lineSize/2; x < 399; x += squareSize) {
+    for (var y = lineSize/2; y < 399; y += squareSize) {
+        fill(255, 0, 0);
+        rect(x, y, squareSize-lineSize, squareSize-lineSize);
+        noStroke();
+    }
+}
+
+noStroke();
+fill(0, 0, 0, 30);
+ellipse(200, random(400), 10, 10);

@@ -1,0 +1,44 @@
+var drops = [];
+var canceledDropIndices = [];
+
+var drop = function(x, y) {
+    this.x = x;
+    this.y = y;
+    this.radius = 0;
+    this.speed = random(2, 6);
+    
+};
+background(0, 246, 255);
+
+
+var draw = function() {
+   noStroke();
+   fill(30, 198, 24, 40);
+   rect(0, 0, 400, 400);
+   noFill();
+   strokeWeight(4);
+   stroke(220, 0, 255);
+   
+    for (var i = 0; i < drops.length; i++) {
+        ellipse(drops[i].x, drops[i].y, drops[i].radius, drops[i].radius);
+        ellipse(drops[i].x + drops[i].radius + 10 , drops[i].y, drops[i].radius + 10, drops[i].radius);
+       
+        if (i >= 1) {
+            if (abs(drops[i-1].radius - drops[i].radius) <= 20) {
+
+                canceledDropIndices.push(i-1);
+                canceledDropIndices.push(i);
+            }
+        }
+       
+        drops[i].radius += drops[i].speed;
+    }
+    for (var j = canceledDropIndices.length-1; j >= 0; j--) {
+        drops.splice(canceledDropIndices[j], 1);
+    }
+};
+
+var mouseClicked = function() {
+    drops.push(new drop(mouseX, mouseY));
+
+};

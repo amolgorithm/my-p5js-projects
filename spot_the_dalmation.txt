@@ -1,0 +1,48 @@
+var randomShapesList = ["square", "circle", "trapezoid", "trapezoid", "circle", "triangle", "square", "triangle", "triangle", "square", "circle", "arc", "square", "arc", "trapezoid", "arc"];
+
+var drawCollar = function() {
+    noStroke();
+    fill(0, 230, 230);
+    rectMode(CORNER);
+    rect(0, 155, 400, 30);
+    fill(255, 255, 0);
+    quad(200, 175, 160, 225, 200, 275, 240, 225);
+};
+drawCollar();
+
+
+var drawDot = function() {
+    rectMode(CENTER);
+    fill(random(255), random(255), random(255));
+    var dotSize = random(15, 30);
+    var randomShape = randomShapesList[round(random(randomShapesList.length - 1))];
+    
+    if (randomShape === "circle") {
+        ellipse(mouseX, mouseY, dotSize, dotSize);
+        ellipse(mouseX + dotSize + 5, mouseY, dotSize, dotSize);
+        ellipse(mouseX, mouseY + dotSize + 5, dotSize, dotSize);
+        ellipse(mouseX + dotSize + 5, mouseY + dotSize + 5, dotSize, dotSize);
+    } else if (randomShape === "square") {
+        rect(mouseX, mouseY, dotSize, dotSize);
+        rect(mouseX + dotSize + 5, mouseY, dotSize, dotSize);
+        rect(mouseX, mouseY + dotSize + 5, dotSize, dotSize);
+        rect(mouseX + dotSize + 5, mouseY + dotSize + 5, dotSize, dotSize);
+    } else if (randomShape === "triangle") {
+        triangle(mouseX - (dotSize / 2), mouseY + (dotSize / 2), mouseX, mouseY, mouseX + (dotSize / 2), mouseY + (dotSize / 2));
+        triangle((mouseX - (dotSize / 2)) + dotSize + 5, mouseY + (dotSize / 2), mouseX + dotSize + 5, mouseY, (mouseX + (dotSize / 2)) + dotSize + 5, mouseY + (dotSize / 2));
+        triangle(mouseX - (dotSize / 2), (mouseY + (dotSize / 2)) + dotSize + 5, mouseX, mouseY + dotSize + 5, mouseX + (dotSize / 2), (mouseY + (dotSize / 2)) + dotSize + 5);
+        triangle((mouseX - (dotSize / 2)) + dotSize + 5, (mouseY + (dotSize / 2)) + dotSize + 5, mouseX + dotSize + 5, mouseY + dotSize + 5, (mouseX + (dotSize / 2)) + dotSize + 5, (mouseY + (dotSize / 2)) + dotSize + 5);
+    } else if (randomShape === "arc") {
+        arc(mouseX, mouseY, dotSize, dotSize, 0, 180);
+        arc(mouseX + dotSize + 5, mouseY, dotSize, dotSize, 0, 180);
+        arc(mouseX, mouseY + dotSize + 5, dotSize, dotSize, 0, 180);
+        arc(mouseX + dotSize + 5, mouseY + dotSize + 5, dotSize, dotSize, 0, 180);
+    } else if (randomShape === "trapezoid") {
+        quad(mouseX - (dotSize / 2), mouseY - (dotSize / 2), mouseX + dotSize, mouseY - (dotSize / 2), mouseX + dotSize + 17, mouseY + dotSize, mouseX - dotSize - 10, mouseY + dotSize);
+    }
+};
+
+var mouseClicked = function() {
+    drawDot();
+    drawCollar();
+};

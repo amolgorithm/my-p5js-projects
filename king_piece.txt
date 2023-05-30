@@ -1,0 +1,47 @@
+var posX = 0;
+var posY = 0;
+var dx = 0;
+var dy = 0;
+
+var draw = function() {
+    background(45, 100, 100, 90);
+    noStroke();
+    posX += dx;
+    posY += dy;
+    translate(posX, posY);
+    fill(181, 101, 29);
+    rect(200, 150, 10, 40);
+    rect(185, 163, 40, 10);
+    rect(190, 190, 30, 35);
+    ellipse(205, 225, 50, 15);
+    ellipse(205, 235, 60, 15);
+    ellipse(205, 265, 45, 100);
+    ellipse(205, 310, 60, 30);
+    ellipse(205, 320, 80, 15);
+    ellipse(100, 171, 20, 20);
+    ellipse(100, 189, 40, 20);
+    rect(75, 195, 50, 35);
+    ellipse(100, 260, 40, 100);
+    ellipse(100, 310, 60, 30);
+    ellipse(100, 320, 80, 15);
+};
+
+
+var keyPressed = function() {
+    if (event.keyCode === 39) {
+        dx = 2;
+        dy = 0;
+    }
+    else if (event.keyCode === 37) {
+        dx = -2;
+        dy = 0;
+    }
+    else if (event.keyCode === 40) {
+        dy = 2;
+        dx = 0;
+    }
+    else if (event.keyCode === 38) {
+        dy = -2;
+        dx = 0;
+    }
+};

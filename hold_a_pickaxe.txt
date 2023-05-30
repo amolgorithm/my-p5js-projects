@@ -1,0 +1,11 @@
+var characaters = [getImage("minecraft/melon"), getImage("minecraft/steve"), getImage("minecraft/sword-diamond"), getImage("minecraft/zombie"), getImage("minecraft/portal")];
+var characater = characaters[round(random(0, 5))];
+
+var draw = function() {
+    background(0);
+    image(characater, mouseX, mouseY, 200, 200);
+};
+
+var mouseClicked = function() {
+    characater = characaters[round(random(0, 5))];
+};

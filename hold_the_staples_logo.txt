@@ -1,0 +1,14 @@
+var draw = function() {
+    background(255);
+    fill(mouseX, mouseY, mouseX - 100);
+    noStroke();
+    rect(mouseX - 90, mouseY - 30, 200, 100);
+    fill(255, 255, 255);
+    textSize(40);
+    text(String.fromCharCode("2B50") + "Walmart", mouseX - 80, mouseY + 30);
+    fill(mouseX, mouseY, mouseX - 100);
+    rect(mouseX, mouseY + 100, 200, 100);
+    fill(255, 255, 255);
+    textSize(40);
+    text("Costco", mouseX + 30, mouseY + 160);
+};

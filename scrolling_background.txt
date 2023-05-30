@@ -1,0 +1,33 @@
+var backgroundImage = getImage("seasonal/fireworks-2015");
+var imgX = 0;
+var imgY = 0;
+
+
+
+
+var drawScrollingBackground = function () {
+    imgX += 2;
+    
+    image(backgroundImage, imgX, imgY, 400, 400);
+    image(backgroundImage, imgX - 400, imgY, 400, 400);
+    
+    
+};
+
+
+var resetPosition = function() {
+    if (imgX >= 400) {
+        imgX = 0;
+    }
+};
+
+var drawCharacter = function() {
+    image(getImage("creatures/winston"), mouseX, mouseY, 50, 50);
+};
+
+
+var draw = function() {
+    drawScrollingBackground();
+    resetPosition();
+    drawCharacter();
+};

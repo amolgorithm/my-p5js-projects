@@ -1,0 +1,5 @@
+var draw = function() {
+    background(0);
+    image(getImage("space/rocketship"), 0, mouseY, mouseX, mouseX);
+    image(getImage("space/beetleship"), 0, 100 - mouseY, 400 - mouseX, 400 - mouseX);
+};

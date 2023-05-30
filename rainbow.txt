@@ -1,0 +1,59 @@
+var leprechaunPic = loadImage("https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/St-Patrick-PNG/Leprechaun_with_Pot_of_Gold_Transparent_PNG_Clip_Art_Image.png?m=1507172103");
+
+var drawRainbow = function() {
+    for (var i = 0; i < 7; i++) {
+        fill(255, 255, 255, 0);
+        strokeWeight(10);
+        stroke(mouseX-i*25, mouseY-i*30, mouseX+mouseY-i*30);
+        var circleSize = 7 - i*19;
+        
+        ellipse(200, 400, circleSize+400, circleSize+400);
+    }
+};
+
+var drawCloud = function(x, y) {
+    noStroke();
+    fill(255, 255, 255);
+    ellipse(x, y, 80, 50);
+    ellipse(x-35, y+25, 80, 50);
+    ellipse(x+35, y+25, 80, 50);
+};
+
+var drawSun = function() {
+    fill(255, 246, 0);
+    ellipse(400, 20, 150, 150);
+    strokeWeight(5);
+    stroke(255, 246, 0);
+    line(350, 20, 250, 20);
+    line(251, 72, 330, 39);
+    line(271, 111, 341, 62);
+    line(307, 137, 361, 83);
+    line(380, 92, 364, 148);
+};
+
+var drawBackground = function() {
+    background(0, 200, 255);
+    drawCloud(300, 50);
+    drawCloud(20, 100);
+    drawSun();
+};
+
+var draw = function() {
+    drawBackground();
+    drawRainbow();
+};
+
+var mouseClicked = function() {
+    drawRainbow = function() {
+        for (var i = 0; i < 7; i++) {
+            fill(255, 255, 255, 0);
+            strokeWeight(10);
+            stroke(mouseX-i*25, mouseY-i*30, mouseX+mouseY-i*30);
+            var circleSize = 7 - i*19;
+            
+            ellipse(200, 400, circleSize+400, circleSize+400);
+        }
+        
+        image(leprechaunPic, 340, 340, 70, 70);
+    };
+};

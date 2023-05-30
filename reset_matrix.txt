@@ -1,0 +1,74 @@
+var r = 0;
+var s = 1;
+var wholeHistory = {
+    r: [0],
+    s: [1],
+    t: [[0, 0]]
+};
+
+var drawShapes = function() {
+    fill(0);
+    ellipse(0, 0, 20, 20);
+    noFill();
+    stroke(0);
+    rect(0, 0, 200, 200);
+    fill(0);
+    triangle(90, 40, 40, 150, 140, 150);
+};
+
+var draw = function() {
+    background(90, 230, 230, 90);
+    scale(s);
+    rotate(r);
+    drawShapes();
+    
+    resetMatrix();
+    fill(0, 200, 0);
+    noStroke();
+    ellipse(25, 25, 30, 30);
+    
+};
+
+var mouseClicked = function() {
+    if (mouseX >= 10 && mouseX <= 45 && mouseY >= 10 && mouseY <= 45) {
+        resetMatrix();
+        if (wholeHistory.r.length >= 2 && wholeHistory.s.length >= 2 && wholeHistory.t.length >= 2) {
+            s = wholeHistory.s[wholeHistory.s.length-2];
+            r = wholeHistory.r[wholeHistory.r.length-2];
+            translate(wholeHistory.t[wholeHistory.t.length-2], wholeHistory.t[wholeHistory.t.length-2]);
+        } else {
+            s = 0;
+            r = 0;
+            translate(0, 0);
+        }
+    } else {
+        pushMatrix();
+        resetMatrix();
+        translate(mouseX, mouseY);
+        wholeHistory.t.push([mouseX, mouseY]);
+    }
+};
+
+var keyPressed = function() {
+    if (keyCode === 38) {
+        s += 0.2;
+        wholeHistory.s.push(s);
+        
+    } else if (keyCode === 40) {
+        s -= 0.2;
+        wholeHistory.s.push(s);
+    } else if (keyCode === 37) {
+        r += 45;
+        wholeHistory.r.push(r);
+    } else if (keyCode === 39) {
+        r -= 45;
+        wholeHistory.r.push(r);
+    } else if (keyCode === 32) {
+        resetMatrix();
+        translate(0, 0);
+        r = 0;
+        s = 1;
+        wholeHistory.r.push(r);
+        wholeHistory.s.push(s);
+    }
+};

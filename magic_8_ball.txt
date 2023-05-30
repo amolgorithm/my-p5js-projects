@@ -1,0 +1,49 @@
+var answer = floor(random(0, 6));
+var eight = getImage("space/8");
+var possibleAnswers = ["Possibly", "I would\nsay yes", "Well, \n No", "Depends", "Deposit another\n 25 cents to \n predict", "I sense Never", "60 percent"];
+
+textAlign(CENTER);
+
+var baseImage = function() {
+    background(5, 5, 5);
+    textSize(19);
+    fill(242, 239, 242);
+    text("Does your question need an answer?", 200, 25);
+    text("Ask the magic 8 ball!", 200, 375);
+    textSize(50);
+    fill(38, 38, 38);
+    ellipse(200, 200, 300, 300);
+    fill(255, 255, 255);
+    ellipse(200, 200, 200, 200);
+    image(eight, 149, 145, 120, 120);
+};
+baseImage();
+
+var drawTriangle = function() {
+    textSize(14);
+    fill(5, 5, 5);
+    ellipse(200, 200, 245, 245);
+    fill(60, 0, 255);
+    triangle(200, 104, 280, 280, 120, 280);
+    fill(255, 255, 255);
+};
+
+var revealAnswer = function() {
+    switch (answer) {
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+            text(possibleAnswers[answer], 200, 220);
+            break;
+    }
+};
+
+var mouseClicked = function() {
+    prompt("Enter your question");
+    drawTriangle();
+    revealAnswer();
+};

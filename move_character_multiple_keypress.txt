@@ -1,0 +1,152 @@
+var charX = 100;
+var charY = 200;
+var char2X = 300;
+var char2Y = 200;
+var ySpeed = 0;
+var xSpeed = 0;
+var y2Speed = 0;
+var x2Speed = 0;
+var img = getImage("cute/CharacterPinkGirl");
+var img2 = getImage("cute/CharacterBoy");
+var bullets1IndexOutOfCanvas = [];
+var bullets2IndexOutOfCanvas = [];
+var getHitTimesByMax1 = 20;
+var getHitTimesByMax2 = 20;
+
+var Bullet = function(x, y, colour) {
+    this.x = x;
+    this.y = y;
+    this.speed = 5;
+    this.colour = colour;
+    this.width = 10;
+    this.height = 10;
+};
+var bullets1 = [];
+var bullets2 = [];
+
+imageMode(CENTER);
+
+
+var keyPressed = function() {
+    switch(keyCode) {
+        case 38:
+            ySpeed = -6;
+            break;
+            
+        case 40:
+            ySpeed = 6;
+            break;
+        
+        case 37:
+            ySpeed = -6;
+            xSpeed = 6;
+            break;
+            
+        case 39:
+            ySpeed = 6;
+            xSpeed = 6;
+            break;
+            
+        case 87:
+            y2Speed = -6;
+            break;
+            
+        case 83:
+            y2Speed = 6;
+            break;
+        
+        case 65:
+            y2Speed = -6;
+            x2Speed = 6;
+            break;
+            
+        case 68:
+            y2Speed = 6;
+            x2Speed = 6;
+            break;
+            
+        case 32:
+            bullets1.push(new Bullet(charX, charY, color(0, 0, 0)));
+            break;
+            
+        case 70:
+            bullets2.push(new Bullet(char2X, char2Y, color(255, 255, 0)));
+            break;
+    }
+};
+
+var keyReleased = function() {
+    ySpeed = 0;
+    xSpeed = 0;
+    y2Speed = 0;
+    x2Speed = 0;
+};
+
+var drawCharacter = function() {
+    charY += ySpeed;
+    charX += xSpeed;
+    image(img, charX, charY, 100, 150);
+    fill(0);
+    textSize(13);
+    text("1", charX, charY + 60);
+    text("Lives: " + getHitTimesByMax1, charX - 20, charY - 30);
+    
+    if (getHitTimesByMax1 <= 0) {
+        getHitTimesByMax1 = 0;
+        
+        textSize(25);
+        text("Player 2 wins!", 120, 100);
+    }
+    
+    for (var i = 0; i < bullets1.length; i++) {
+        bullets1[i].x += bullets1[i].speed;
+        
+        fill(bullets1[i].colour);
+        
+        rect(bullets1[i].x, bullets1[i].y, bullets1[i].width, bullets1[i].height);
+        
+        if ((bullets1[i].x >= char2X && bullets1[i].x <= char2X + 100) && (bullets1[i].y >= char2Y && bullets1[i].y <= char2Y + 150)) {
+            bullets1[i].x = 600;
+            getHitTimesByMax2--;
+        }
+    }
+    
+};
+
+var drawCharacter2 = function() {
+    char2Y += y2Speed;
+    char2X += x2Speed;
+    image(img2, char2X, char2Y, 100, 150);
+    fill(0);
+    textSize(13);
+    text("2", char2X, char2Y + 60);
+    text("Lives: " + getHitTimesByMax2, char2X - 20, char2Y - 30);
+    
+    if (getHitTimesByMax2 <= 0) {
+        getHitTimesByMax2 = 0;
+        
+        textSize(25);
+        text("Player 1 wins!", 120, 100);
+    }
+    
+    for (var i = 0; i < bullets2.length; i++) {
+        bullets2[i].x -= bullets2[i].speed;
+        
+        fill(bullets2[i].colour);
+        
+        rect(bullets2[i].x, bullets2[i].y, bullets2[i].width, bullets2[i].height);
+        
+        if ((bullets2[i].x >= charX && bullets2[i].x <= charX + 100) && (bullets2[i].y >= charY && bullets2[i].y <= charY + 150)) {
+            bullets2[i].x = -600;
+            getHitTimesByMax1--;
+        }
+        
+    }
+};
+
+
+var draw = function() {
+    background();
+    drawCharacter();
+    drawCharacter2();
+};

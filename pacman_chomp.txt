@@ -1,0 +1,33 @@
+var chompSpeed = 5;
+var pacMouth = 1;
+var pacMouthClose = 0;
+var posX = 50;
+var posY = 200;
+var dx = 2;
+var pelletX = 190;
+var pelletY = 200;
+
+var draw = function() {
+    posX += dx;
+    background(0);
+    fill(mouseX, mouseY, mouseX + mouseY);
+    pacMouthClose = 360 - pacMouth;
+    arc(posX, posY, 80, 80, pacMouth, pacMouthClose);
+    fill(210, 105, 13);
+    rect(pelletX, pelletY, 30, 10);
+    
+    if (pacMouth >= 45 || pacMouth <= 0) {
+        chompSpeed *= -1;
+    }
+    
+    if (posX >= pelletX) {
+        pelletX += dx;
+    }
+    
+    if (posX >= 340) {
+        dx = 0;
+    }
+
+    
+    pacMouth += chompSpeed;
+};

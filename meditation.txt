@@ -1,0 +1,49 @@
+var happyWords = ["chillax", "be calm", "meditate", "Uh.. You awake?"];
+var fadeAmount = 0;
+var fadeSpeed = 2;
+var blueFade = 210;
+var blueSpeed = 0.25;
+var currentWord = 0;
+
+textSize(30);
+textAlign(CENTER);
+
+
+var updateWord = function() {
+    currentWord++;
+    
+    if (currentWord === happyWords.length) {
+        currentWord = 0;
+    }
+};
+
+var changeFade = function() {
+    if (fadeAmount > 255) {
+        fadeSpeed = -fadeSpeed;
+    }
+    if (fadeAmount < 0) {
+        fadeSpeed = -fadeSpeed;
+        updateWord();
+    }
+};
+
+var drawWords = function() {
+    fill(64, 49, 10, fadeAmount);
+    text(happyWords[currentWord], 200, 200);
+    fadeAmount += fadeSpeed;
+    changeFade();
+};
+
+var fadeBackground = function() {
+    background(153, 193, blueFade);
+    blueFade += blueSpeed;
+    
+    if (blueFade > 230 || blueFade < 200) {
+        blueSpeed = -blueSpeed;
+    }
+};
+
+var draw = function() {
+    fadeBackground();
+    drawWords();
+};

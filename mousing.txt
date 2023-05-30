@@ -1,0 +1,20 @@
+var fishwidth = 100;
+var fishheight = 100;
+
+var draw = function() {
+    imageMode(CENTER);
+    fill(0);
+    rect(0, 0, 400, 200);
+    fill(255);
+    rect(30, 140, 50, 60);
+    rect(100, 100, 50, 100);
+    fill(190);
+    rect(160, 40, 50, 160);
+    fill(0, 100, 255);
+    rect(230, 60, 50, 140);
+    fill(20, 100, 190);
+    rect(0, 200, 400, 200);
+    tint(mouseX + 50, mouseX + 50, mouseX + 10);
+    image(getImage("avatars/mr-pink"), mouseX, 200, mouseY, mouseY);
+    image(getImage("avatars/mr-pink-green"), mouseX + 150, 200, mouseY, mouseY);
+};

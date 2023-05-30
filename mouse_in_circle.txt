@@ -1,0 +1,28 @@
+var colour1 = [255, 0, 0];
+var colour2 = [0, 0, 255];
+
+var drawCircle = function() {
+    fill(colour1[0], colour1[1], colour1[2]);
+    ellipse(100, 200, 150, 150);
+    fill(colour2[0], colour2[1], colour2[2]);
+    ellipse(300, 200, 150, 150);
+    
+    if (mouseX >= 25 && mouseX <= 174 && mouseY >= 123 && mouseY <= 273) {
+        colour1 = [0, 255, 0];
+        text("Hovering on Red", mouseX, mouseY - 100);
+    }
+    else if (mouseX >= 224 && mouseX <= 373 && mouseY >= 123 && mouseY <= 273) {
+        colour2 = [255, 190, 0];
+        text("Hovering on Blue", mouseX, mouseY - 100);
+    }
+    else {
+        colour1 = [255, 0, 0];
+        colour2 = [0, 0, 255];
+        text("", mouseX, mouseY - 100);
+    }
+};
+
+var draw = function() {
+    background();
+    drawCircle();
+};

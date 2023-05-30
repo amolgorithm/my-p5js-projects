@@ -1,0 +1,29 @@
+var playerObject = {
+    posX: width / 2,
+    posY: height / 2,
+    r: 20,
+    rotationStart: 0
+};
+
+
+
+var update = function() {
+    pushMatrix();
+    stroke(255);
+    noFill();
+    translate(playerObject.posX, playerObject.posY);
+    playerObject.rotationStart = degrees(atan2(mouseY-playerObject.posX, mouseX-playerObject.posY));
+    rotate(playerObject.rotationStart+90);
+    triangle(-playerObject.r, playerObject.r,playerObject.r,playerObject.r, 0, -playerObject.r);
+    ellipse(0, 0, 20, 20);
+    popMatrix();
+};
+
+
+var draw = function() {
+    rectMode(CENTER);
+    background(0);
+    stroke();
+    fill(0);
+    update();
+};

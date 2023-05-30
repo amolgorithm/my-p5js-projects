@@ -1,0 +1,30 @@
+var perlin = 0;
+var randomX = 200;
+var value = 0;
+
+noStroke();
+
+
+var update = function() {
+    perlin = map(noise(value), 0, 1, 0, 300);
+    value += 0.1;
+    randomX += random(-5, 5);
+    randomX = constrain(randomX, 0, 400);
+};
+
+var drawDisplay = function() {
+    fill(255, 0, 0);
+    ellipse(randomX, 150, 20, 20);
+    fill(0, 255, 0);
+    ellipse(perlin, 250, 20, 20);
+    fill();
+    textSize(18);
+    text("Noise(): " + perlin.toFixed(3), 50, 50);
+    text("Random(): " + randomX.toFixed(3), 200, 50);
+};
+
+var draw = function() {
+    background(30);
+    update();
+    drawDisplay();
+};

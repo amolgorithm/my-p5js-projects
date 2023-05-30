@@ -1,0 +1,38 @@
+noStroke();
+var rotation = 5;
+var r = random(0, 255);
+var g = random(0, 255);
+var colorChange = 5;
+var hypnoSize = 30;
+
+
+var setColor = function() {
+    r += colorChange;
+    g += colorChange;
+    
+    if (r > 255 || r < 0) {
+        colorChange = -colorChange;
+    }
+};
+
+var drawHypnos = function() {
+    for (var i = 30; i >= 0; i--) {
+        fill(0);
+        translate(200, 200);
+        if (i%2 === 0) {
+            fill(r, g, 100);
+            rotate(rotation);
+        } else {
+            rotate(-rotation);
+        }
+        
+        rect(-i*(hypnoSize/2), -i*(hypnoSize/2), i*hypnoSize, i*hypnoSize, i*hypnoSize);
+        resetMatrix();
+    }
+    rotation += 2;
+};
+
+var draw = function() {
+    setColor();
+    drawHypnos();
+};

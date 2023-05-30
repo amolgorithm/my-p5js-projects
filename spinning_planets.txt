@@ -1,0 +1,26 @@
+var numPlanets = 10;
+var arms = 11;
+var speed = 0.015;
+var tick = 0;
+translate(200, 200);
+
+var draw = function() {
+    background(0);
+    tick += speed;
+    
+    for (var s = 10; s < arms*20; s += 20) {
+        pushMatrix();
+        for (var p = 1; p < numPlanets+1; p++) {
+            fill(255, 0, 60*p+20);
+            ellipse(-100, -100, 30/p, 30/p);
+            translate(sin(tick*p+s)*(8/(p*0.1)), cos(tick*p+s)*(8/(p*0.1)));
+        }
+        translate(200, 200);
+        for (var p = 1; p < numPlanets+1; p++) {
+            fill(255, 0, 60*p+20);
+            ellipse(-100, -100, 30/p, 30/p);
+            translate(sin(tick+p+s)*(8/(p*0.1)), cos(tick*p+s)*(8/(p*0.1)));
+        }
+        popMatrix();
+    }
+};

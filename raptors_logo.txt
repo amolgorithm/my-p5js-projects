@@ -1,0 +1,13 @@
+var img = loadImage("https://content.sportslogos.net/news/2020/08/toronto-raptors-new-logo-2020-2021-sportslogosnet.png");
+var img2 = loadImage("https://sportslogohistory.com/wp-content/uploads/2018/04/toronto_raptors_addison_mrkchrstn.png");
+var img3 = loadImage("https://i.redd.it/szl0r51y2lp21.png");
+
+
+imageMode(CENTER);
+
+var draw = function() {
+    background(100, 0, 0);
+    image(img, 100, 100, 150, 90);
+    image(img2, 300, 100, 130, 130);
+    image(img3, 200, 300, 200, 130);
+};

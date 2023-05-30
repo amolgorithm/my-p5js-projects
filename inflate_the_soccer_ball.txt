@@ -1,0 +1,49 @@
+var ballWidth = 0;
+var ball2Width = 0;
+var ballHeight = 50;
+var ball2Height= 50;
+var maxHeight = 220;
+var inflate1Speed = 1;
+var inflate2Speed = 1;
+
+var drawBall = function(y, heig, wid) {
+    ellipseMode(CENTER);
+    ballWidth = maxHeight*2-ballHeight;
+    ball2Width = maxHeight*2-ball2Height;
+    strokeWeight(3);
+    fill(0, 200, 255);
+    ellipse(200, y-heig/2, width, heig);
+
+    
+    if (ballHeight >= 260) {
+        inflate1Speed = 0;
+        inflate2Speed = 0;
+        ballWidth = 0;
+        ballHeight = 0;
+        ball2Width = 0;
+        ball2Height = 0;
+    }
+};
+
+var drawGrass = function() {
+    imageMode(CENTER);
+    image(getImage("cute/GrassBlock"), 200, 300, 400, 200);
+};
+
+
+var draw = function() {
+    background(30, 230, 230, 90);
+    drawGrass();
+    drawBall(100, ballHeight, ballWidth);
+    drawBall(350, ball2Height, ball2Width);
+};
+
+
+var keyPressed = function() {
+    if (keyCode === 32) {
+        ballHeight += inflate1Speed;
+    }
+    if (keyCode === 38) {
+        ball2Height += inflate2Speed;
+    }
+};

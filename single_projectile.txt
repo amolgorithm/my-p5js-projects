@@ -1,0 +1,59 @@
+var heroX = 50;
+var heroY = 200;
+var heroImg = getImage("space/rocketship");
+var projectileSpeed = 3;
+var targetY = random(50, 350);
+
+imageMode(CENTER);
+
+
+var Projectile = function() {
+    this.x = heroX;
+    this.y = heroY;
+    this.thrown = false;
+};
+
+var projectile = new Projectile();
+
+var moveHero = function() {
+    image(heroImg, heroX, heroY, 80, 80);
+    heroY = constrain(mouseY, 30, 350);
+    
+};
+
+var moveProjectile = function() {
+    if (projectile.thrown === true) {
+        projectile.x += projectileSpeed;
+    } else {
+        projectile.y = heroY;
+    }
+    fill();
+    triangle(projectile.x + 10, projectile.y + 10, projectile.x, projectile.y, projectile.x - 10, projectile.y + 10);
+};
+
+var drawTarget = function() {
+    fill(255, 0, 0);
+    ellipse(350, targetY, 40, 50);
+    
+    if ((projectile.x >= 350 && projectile.x <= 390) && (projectile.y >= targetY && projectile.y <= targetY + 50)) {
+        targetY = random(0, 400);
+    }
+};
+
+var throwProjectile = function() {
+    if (mousePressed === true) {
+        projectile.thrown = true;
+    }
+    if (projectile.x > 400) {
+        projectile.x = heroX;
+        projectile.thrown = false;
+    }
+};
+
+var draw = function() {
+    background(0);
+    moveProjectile();
+    throwProjectile();
+    drawTarget();
+    moveHero();
+};

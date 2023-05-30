@@ -1,0 +1,34 @@
+var drawBoxes = function() {
+    
+};
+
+var displayNumber = function() {
+    
+};
+
+var x = 0; 
+var y = 0;
+
+for (var j = 20; j < 380; j+= 30) {
+    for (var i = 20; i < 380; i += 30) {
+        fill(255);
+        rect(i, j, 30, 30);
+        fill(0);
+        if (x !== 0 && y !== 0) {
+            text(x * y, i + 10, j + 10);
+            
+            
+        }  else if (y === 0) {
+            
+            text(x, i + 10, j+ 10);
+            
+        } else {
+            text(y, i + 10, j+ 10);
+        }
+        
+        y++;
+    }
+    
+    x++;
+    y = 0;
+}
