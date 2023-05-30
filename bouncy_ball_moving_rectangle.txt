@@ -1,0 +1,112 @@
+var ballRadius = 10;
+var ballX = random(ballRadius, width-ballRadius);
+var ballY = random(ballRadius, width-ballRadius);
+var ballXSpeed = 3;
+var ballYSpeed = 5;
+var rectangleX = 150;
+var rectangleY = 140;
+
+
+var Ball = function() {
+    this.radius = 10;
+    this.x = random(this.radius, width-this.radius);
+    this.y = random(this.radius, width-this.radius);
+    this.xSpeed = 3;
+    this.ySpeed = 5;
+    this.color = color(random(255), random(255), random(255));
+};
+
+var Rectangle = function() {
+    this.x = random(50, width-50);
+    this.y = random(60, width-60);
+    this.color = color(random(255), random(255), random(255));
+};
+
+var balls = [];
+var rectangles = [];
+
+for (var i = 0; i < 3; i++) {
+    balls.push(new Ball());
+    rectangles.push(new Rectangle());
+}
+
+
+var moveBall = function() {
+    ballX += ballXSpeed;
+    ballY += ballYSpeed;
+    
+    fill(10, 20, 40);
+    rect(ballX, ballY, ballRadius*2, ballRadius*2);
+    
+    for (var i = 0; i < balls.length; i++) {
+        balls[i].x += balls[i].xSpeed;
+        balls[i].y += balls[i].ySpeed;
+        
+        fill(balls[i].color);
+        rect(balls[i].x, balls[i].y, balls[i].radius*2, balls[i].radius*2);
+        
+        if (balls[i].x <= balls[i].radius*2 || balls[i].x >= width-balls[i].radius*2) {
+            balls[i].xSpeed = -balls[i].xSpeed;
+        }
+        if (balls[i].y <= balls[i].radius*2 || balls[i].y >= height-balls[i].radius*2) {
+            balls[i].ySpeed = -balls[i].ySpeed;
+        }
+        
+        if (balls[i].x >= rectangleX-balls[i].radius*2 && balls[i].x <= rectangleX+100+ballRadius && balls[i].y >= rectangleY && balls[i].y <= rectangleY+70) {
+            balls[i].xSpeed = -balls[i].xSpeed;
+            balls[i].ySpeed = -balls[i].ySpeed;
+        }
+    }
+};
+
+var drawRectangle = function() {
+    fill(10, 30, 80);
+    ellipse(rectangleX+50, rectangleY+35, 100, 70);
+    
+    for (var i = 0; i < rectangles.length; i++) {
+        fill(rectangles[i].color);
+        rect(rectangles[i].x, rectangles[i].y, 100, 70);
+        
+        if (ballX >= rectangles[i].x && ballX <= rectangles[i].x+100 && ballY >= rectangles[i].y && ballY <= rectangles[i].y+70) {
+            ballXSpeed = -ballXSpeed;
+            ballYSpeed = -ballYSpeed;
+        }
+    }
+};
+
+var bounceBallOffWalls = function() {
+    if (ballX <= ballRadius || ballX >= width-ballRadius) {
+        ballXSpeed = -ballXSpeed;
+    }
+    if (ballY <= ballRadius || ballY >= height-ballRadius) {
+        ballYSpeed = -ballYSpeed;
+    }
+};
+
+var bounceBallOffRectangle = function() {
+    if (ballX >= rectangleX && ballX <= rectangleX+100 && ballY >= rectangleY && ballY <= rectangleY+70) {
+        ballXSpeed = -ballXSpeed;
+        ballYSpeed = -ballYSpeed;
+    }
+};
+
+var mouseClicked = function() {
+    ballX = mouseX;
+    ballY = mouseY;
+    
+    ballXSpeed = random(-3, 3);
+    ballYSpeed = random(-5, 5);
+};
+
+var mouseDragged = function() {
+    rectangleX = mouseX-50;
+    rectangleY = mouseY-35;
+};
+
+var draw = function() {
+    background(50, 170, 250, 130);
+    moveBall();
+    drawRectangle();
+    bounceBallOffWalls();
+    bounceBallOffRectangle();
+};

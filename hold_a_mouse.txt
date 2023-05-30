@@ -1,0 +1,20 @@
+var characters = [getImage("disney/goofy"), getImage("disney/pluto"), getImage("disney/stitch"), getImage("disney/tigger")];
+var character = characters[0];
+var i = 0;
+imageMode(CENTER);
+
+
+
+var mouseClicked = function() {
+    i++;
+    if (i > characters.length - 1) {
+        i = 0;
+    }
+    character = characters[i];
+};
+
+
+var draw = function() {
+    background(0, 130, 196);
+    image(character, mouseX, mouseY, 50, 50);
+};

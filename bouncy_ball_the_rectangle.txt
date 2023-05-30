@@ -1,0 +1,199 @@
+var ballX = random(10, 390);
+var ballY = random(10, 390);
+var ballXSpeed = random(-6, 6);
+var ballYSpeed = random(-6, 6);
+var ballRadius = 10;
+
+//images
+var steve = getImage("minecraft/steve");
+var zombie = getImage("minecraft/zombie");
+var tnt = getImage("minecraft/tnt");
+var woodSword = getImage("minecraft/sword-wood");
+var stoneSword = getImage("minecraft/sword-stone");
+var ironSword = getImage("minecraft/sword-iron");
+var goldSword = getImage("minecraft/sword-gold");
+var diamondSword = getImage("minecraft/sword-diamond");
+var slime = getImage("minecraft/slime");
+var sheep = getImage("minecraft/sheep");
+
+
+
+var images = [steve, zombie, tnt, woodSword, stoneSword, ironSword, goldSword, diamondSword, slime, sheep];
+var boxImage = images[round(random(0, images.length - 1))];
+
+var ballColor = color(50, 40, 9);
+var bounderies = {
+    Wall1: 0,
+    Wall2: 400,
+};
+var rectBounds = {
+    Wall1: 150,
+    Wall2: 250
+};
+
+var Obstacle  = function() {
+    this.x = random(0, 400);
+    this.y = random(0, 400);
+    this.size = 50;
+    this.color = color(random(255), random(255), random(255));
+};
+
+var Ball = function() {
+    this.x = random(10, 390);
+    this.y = random(10, 390);
+    this.xSpeed = random(-6, 6);
+    this.ySpeed = random(-6, 6);
+    this.color = color(random(255), random(255), random(255));
+};
+
+var obstacles = [];
+var balls = [];
+
+//prevent the balls from spawning inside the obstacle
+if (ballX >= 150 && ballX <= 250) {
+    ballX -= 100;
+}
+
+if (ballY >= 150 && ballY <= 250) {
+    ballY -= 100;
+}
+
+
+var moveBall = function() {
+    ballX += ballXSpeed;
+    ballY += ballYSpeed;
+
+    
+    fill(ballColor);
+    ellipse(ballX, ballY, ballRadius * 2, ballRadius * 2);
+    
+    for (var i = 0; i < balls.length; i++) {
+        balls[i].x += balls[i].xSpeed;
+        balls[i].y += balls[i].ySpeed;
+        
+        fill(balls[i].color);
+        ellipse(balls[i].x, balls[i].y, ballRadius * 2, ballRadius * 2);
+        
+        if (balls[i].x < bounderies.Wall1 + ballRadius || balls[i].x > bounderies.Wall2 - ballRadius) {
+            balls[i].xSpeed = -balls[i].xSpeed;
+            balls[i].color = color(random(255), random(255), random(255));
+        }
+        
+        if (balls[i].y < bounderies.Wall1 + ballRadius || balls[i].y > bounderies.Wall2 - ballRadius) {
+            balls[i].ySpeed = -balls[i].ySpeed;
+            balls[i].color = color(random(255), random(255), random(255));
+        }
+        
+        if ((balls[i].x >= rectBounds.Wall1 && balls[i].x <= rectBounds.Wall2) && (balls[i].y >= rectBounds.Wall1 && balls[i].y <= rectBounds.Wall2)) {
+            balls[i].xSpeed = -balls[i].xSpeed;
+            balls[i].ySpeed = -balls[i].ySpeed;
+            balls[i].color = color(random(255), random(255), random(255));
+            boxImage = images[round(random(0, images.length - 1))];
+        }
+        
+        //I couldn't make the bounderies for all obstacles because it was crashing the web page because it creates an N cube in lot of for loops
+        
+    }
+    
+    fill(255, 0, 0);
+    rect(10, 340, 70, 50);
+    fill(255, 255, 0);
+    text("More\nBalls!", 20, 360);
+};
+
+
+var createMoreObstacles = function() {
+    var numOfObs = parseInt(prompt("Enter how many obstacles you want"));
+    
+    for (var i = 0; i < numOfObs; i++) {
+        obstacles.push(new Obstacle());
+    }
+};
+
+var createMoreBalls = function() {
+    var numOfBalls = parseInt(prompt("Enter how many balls you want"));
+    
+    for (var i = 0; i < numOfBalls; i++) {
+        balls.push(new Ball());
+        //prevent the balls from spawning inside the obstacle
+        if (balls[i].x >= 150 && balls[i].x <= 250) {
+            balls[i].x -= 100;
+        }
+        
+        if (balls[i].y >= 150 && balls[i].y <= 250) {
+            balls[i].y -= 100;
+        }
+    }
+};
+
+
+var drawRectangle = function() {
+    fill(20, 20, 110);
+    rect(150, 150, 100, 100);
+    image(boxImage, 170, 170, 60, 60);
+    
+    for (var i = 0; i < obstacles.length; i++) {
+        fill(obstacles[i].color);
+        rect(obstacles[i].x, obstacles[i].y, obstacles[i].size, obstacles[i].size);
+    }
+    
+    
+    fill(255, 0, 0);
+    rect(10, 10, 70, 50);
+    fill(255, 255, 0);
+    text("More\nObstacles!", 20, 30);
+};
+
+var bounceBallOffWalls = function() {
+    if (ballX < bounderies.Wall1 + ballRadius || ballX > bounderies.Wall2 - ballRadius) {
+        ballXSpeed = -ballXSpeed;
+        ballColor = color(random(255), random(255), random(255));
+    }
+    
+    if (ballY < bounderies.Wall1 + ballRadius || ballY > bounderies.Wall2 - ballRadius) {
+        ballYSpeed = -ballYSpeed;
+        ballColor = color(random(255), random(255), random(255));
+    }
+
+    
+};
+
+var bounceBallOffRectangle = function() {
+    if ((ballX >= rectBounds.Wall1 && ballX <= rectBounds.Wall2) && (ballY >= rectBounds.Wall1 && ballY <= rectBounds.Wall2)) {
+        ballXSpeed = -ballXSpeed;
+        ballYSpeed = -ballYSpeed;
+        ballColor = color(random(255), random(255), random(255));
+        boxImage = images[round(random(0, images.length - 1))];
+    }
+    
+    for (var i = 0; i < obstacles.length; i++) {
+        if ((ballX >= obstacles[i].x && ballX <= obstacles[i].x + 70) && (ballY >= obstacles[i].y && ballY <= obstacles[i].y + 50)) {
+            ballXSpeed = -ballXSpeed;
+            ballYSpeed = -ballYSpeed;
+            ballColor = color(random(255), random(255), random(255));
+        }
+    }
+};
+
+
+var mouseClicked = function() {
+    if (mouseX >= 10 && mouseX <= 80 && mouseY >= 10 && mouseY <= 60) {
+        createMoreObstacles();
+    } else if (mouseX >= 10 && mouseX <= 80 && mouseY >= 340 && mouseY <= 390) {
+        createMoreBalls();
+    } else {
+        ballX = mouseX;
+        ballY = mouseY;
+        ballXSpeed = random(-6, 6);
+        ballYSpeed = random(-6, 6);
+    }
+};
+
+
+var draw = function() {
+    background(50, 200, 200, 190);
+    moveBall();
+    drawRectangle();
+    bounceBallOffWalls();
+    bounceBallOffRectangle();
+};

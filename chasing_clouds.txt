@@ -1,0 +1,38 @@
+var locationX = [];
+var locationY = [];
+var positionCounter = 0;
+var playbackCounter = 0;
+var released = false;
+
+var playback = function() {
+    background(0, 200, 255);
+    ellipse(locationX[playbackCounter], locationY[playbackCounter], 100, 50);
+    ellipse(locationX[playbackCounter]+random(29), locationY[playbackCounter]-random(25), 100, 50);
+    ellipse(locationX[playbackCounter]+random(40), locationY[playbackCounter], 100, 50);
+    
+    playbackCounter++;
+    if (playbackCounter === positionCounter) {
+        playbackCounter = 0;
+        positionCounter = 0;
+        released = false;
+    }
+};
+
+var mouseDragged = function() {
+    ellipse(mouseX, mouseY, 20, 20);
+    locationX[positionCounter] = mouseX;
+    locationY[positionCounter] = mouseY;
+    positionCounter++;
+};
+
+var mouseReleased = function() {
+    released = true;
+};
+
+background(0, 200, 255);
+var draw = function() {
+    noStroke();
+    if (released === true) {
+        playback();
+    }
+};

@@ -1,0 +1,132 @@
+var billsAndCoins = [1000, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.10, 0.05, 0.01];
+var countChange = [];
+var cost = 0;
+var tendered = 0;
+var screenClicked = false;
+
+
+var calculateChange = function() {
+    var change = round((tendered-cost)/0.05)*0.05;
+    
+    for (var i = 0; i < billsAndCoins.length; i++) {
+        var count = 0;
+        
+        while (change >= billsAndCoins[i]) {
+            count++;
+            change -= billsAndCoins[i];
+            
+        }
+        countChange.push(count);
+    }
+};
+
+var printChange = function() {
+    
+    var answer = "";
+    
+    for (var i = 0; i < countChange.length; i++) {
+        if (countChange[i] > 0) {
+            answer += countChange[i] + "x $" + billsAndCoins[i] + "\n";
+        }
+    }
+    fill(0);
+    text(answer, 70, 325);
+};
+
+var drawCashRegister = function() {
+    noStroke();
+    background(120);
+    fill(255, 60, 0);
+    rect(20, 280, 80, 40);
+    fill(255, 220, 0);
+    rect(110, 280, 80, 40);
+    fill(255, 150, 0);
+    rect(200, 280, 80, 40);
+    fill(120, 220, 80);
+    rect(290, 280, 80, 40);
+    
+    fill(255, 150, 220);
+    rect(20, 330, 80, 40);
+    fill(100, 220, 220);
+    rect(110, 330, 80, 40);
+    fill(170);
+    ellipse(240, 350, 40, 40);
+    fill(232, 195, 55);
+    ellipse(240, 350, 20, 20);
+    ellipse(330, 350, 40, 40);
+    textSize(20);
+    fill(0);
+    text("$1000", 30, 310);
+    text("$100", 125, 310);
+    text("$50", 220, 310);
+    text("$20", 310, 310);
+    text("$10", 40, 360);
+    text("$5", 135, 360);
+    text("$2", 230, 357);
+    text("$1", 320, 357);
+    fill(50);
+    rect(50, 50, 300, 220, 0);
+    fill(225);
+    rect(87, 130, 225, 35, 0);
+    rect(87, 210, 225, 35, 0);
+    
+    
+    text("Cash Register", 135, 85);
+    textSize(14);
+    text("Cost", 190, 120);
+    text("Tendered", 190, 200);
+    fill(0);
+    text(cost, 95, 152);
+    text(tendered, 95, 232);
+    fill(0, 255, 0);
+    rect(170, 10, 60, 30);
+    fill(0);
+    text("+13% tax", 170, 30);
+};
+
+var draw = function() {
+
+    drawCashRegister();
+    calculateChange();
+    printChange();
+};
+
+var mouseClicked = function() {
+    if (mouseX >= 20 && mouseX <= 100 && mouseY >= 280 && mouseY <= 320) {
+        tendered += 1000;
+        
+    }
+    else if (mouseX >= 110 && mouseX <= 190 && mouseY >= 280 && mouseY <= 320) {
+        tendered += 100;
+        
+    }
+    else if (mouseX >= 200 && mouseX <= 290 && mouseY >= 280 && mouseY <= 320) {
+        tendered += 50;
+        
+    }
+    else if (mouseX >= 290 && mouseX <= 380 && mouseY >= 280 && mouseY <= 320) {
+        tendered += 20;
+        
+    }
+    else if (mouseX >= 20 && mouseX <= 100 && mouseY >= 330 && mouseY <= 370) {
+        tendered += 10;
+        
+    }
+    else if (mouseX >= 110 && mouseX <= 190 && mouseY >= 330 && mouseY <= 370) {
+        tendered += 5;
+        
+    }
+    else if (mouseX >= 200 && mouseX <= 290 && mouseY >= 330 && mouseY <= 370) {
+        tendered += 2;
+        
+    }
+    else if (mouseX >= 290 && mouseX <= 380 && mouseY >= 330 && mouseY <= 370) {
+        tendered += 1;
+        
+    }
+    else {
+        cost = prompt("Input cost");
+        cost = cost*1.13;
+    }
+    
+};

@@ -1,0 +1,23 @@
+background(90, 255, 255, 90);
+
+var drawCar = function() {
+    noStroke();
+    fill(0, 255, 0);
+    rect(0, 200, 400, 200);
+    fill(0, 0, 200);
+    beginShape();
+    vertex(191, 200);
+    vertex(170, 174);
+    vertex(246, 174);
+    vertex(262, 152);
+    vertex(249, 200);
+    endShape(CLOSE);
+    fill(0);
+    ellipse(200, 200, 20, 20);
+    ellipse(250, 200, 20, 20);
+    rect(340, 100, 20, 100);
+    fill(255, 0, 0);
+    ellipse(340, 120, 20, 20);
+};
+
+drawCar();

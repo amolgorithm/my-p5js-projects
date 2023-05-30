@@ -1,0 +1,13 @@
+background(255);
+noStroke();
+fill(0);
+rect(190, 250, 40, 20, 20);
+stroke(190, 0, 0);
+strokeWeight(10);
+fill(190, 0, 0);
+line(0, 0, 310, 320);
+line(400, 0, 110, 320);
+quad(60, 320, 110, 320, 100, 330, 60, 335);
+quad(310, 320, 360, 320, 360, 340, 330, 335);
+textSize(35);
+text("Toronto Blueshirts", 70, 40);

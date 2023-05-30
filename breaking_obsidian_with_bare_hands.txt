@@ -1,0 +1,45 @@
+var blockHardness = 5;
+var timePerHit = 1.5;
+var timeMultiplier = 3.33;
+var numberOfBlocks = 1;
+var blockType = "diamond";
+var diamond = loadImage("https://minecraft-heads.com/media/k2/items/cache/e44a6f32e15cb53ee479b2697e759e2e_M.jpg");
+var obsidian = loadImage("https://www.minecraftguides.org/blocks/obsidian.png");
+var wood = loadImage("https://3dwarehouse.sketchup.com/warehouse/v1.0/publiccontent/d328eaab-751f-4c7b-8818-4087c203462f");
+
+var blockCalculator = function() {
+    numberOfBlocks = round(random(1, 10));
+    var timeToBreak = blockHardness * timePerHit * timeMultiplier * numberOfBlocks;
+    
+    if (blockType === "diamond") {
+        blockHardness = 5;
+    } else if (blockType === "obsidian") {
+        blockHardness = 50;
+    } else if (blockType === "wood") {
+        blockHardness = 2;
+    }
+    
+    text("For " + numberOfBlocks + " " + blockType + " block(s), it would take " + timeToBreak + " seconds.", 20, 200);
+};
+
+
+frameRate(2);
+var draw = function() {
+    background(0);
+    blockCalculator();
+    image(diamond, 20, 250, 80, 80);
+    image(obsidian, 120, 250, 80, 80);
+    image(wood, 220, 250, 130, 80);
+};
+
+var mouseClicked = function() {
+    if (mouseX >= 20 && mouseX <= 100 && mouseY >= 250 && mouseY <= 330) {
+        blockType = "diamond";
+    }
+    if (mouseX >= 120 && mouseX <= 200 && mouseY >= 250 && mouseY <= 330) {
+        blockType = "obsidian";
+    }
+    if (mouseX >= 220 && mouseX <= 350 && mouseY >= 250 && mouseY <= 330) {
+        blockType = "wood";
+    }
+};

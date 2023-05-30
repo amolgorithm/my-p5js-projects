@@ -1,0 +1,68 @@
+var arms = {};
+
+textAlign(CENTER, CENTER);
+textSize(16);
+
+
+var drawArm = function(degrees, length, weight) {
+    pushMatrix();
+    translate(200, 200);
+    rotate(degrees-90);
+    strokeWeight(weight);
+    line(-length/10, 0, length, 0);
+    popMatrix();
+};
+
+var drawNumbers = function() {
+    strokeWeight(2);
+    fill(0);
+    
+    for (var i = 1; i <= 60; i++) {
+        var angle = PI / 6 * (i / 5 - 3);
+        
+        if (i % 5 === 0) {
+            text(i / 5, 200 + cos(angle) * 140, 200 + sin(angle) * 140);
+        } else {
+            point(200 + cos(angle) * 140, 200 + sin(angle) * 140);
+        }
+        
+    }
+};
+
+var drawClock = function() {
+    colorMode(HSB, 180, 255, 180);
+    fill(second()*4, second()*4, second()*4);
+    ellipse(200, 200, 300, 300);
+    colorMode(RGB, 255, 255, 255);
+    fill(255);
+    arc(200, 250, 70, 50, 0, 180);
+    drawArm(arms.hour*30, 80, 3);
+    drawArm(arms.minute*6, 100, 2);
+    drawArm(arms.second*6, 120, 1);
+    rect(150, 120, 35, 60, 40);
+    rect(210, 120, 35, 60, 40);
+    fill(0);
+    ellipse(170, 165, 20, 30);
+    ellipse(230, 165, 20, 30);
+    ellipse(200, 200, 20, 20);
+    fill(0, 255, 0);
+    textSize(30);
+    text(hour()+":"+minute()+":"+second(), 80, 30);
+    textSize(16);
+};
+
+var updateClocks = function() {
+    arms.hour = hour();
+    arms.minute = minute();
+    arms.second = second();
+    
+    arms.minute += arms.second/60;
+    arms.hour += arms.minute/60;
+};
+
+var draw = function() {
+    background(60);
+    updateClocks();
+    drawClock();
+    drawNumbers();
+};

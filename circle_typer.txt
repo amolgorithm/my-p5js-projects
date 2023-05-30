@@ -1,0 +1,10 @@
+var keyPressed = function() {
+    var randomX = random(0, width);
+    var randomY = random(0, height);
+    rectMode(CENTER);
+    fill(random(0, 255), random(0, 255), random(0, 100));
+    rect(randomX, randomY, 50, 50);
+    fill(0, 0, 0);
+    textSize(30);
+    text(String.fromCharCode(keyCode), randomX - 10, randomY + 10);
+};

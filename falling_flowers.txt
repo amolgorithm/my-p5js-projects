@@ -1,0 +1,67 @@
+var flowerList = [];
+var numOfPetals = 10;
+var chance = 10;
+var flowerIndexOutOfCanvasList = [];
+
+
+var flower = function() {
+    this.xPos = random(390);
+    this.yPos = -20;
+    this.speed = random(4, 7);
+    this.rotation = random(1, 5);
+    this.colourList = [color(255, 0, 0), color(0, 255, 0), color(0, 0, 255), color(255, 0, 255), color(255, 100, 0), color(255, 255, 255)];
+    this.colour = this.colourList[round(random(0, this.colourList.length - 1))];
+    this.randomWidthList = [3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0, 8.5];
+    this.randomHeightList = [0.5, 1.0, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0, 2.1, 2.2, 2.5, 2.7];
+    this.randomWidth = this.randomWidthList[round(random(0, this.randomWidthList.length - 1))];
+    this.randomHeight = this.randomHeightList[round(random(0, this.randomHeightList.length - 1))];
+    this.numOfPetals = round(random(3, 10));
+};
+
+
+var drawFlowers = function(index) {
+    for (var r = 0; r < flowerList[index].numOfPetals; r++) {
+        rotate(360/flowerList[index].numOfPetals);
+        ellipse(0, 0, 60, 10);
+    }
+    
+    noStroke();
+    fill(224, 224, 150);
+    ellipse(0, 0, 20, 20);
+};
+
+var moveFlowers = function() {
+    for (var i = 0; i < flowerList.length; i++) {
+        flowerList[i].yPos += flowerList[i].speed;
+        flowerList[i].rotation -= random(1, 3);
+        translate(flowerList[i].xPos, flowerList[i].yPos);
+        scale(flowerList[i].randomWidth / 5, flowerList[i].randomHeight / 5);
+        rotate(flowerList[i].rotation);
+        fill(flowerList[i].colour);
+        drawFlowers(i);
+        
+        if (mouseIsPressed) {
+            flowerList[i].xPos += 20;
+        }
+    
+        
+
+        resetMatrix();
+    }
+};
+
+var startFlower = function() {
+    var trial = random(0, chance);
+    var roundedTrial = round(trial);
+    
+    if (roundedTrial === 1) {
+        flowerList.push(new flower());
+    }
+};
+
+
+var draw = function() {
+    background(245, 244, 173);
+    startFlower();
+    moveFlowers();
+};

@@ -1,0 +1,38 @@
+var steve = getImage("minecraft/steve");
+var sheep = getImage("minecraft/sheep");
+var tnt = getImage("minecraft/tnt");
+var chicken = getImage("minecraft/chicken");
+
+var images = [steve, sheep, tnt, chicken];
+var chickens = [];
+var chickenProperties = function() {
+    this.size = random(10, 200);
+    this.thex = random(0, 350);
+    this.they = 440;
+    this.speed = random(0.5, 5);
+    this.image = images[round(random(0, 3))];
+    this.rotation = round(random(0, 20));
+};
+
+var drawChickens = function() {
+    if (chickens.length < 5) {
+        chickens.push(new chickenProperties());
+    }
+    for (var i = 0; i < chickens.length; i++) {
+        rotate(chickens[i].rotation);
+        image(chickens[i].image, chickens[i].thex, chickens[i].they, chickens[i].size, chickens[i].size);
+        chickens[i].they -= chickens[i].speed;
+        if (chickens[i].they < -50) {
+            chickens[i] = new chickenProperties();
+        }
+    }
+    
+    
+};
+
+
+var draw = function() {
+    background(0);
+    image(getImage("starwars/bb8"), 220, -10, 200, 200);
+    drawChickens();
+};

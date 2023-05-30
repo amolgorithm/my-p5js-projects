@@ -1,0 +1,21 @@
+var colour = [255, 0, 0];
+var colourSpeed = -5;
+
+var draw = function() {
+    background(colour[0], colour[1], colour[2]);
+    colour[0] += colourSpeed;
+    
+    if (colour[0] <= 0) {
+        colourSpeed = 5;
+        colour = [255, 0, 0];
+    }
+    
+    else if (colour[0] >= 190) {
+        colour = [0, 0, 255];
+        colourSpeed = 5;
+    }
+    
+    else if (colour[0] >= 255) {
+        colourSpeed = -5;
+    }
+};

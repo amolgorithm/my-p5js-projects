@@ -1,0 +1,38 @@
+var bugWidth = 100;
+var bugHeight = 80;
+var speed = 1;
+
+var drawBug = function(x, y) {
+    bugWidth += speed;
+    bugHeight += speed;
+    
+    translate(x, y);
+    noStroke();
+    fill(255, 190, 100, 160);
+    ellipse(150, 180, bugWidth, bugHeight);
+    ellipse(250, 180, bugWidth, bugHeight);
+    stroke(0);
+    strokeWeight(5);
+    fill(0);
+    ellipse(200, 100, 70, 70);
+    fill(130, 190, 0);
+    ellipse(200, 200, 70, 160);
+    stroke(190, 30, 190);
+    strokeWeight(20);
+    line(175, 162, 225, 162);
+    line(175, 210, 225, 210);
+    line(175, 244, 225, 244);
+    
+    if (bugWidth <= 100 && bugHeight <= 80) {
+        speed = 1;
+    }
+    if (bugWidth >= 150 && bugHeight >= 130) {
+        speed = -1;
+    }
+};
+
+var draw = function() {
+    background();
+    drawBug(-100, 0);
+    drawBug(200, 10);
+};

@@ -1,0 +1,208 @@
+var characterX = 0;
+var waitMove = 1;
+
+strokeWeight(7);
+
+var drawBackpack = function() {
+    fill(255, 0, 0);
+    stroke(0, 0, 0);
+    beginShape();
+    curveVertex(146, 185);
+    curveVertex(124, 189);
+    curveVertex(120, 265);
+    curveVertex(127, 285);
+    curveVertex(150, 278);
+    curveVertex(146, 196);
+    curveVertex(124, 189);
+    endShape(CLOSE);
+    fill(137, 6, 50);
+    noStroke();
+    beginShape();
+    curveVertex(144, 211);
+    curveVertex(125, 212);
+    curveVertex(124, 278);
+    curveVertex(145, 280);
+    curveVertex(144, 211);
+    endShape(CLOSE);
+};
+
+
+var drawBody = function() {
+    fill(137, 6, 50);
+    stroke(0, 0, 0);
+    beginShape();
+    curveVertex(196, 122);
+    curveVertex(172, 129);
+    curveVertex(150, 162);
+    curveVertex(146, 231);
+    curveVertex(153, 323);
+    curveVertex(175, 335);
+    curveVertex(192, 327);
+    curveVertex(199, 295);
+    curveVertex(237, 286);
+    curveVertex(221, 294);
+    curveVertex(224, 321);
+    curveVertex(239, 325);
+    curveVertex(255, 313);
+    curveVertex(268, 230);
+    curveVertex(245, 143);
+    curveVertex(196, 120);
+    curveVertex(168, 132);
+    endShape(CLOSE);
+    fill(255, 0, 0);
+    noStroke();
+    beginShape();
+    curveVertex(155, 159);
+    curveVertex(164, 228);
+    curveVertex(188, 259);
+    curveVertex(240, 261);
+    curveVertex(260, 212);
+    curveVertex(238, 139);
+    curveVertex(191, 124);
+    curveVertex(155, 159);
+    curveVertex(164, 228);
+    endShape(CLOSE);
+};
+
+var drawVisor = function() {
+    fill(72, 104, 116);
+    stroke(0);
+    beginShape();
+    curveVertex(250, 155);
+    curveVertex(200, 158);
+    curveVertex(185, 176);
+    curveVertex(188, 200);
+    curveVertex(218, 217);
+    curveVertex(258, 209);
+    curveVertex(275, 197);
+    curveVertex(277, 175);
+    curveVertex(250, 155);
+    curveVertex(200, 158);
+    endShape(CLOSE);
+    fill(170, 226, 238);
+    noStroke();
+    beginShape();
+    curveVertex(201, 162);
+    curveVertex(215, 191);
+    curveVertex(274, 184);
+    curveVertex(253, 158);
+    curveVertex(200, 162);
+    curveVertex(215, 191);
+    endShape(CLOSE);
+    fill(253);
+    noStroke();
+    beginShape();
+    curveVertex(223, 165);
+    curveVertex(218, 175);
+    curveVertex(229, 179);
+    curveVertex(259, 173);
+    curveVertex(244, 160);
+    curveVertex(223, 162);
+    curveVertex(218, 175);
+    endShape(CLOSE);
+    fill(0, 0, 0, 150);
+    stroke(0, 0, 255);
+    strokeWeight(3);
+    quad(197, 172, 234, 172, 228, 187, 207, 187);
+    quad(237, 172, 267, 172, 263, 187, 245, 187);
+    strokeWeight(6);
+    line(172, 159, 198, 171);
+    line(275, 159, 265, 169);
+};
+
+var drawText = function() {
+    textSize(70);
+    fill(90, 240, 240);
+    text("Imposter", 70, 70);
+};
+
+var draw = function() {
+    characterX++;
+    waitMove += 0.05;
+    
+    if (characterX >= 250) {
+        characterX = -250;
+    }
+    if (waitMove.toFixed(0) % 2 === 0) {
+        drawBody = function() {
+            fill(137, 6, 50);
+            stroke(0, 0, 0);
+            beginShape();
+            curveVertex(196, 122);
+            curveVertex(172, 129);
+            curveVertex(150, 162);
+            curveVertex(146, 231);
+            curveVertex(155, 283);
+            curveVertex(206, 315);
+            curveVertex(222, 286);
+            curveVertex(203, 258);
+            curveVertex(219, 278);
+            curveVertex(221, 294);
+            curveVertex(224, 321);
+            curveVertex(239, 325);
+            curveVertex(255, 313);
+            curveVertex(268, 230);
+            curveVertex(245, 143);
+            curveVertex(196, 120);
+            curveVertex(168, 132);
+            endShape(CLOSE);
+            fill(255, 0, 0);
+            noStroke();
+            beginShape();
+            curveVertex(155, 159);
+            curveVertex(164, 228);
+            curveVertex(188, 259);
+            curveVertex(240, 261);
+            curveVertex(260, 212);
+            curveVertex(238, 139);
+            curveVertex(191, 124);
+            curveVertex(155, 159);
+            curveVertex(164, 228);
+            endShape(CLOSE);
+        };
+    } else {
+        drawBody = function() {
+            fill(137, 6, 50);
+            stroke(0, 0, 0);
+            beginShape();
+            curveVertex(196, 122);
+            curveVertex(172, 129);
+            curveVertex(150, 162);
+            curveVertex(146, 231);
+            curveVertex(153, 323);
+            curveVertex(175, 335);
+            curveVertex(192, 327);
+            curveVertex(199, 295);
+            curveVertex(237, 286);
+            curveVertex(221, 294);
+            curveVertex(224, 321);
+            curveVertex(239, 325);
+            curveVertex(255, 313);
+            curveVertex(268, 230);
+            curveVertex(245, 143);
+            curveVertex(196, 120);
+            curveVertex(168, 132);
+            endShape(CLOSE);
+            fill(255, 0, 0);
+            noStroke();
+            beginShape();
+            curveVertex(155, 159);
+            curveVertex(164, 228);
+            curveVertex(188, 259);
+            curveVertex(240, 261);
+            curveVertex(260, 212);
+            curveVertex(238, 139);
+            curveVertex(191, 124);
+            curveVertex(155, 159);
+            curveVertex(164, 228);
+            endShape(CLOSE);
+        };
+    }
+    
+    background(40);
+    drawText();
+    translate(characterX, 0);
+    drawBackpack();
+    drawBody();
+    drawVisor();
+};

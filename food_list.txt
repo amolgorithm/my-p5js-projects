@@ -1,0 +1,38 @@
+let food1 = ["Apple", "Orange", "Mango", "Pistachio", "Bagel"];
+let food2 = ["Yogurt", "Ice cream", "Pineapple", "Sandwhich"];
+
+fill(0);
+text("My favourite foods are...", 200, 70);
+
+for (var i = 1; i < food1.length + 1; i++) {
+    fill(0, 255, 0);
+    textAlign(CENTER);
+    textSize(30);
+    text(food1[i - 1], 100, i * 40 + 90);
+    text(food2[(i - 1)], 300, i * 40 + 90);
+}
+
+
+//when the user clicks on the screen
+var mouseClicked = function() {
+    var moreFood = prompt("Enter one of your favourite foods");
+    
+    if (mouseX <= 199) {
+        food1.push(moreFood[0].toUpperCase() + (moreFood.slice(1, moreFood.length)).toLowerCase());
+    }
+    else if (mouseX >= 201) {
+        food2.push(moreFood);
+    }
+    
+    background();
+    fill(0);
+    text("My favourite foods are...", 200, 70);
+    
+    for (var i = 1; i < food1.length + 1; i++) {
+        fill(0, 255, 0);
+        textAlign(CENTER);
+        textSize(30);
+        text(food1[i - 1], 100, i * 40 + 90);
+        text(food2[(i - 1)], 300, i * 40 + 90);
+    }
+};

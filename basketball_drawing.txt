@@ -1,0 +1,30 @@
+var posY = 50;
+var dy = 0;
+dy = 2;
+
+var draw = function() {
+    posY += dy;
+    
+    background();
+    stroke(0);
+    strokeWeight(5);
+    
+    if (posY >= 100) {
+        dy = -2;
+    }
+    
+    if (posY <= -30) {
+        dy = 2;
+    }
+    translate(0, posY);
+    fill(25, 120, 250);
+    ellipse(200, 200, 300, 300);
+    line(50, 200, 350, 200);
+    arc(200, 260, 272, 50, 0, 180);
+    arc(200, 140, 272, 50, -180, 0);
+    strokeWeight(2);
+    fill(255, 80, 0);
+    triangle(50, 177, 298, 107, 60, 238);
+    triangle(60, 238, 296, 174, 100, 306);
+    triangle(100, 306, 306, 234, 176, 343);
+};

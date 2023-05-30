@@ -1,0 +1,18 @@
+var flipAxe = PImage;
+var img = getImage("minecraft/pickaxe-diamond");
+var x = 200;
+var y = 200;
+
+var drawAxe = function() {
+    image(img, x, y, 75, 75);
+    flipAxe = get(200, 200, 75, 75);
+};
+
+var draw = function() {
+    background();
+    drawAxe();
+    pushMatrix();
+    scale(-1, 1);
+    image(flipAxe,-mouseX, mouseY, 75, 75);
+    popMatrix();
+};

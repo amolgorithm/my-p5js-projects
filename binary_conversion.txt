@@ -1,0 +1,50 @@
+var binArray = [];
+var binString = "";
+var decimal = 0;
+var n = 128;
+var numInput = "";
+
+var generateBinaryNumber = function() {
+    fill(255, 0, 0);
+    textSize(26);
+    textAlign(CENTER);
+    text("BINARY:", 90, 170);
+    
+    for (var j = 0; j <= 8; j++) {
+        if (numInput !== "") {
+            binArray.push(round(random(numInput)));
+        }
+        text(binArray[j], (j*15)+30, 210);
+    }
+};
+generateBinaryNumber();
+
+
+var convertNumber = function() {
+    for (var j = 0; j <= 3; j++) {
+        decimal = parseInt(decimal+numInput);
+    }
+};
+convertNumber();
+
+
+var displayConversion = function() {
+    text(decimal, 292, 210);
+    text("DECIMAL:", 300, 170);
+};
+displayConversion();
+
+
+var draw = function() {
+    background();
+    generateBinaryNumber();
+
+    displayConversion();
+};
+
+
+var mouseClicked = function() {
+    numInput = prompt("Enter A Number");
+    generateBinaryNumber();
+    convertNumber();
+};

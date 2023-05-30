@@ -1,0 +1,35 @@
+var posY = 100;
+var posY2 = 100;
+var dy = 2;
+var dy2 = 1;
+var posYM = mouseY;
+var dym = random(5);
+
+var draw = function() {
+    background(200, 255, 190);
+    posY += dy;
+    posY2 += dy2;
+    posYM += dym;
+    fill(0);
+    ellipse(200, posY, 30, 30);
+    ellipse(100, posY2, 30, 30);
+    
+    if (posY >= 405) {
+        posY = -5;
+        dy++;
+    }
+    if (posY2 >= 405) {
+        posY2 = -5;
+        dy2++;
+    }
+    
+    if (posYM >= 405) {
+        posYM = -5;
+        dym++;
+    }
+};
+
+
+var mouseClicked = function() {
+    ellipse(random(370), posYM, 30, 30);
+};

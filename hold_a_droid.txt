@@ -1,0 +1,13 @@
+var characters = [getImage("starwars/leia"), getImage("starwars/bb8"), getImage("starwars/luke"), getImage("starwars/c3po"), getImage("starwars/r2d2"), getImage("starwars/yoda")];
+var character = characters[round(random(0, characters.length - 1))];
+
+imageMode(CENTER);
+
+var draw = function() {
+    background(0, 0, 0);
+    image(character, mouseX, mouseY, 200, 200);
+};
+
+var mouseClicked = function() {
+    character = characters[round(random(0, characters.length - 1))];
+};

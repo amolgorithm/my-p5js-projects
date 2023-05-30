@@ -1,0 +1,60 @@
+var ballRadius = 10;
+var ballX = random(ballRadius, width - ballRadius);
+var ballY = random(ballRadius, width - ballRadius);
+var ball2X = random(ballRadius, width - ballRadius);
+var ball2Y = random(ballRadius, width - ballRadius);
+var ballXSpeed = 3;
+var ballYSpeed = -5;
+var ball2XSpeed = 4;
+var ball2YSpeed = -5;
+var ballColor = color(20, 0, 50);
+var ball2Color = color(20, 100, 100);
+
+
+var moveBall = function() {
+    ballX += ballXSpeed;
+    ballY += ballYSpeed;
+    ball2X += ball2XSpeed;
+    ball2Y += ball2YSpeed;
+    
+    fill(ballColor);
+    ellipse(ballX, ballY, ballRadius * 2, ballRadius * 2);
+    
+    fill(ball2Color);
+    ellipse(ball2X, ball2Y, ballRadius * 2, ballRadius * 2);
+};
+
+var ballBounce = function() {
+    if (ballX <= 0 + ballRadius || ballX >= 400 - ballRadius) {
+        ballXSpeed = -ballXSpeed;
+        ballColor = color(random(255), random(255), random(255));
+    }
+    if (ballY <= 0 + ballRadius || ballY >= 400 - ballRadius) {
+        ballYSpeed = -ballYSpeed;
+        ballColor = color(random(255), random(255), random(255));
+    }
+    if (ball2X <= 0 + ballRadius || ball2X >= 400 - ballRadius) {
+        ball2XSpeed = -ball2XSpeed;
+        ball2Color = color(random(255), random(255), random(255));
+    }
+    if (ball2Y <= 0 + ballRadius || ball2Y >= 400 - ballRadius) {
+        ball2YSpeed = -ball2YSpeed;
+        ball2Color = color(random(255), random(255), random(255));
+    }
+    
+    if (dist(ballX, ballY, ball2X, ball2Y) <= ballRadius * 2) {
+        ballXSpeed = -ballXSpeed;
+        ballYSpeed = -ballYSpeed;
+        ball2XSpeed = -ball2XSpeed;
+        ball2YSpeed = -ball2YSpeed;
+        
+        ballColor = color(random(255), random(255), random(255));
+        ball2Color = color(random(255), random(255), random(255));
+    }
+};
+
+var draw = function() {
+    background(50, 200, 200, 150);
+    moveBall();
+    ballBounce();
+};

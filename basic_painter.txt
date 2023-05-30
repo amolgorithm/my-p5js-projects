@@ -1,0 +1,44 @@
+var r = 255;
+var g = 215;
+var b = 0;
+
+
+var keyPressed = function() {
+    if (keyCode === 49) {
+        r = 255;
+        g = 0;
+        b = 0;
+    }
+    else if (keyCode === 50) {
+        r = 255;
+        g = 190;
+        b = 0;
+    }
+    else if (keyCode === 51) {
+        r = 255;
+        g = 255;
+        b = 0;
+    }
+    else if (keyCode === 52) {
+        r = 0;
+        g = 255;
+        b = 0;
+    }
+    else if (keyCode === 53) {
+        r = 0;
+        g = 0;
+        b = 255;
+    }
+    else if (keyCode === 54) {
+        r = 190;
+        g = 0;
+        b = 255;
+    }
+};
+
+
+var mouseDragged = function() {
+    noStroke();
+    fill(r, g, b);
+    ellipse(mouseX, mouseY, 30, 30);
+};

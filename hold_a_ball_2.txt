@@ -1,0 +1,10 @@
+var moveBall = function(x, y) {
+    fill(0);
+    ellipse(x, y, 70, 50);
+};
+
+var draw = function() {
+    background();
+    moveBall(mouseX, 200);
+    moveBall(mouseX - 100, 100);
+};

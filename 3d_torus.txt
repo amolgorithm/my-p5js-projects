@@ -1,0 +1,24 @@
+var detail = 40;
+var maxSize = 100;
+var f = 0;
+
+noFill();
+strokeWeight(2);
+
+var createShape = function() {
+    for (var i = f; i < 360 + f; i += 360 / detail) {
+        var radius = maxSize * (sin(i) + 2);
+        var offset = cos(i) * -40;
+        translate(width / 2 + offset, height / 2 - offset, offset);
+        rotate(45);
+        stroke(max(20 + cos(i) * 120, 0));
+        ellipse(0, 0, radius, radius / 2);
+        resetMatrix();
+    }
+    f += 0.01;
+};
+
+var draw = function() {
+    background(16, 173, 16);
+    createShape();
+};

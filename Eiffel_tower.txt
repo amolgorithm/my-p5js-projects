@@ -1,0 +1,102 @@
+var numOfBread = 0;
+var money = 30;
+var moneyDecrease = 1;
+var outOfMoneyTextColor = color(255, 255, 255, 0);
+
+
+var drawEiffelTower = function() {
+    noStroke();
+    fill(124, 130, 126);
+    triangle(200, 100, 300, 325, 100, 325);
+    triangle(201, 12, 172, 178, 230, 176);
+    rect(125, 236, 150, 25);
+    rect(165, 146, 70, 26);
+    rect(188, 34, 26, 22, 8);
+    rect(199, 10, 5, 50);
+    fill(0, 216, 255);
+    quad(165, 235, 235, 235, 215, 190, 185, 190);
+    arc(200, 325, 125, 130, 180, 360);
+};
+
+
+var cloudX = 150;
+var cloudY = 50;
+
+var drawBackground = function() {
+    cloudX += 2;
+    
+    fill(255);
+    noStroke();
+    ellipse(cloudX, cloudY, 50, 50);
+    ellipse(cloudX - 35, cloudY, 50, 50);
+    ellipse(cloudX + 30, cloudY, 50, 50);
+    ellipse(cloudX - 65, cloudY, 50, 50);
+    ellipse(cloudX, cloudY - 30, 50, 50);
+    ellipse(cloudX - 45, cloudY - 30, 50, 50);
+    fill(255, 246, 0);
+    ellipse(400, 20, 150, 150);
+    strokeWeight(5);
+    stroke(255, 246, 0);
+    line(350, 20, 250, 20);
+    line(251, 72, 330, 39);
+    line(271, 111, 341, 62);
+    line(307, 137, 361, 83);
+    line(380, 92, 364, 148);
+    
+    if (cloudX >= 400) {
+        cloudX = 0;
+    }
+};
+
+var fb = createFont("Verdana");
+
+var drawBakery = function() {
+    fill(150, 0, 0);
+    quad(20, 274, 83, 274, 90, 325, 13, 325);
+    fill(230, 230, 0);
+    textSize(20);
+    text("Bakery", 20, 290);
+    fill(0, 150, 210);
+    stroke(0);
+    strokeWeight(2);
+    rect(35, 300, 15, 25);
+    rect(50, 300, 15, 25);
+    fill(0);
+    text("You have " + numOfBread + " breads", 10, 30);
+    text("You have $" + money, 10, 50);
+};
+
+noStroke();
+var f = createFont("Georgia");
+
+var draw = function() {
+    background(0, 250, 0);
+    fill(0, 216, 255);
+    rect(0, 0, 400, 325);
+    drawBackground();
+    drawEiffelTower();
+    drawBakery();
+    noStroke();
+    fill(0);
+    textFont(f);
+    textSize(70);
+    text("PARIS", 100, 370);
+    textSize(50);
+    text("Bievenue", 100, 100);
+    fill(outOfMoneyTextColor);
+    textSize(30);
+    text("You Ran Out Of Money!", 50, 160);
+};
+
+var mouseClicked = function() {
+    if (mouseX >= 13 && mouseX <= 90 && mouseY >= 274 && mouseY <= 325) {
+        if (money > 0) {
+            numOfBread++;
+            moneyDecrease = 1;
+        } else {
+            moneyDecrease = 0;
+            outOfMoneyTextColor = color(0, 0, 0);
+        }
+        money -= moneyDecrease;
+    }
+};

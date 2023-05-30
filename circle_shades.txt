@@ -1,0 +1,60 @@
+var blackC = color(255, 0, 0);
+var darkC = color(80, 80, 80);
+var lightC = color(180, 180, 180);
+var whiteC = color(255, 255, 255);
+var cells = 15;
+var cellSize = 400/cells;
+var halfCell = cellSize/2;
+var d2 = cellSize*0.85;
+var d1 = cellSize*0.7;
+var theta1 = function(theta) {
+    return theta + random(100, 180);
+    
+};
+var theta2 = function(theta) {
+    return theta+360;
+};
+
+var drawCircle = function(x, y, theta) {
+    fill(blackC);
+    
+    
+    arc(x, y, d2, d2, theta1(theta), theta2(theta));
+    fill(whiteC);
+    arc(x, y, d2, d2, theta, theta1(theta));
+    fill(darkC);
+    ellipse(x, y, d1, d1);
+};
+
+
+noStroke();
+background(lightC);
+
+for (var i = 0; i < cells; i++) {
+    var x = i*cellSize;
+    for (var j = 0; j < cells; j++) {
+        var y = j*cellSize;
+        drawCircle(x+halfCell, y+halfCell, (i-j)*45);
+    }
+}
+
+var mouseClicked = function() {
+    background();
+    theta1 = function(theta) {
+        return theta + random(10, 180);
+    
+    };
+    
+    theta2 = function(theta) {
+        return theta + 360;
+    
+    };
+    
+    for (var i = 0; i < cells; i++) {
+    var x = i*cellSize;
+    for (var j = 0; j < cells; j++) {
+        var y = j*cellSize;
+        drawCircle(x+halfCell, y+halfCell, (i-j)*45);
+    }
+}
+};

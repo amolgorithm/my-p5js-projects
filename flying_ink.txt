@@ -1,0 +1,116 @@
+var allDots = [];
+var colors = [];
+var growth = 0.25;
+var index = 0;
+var timer = 0;
+
+noStroke();
+
+
+var theColor = function() {
+    this.r = 0;
+    this.g = 0;
+    this.b = 0;
+};
+
+colors.push(new theColor());
+colors.push(new theColor());
+
+
+var Dot = function(dotColor) {
+    this.x = 0;
+    this.y = 0;
+    this.speed = 0.5;
+    this.angle = random(1, 360);
+    this.size = random(1, 3);
+    this.color = dotColor;
+};
+
+var drawDots = function() {
+    var newColor = color(colors[1].r, colors[1].g, colors[1].b);
+    allDots[index] = new Dot(newColor);
+    
+    index++;
+    
+    if (index > 500) {
+        index = 0;
+    }
+};
+
+var changeColor = function() {
+    colors[0].r = random(255);
+    colors[0].g = random(255);
+    colors[0].b = random(255);
+};
+
+
+var moveDots = function() {
+    for (var i = 0; i < allDots.length; i++) {
+        translate(200, 200);
+        rotate(allDots[i].angle);
+        allDots[i].x += allDots[i].speed;
+        allDots[i].y += allDots[i].speed;
+        allDots[i].size += growth;
+        
+        fill(allDots[i].color);
+        triangle(allDots[i].x, allDots[i].y, allDots[i].x-allDots[i].size, allDots[i].y+allDots[i].size, allDots[i].x+allDots[i].size, allDots[i].y+allDots[i].size);
+        resetMatrix();
+        
+    }
+};
+
+var updateTimer = function() {
+    timer += 1/60;
+    
+    if (round(timer) === 5) {
+        changeColor();
+        timer = 0;
+    }
+};
+
+var fadeColor = function() {
+    if (colors[0].r < colors[1].r) {
+        colors[1].r--;
+    }
+    if (colors[0].r > colors[1].r) {
+        colors[1].r++;
+    }
+    
+    if (colors[0].g < colors[1].g) {
+        colors[1].g--;
+    }
+    if (colors[0].g > colors[1].g) {
+        colors[1].g++;
+    }
+    
+    if (colors[0].b < colors[1].b) {
+        colors[1].b--;
+    }
+    if (colors[0].b > colors[1].b) {
+        colors[1].b++;
+    }
+};
+
+
+var draw = function() {
+    fill(255, 255, 255, 10);
+    rect(0, 0, 400, 400);
+    
+    updateTimer();
+    drawDots();
+    moveDots();
+    fadeColor();
+};
+
+var mouseClicked = function() {
+    changeColor();
+};
+
+var keyPressed = function() {
+    if (keyCode === 38) {
+        colors[1].r++;
+    }
+    if (keyCode === 40) {
+        colors[1].r--;
+    }
+};

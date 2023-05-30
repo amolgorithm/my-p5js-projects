@@ -1,0 +1,53 @@
+var randHeight = random(300, 400);
+var ballHeight = randHeight;
+var vUp = 4;
+var aG = -0.5;
+var time = 1;
+var ballX = 200;
+var ballXSpeed = 0;
+
+
+var drawTennisball = function() {
+    ballX += ballXSpeed;
+    
+    fill(50, 250, 50);
+    ellipse(ballX, ballHeight, 20, 20);
+};
+
+var ballPosition = function() {
+    ballHeight -= vUp*time+0.5*aG*time*time;
+    time += 0.5;
+};
+
+
+var resetBall = function() {
+    if (ballHeight > randHeight) {
+        ballHeight = randHeight;
+        time = 1;
+    }
+};
+
+
+var draw = function() {
+    //background(90, 200, 255, 90);
+    fill(90, 200, 255, 90);
+    noStroke();
+    rect(0, 0, 400, 400);
+    stroke(0);
+    drawTennisball();
+    ballPosition();
+    
+    resetBall();
+};
+
+
+
+var keyPressed = function() {
+    if (keyCode === 37) {
+        ballXSpeed = -2;
+    }
+    
+    if (keyCode === 39) {
+        ballXSpeed = 2;
+    }
+};

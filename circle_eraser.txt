@@ -1,0 +1,36 @@
+var circles = [];
+
+var Circle = function(x, y) {
+    this.x = x;
+    this.y = y;
+    this.shade = color(random(45, 210));
+    this.visible = true;
+    this.drawCircle = function() {
+        if (this.visible === true) {
+            fill(this.shade);
+            ellipse(this.x, this.y, 20, 20);
+        }
+    };
+    this.removeCircle = function() {
+        if (dist(mouseX, mouseY, this.x, this.y) < 20) {
+            this.visible = false;
+        }
+    };
+};
+
+for (var i = 0; i <= 400; i += 20) {
+    for (var j = 0; j <= 400; j += 20) {
+        circles.push(new Circle(i, j));
+    }
+}
+
+
+
+var draw = function() {
+    background(0);
+    
+    for (var i = 0; i < circles.length; i++) {
+        circles[i].drawCircle();
+        circles[i].removeCircle();
+    }
+};

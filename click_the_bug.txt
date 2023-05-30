@@ -1,0 +1,85 @@
+var score = 0;
+var bugX = random(10, 300);
+var bugY = random(10, 300);
+var bug2X = random(10, 300);
+var bug2Y = random(10, 300);
+var transparency1 = 255;
+var transparency2 = 255;
+var gameOver = false;
+var level = 1;
+
+frameRate(5);
+
+var drawBug = function() {
+    bugX -= random(1, 10);
+    bugY -= random(10);
+    bugX -= random(1, 10);
+    bugY -= random(10);
+    
+    
+    tint(255, 255, 255, transparency1);
+    image(getImage("minecraft/enderdragon"), bugX, bugY, 100, 100);
+    tint(255, 255, 255, transparency2);
+    image(getImage("minecraft/enderman"), bug2X, bug2Y, 100, 100);
+    
+    if (transparency1 <= 10) {
+
+        transparency1 = 255;
+        
+        
+    }
+    if (transparency2 <= 10) {
+        transparency2 = 255;
+    }
+    
+    if (((bugX <= 10 || bugY <= 0) || (bug2X <= 10 || bug2Y <= 0))) {
+        if (score <= 0) {
+            gameOver = true;
+        } else {
+            bugX = 200;
+            bugY = 200;
+            transparency1 = 255;
+        }
+    }
+    
+    transparency1 -= 12;
+    transparency2 -= 12;
+};
+
+var printScore = function() {
+    fill(0);
+    text("Score: " + score, 10, 20);
+    text("Level: " + level, 10, 45);
+    
+    textSize(20);
+    
+    if (gameOver) {
+        text("Game over!", 200, 200);
+    }
+    
+    if (score % 5 === 0 && score !== 0) {
+        level++;
+        score++;
+    }
+};
+
+var draw = function() {
+    background(207, 255, 229);
+    drawBug();
+    printScore();
+};
+
+var mouseClicked = function() {
+    if (mouseX >= bugX && mouseY <= bugX + 100 && mouseY >= bugY && mouseY <= bugY + 100 && transparency1 >= 100) {
+        score++;
+        bugX = random(100, 300);
+        bugY = random(100, 300);
+        transparency1 = 255;
+    }
+    if (mouseX >= bug2X && mouseY <= bug2X + 100 && mouseY >= bug2Y && mouseY <= bug2Y + 100 && transparency2 >= 100) {
+        score++;
+        bug2X = random(100, 300);
+        bug2Y = random(100, 300);
+        transparency2 = 255;
+    }
+};

@@ -1,0 +1,71 @@
+var colEllX = mouseX;
+var colEllY = mouseY;
+var ballRadius = 30;
+var pylonRadius = 10;
+var bgColour = [0, 190, 90];
+
+var pylon1X = width/2;
+var pylon1Y = height/2;
+var pylon2X = width/1.4;
+var pylon2Y = height/1.2;
+var pylon1Speed = 1;
+var pylon2Speed = -1;
+
+var boundary1 = 50;
+var boundary2 = 390;
+
+
+var centerEllipse = function() {
+    pylon1X += pylon1Speed;
+    pylon1Y += pylon1Speed;
+    pylon2X += pylon2Speed;
+    pylon2Y += pylon2Speed;
+    
+    fill(255, 180, 0);
+    ellipse(pylon1X, pylon1Y, pylonRadius*2 + 15, pylonRadius*2 + 15);
+    ellipse(pylon1X, pylon1Y, pylonRadius*2, pylonRadius*2);
+    
+    ellipse(pylon2X, pylon2Y, pylonRadius*2 + 15, pylonRadius*2 + 15);
+    ellipse(pylon2X, pylon2Y, pylonRadius*2, pylonRadius*2);
+    
+    line(pylon1X, pylon1Y, colEllX, colEllY);
+    line(pylon2X, pylon2Y, colEllX, colEllY);
+    
+    
+    if (pylon1X <= boundary1 || pylon1X >= boundary2 || pylon1Y <= boundary1 || pylon1Y >= boundary2) {
+        pylon1Speed = -pylon1Speed;
+    }
+    if (pylon2Y <= boundary1 || pylon2Y >= boundary2 || pylon2Y <= boundary1 || pylon2Y >= boundary2) {
+        pylon2Speed = -pylon2Speed;
+    }
+};
+
+var collisionEllipse = function()  {
+    fill();
+    ellipse(colEllX, colEllY, ballRadius*2, ballRadius*2);
+};
+
+var checkIfCollisionIsTrue = function(selfX, otherX, selfY, otherY) {
+    if (dist(colEllX, colEllY, pylon1X, pylon1Y) < ballRadius+pylonRadius || dist(colEllX, colEllY, pylon2X, pylon2Y) < ballRadius+pylonRadius) {
+        fill(0);
+        textSize(40);
+        textAlign(CENTER);
+        text("Collision!", 200, 100);
+        bgColour = [190, 90, 90];
+    }
+    else {
+        text("", 200, 100);
+        bgColour = [0, 190, 90];
+    }
+};
+
+
+var draw = function () {
+    strokeWeight(2);
+    colEllX = mouseX;
+    colEllY = mouseY;
+    background(bgColour[0], bgColour[1], bgColour[2]);
+    centerEllipse();
+    collisionEllipse();
+    checkIfCollisionIsTrue(width/2, height/2, colEllX, colEllY);
+};

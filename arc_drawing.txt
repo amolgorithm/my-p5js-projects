@@ -1,0 +1,9 @@
+var mouseDragged = function() {
+    noFill();
+    ellipseMode(CORNER);
+    stroke(239, random(0, mouseX), random(0, mouseY));
+    strokeWeight(mouseX / 50);
+    arc(0, 0, mouseX, mouseY, 0, mouseY);
+    arc(100, 100, mouseX, mouseY, 0, mouseY);
+    arc(200, 200, mouseX, mouseY, 0, mouseY);
+};

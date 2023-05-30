@@ -1,0 +1,86 @@
+//variables
+var circleWidth = 0;
+var explosionTextSize = 0;
+var circleSpeed = 2;
+var startExplosion  = false;
+
+rectMode(CENTER);
+noStroke();
+
+var drawCreeper = function() {
+    noStroke();
+    fill(255, 60, 0);
+    rect(200, 100, 100, 100);
+    rect(200, 210, 70, 140);
+    rect(165, 290, 50, 30);
+    rect(235, 290, 50, 30);
+    
+};
+
+
+var drawExplodingCreeper = function() {
+    if (startExplosion) {
+        noStroke();
+        fill(255, 60, 0);
+        ellipse(200, 200, circleWidth, 160);
+        
+        
+        textSize(explosionTextSize / 3);
+        text("Rrrrrrrrrrrrr...", explosionTextSize + 30, 360);
+        
+        fill(0);
+        rect(180, 90, 20, 20);
+        rect(220, 90, 20, 20);
+        rect(200, 110, 20, 25);
+        rect(185, 120, 10, 25);
+        rect(215, 120, 10, 25);
+        
+        
+        
+        circleWidth += circleSpeed;
+        explosionTextSize += circleSpeed;
+        
+        
+        
+        
+    }
+};
+
+
+var explosion = function() {
+    if (circleWidth >= 165 || explosionTextSize >= 165) {
+        fill(255, 255, 0);
+        strokeWeight(5);
+        stroke(255, 0, 0);
+        beginShape();
+        vertex(131, 153);
+        vertex(187, 184);
+        vertex(256, 157);
+        vertex(240, 209);
+        vertex(242, 253);
+        vertex(192, 230);
+        vertex(142, 258);
+        vertex(145, 199);
+        endShape(CLOSE);
+        circleSpeed = 0;
+        circleWidth = 0;
+        
+        fill(0);
+        textSize(25);
+        textAlign(CENTER, CENTER);
+        text("BOOM!", 195, 200);
+    }
+};
+
+
+
+var draw = function() {
+    background();
+    drawCreeper();
+    drawExplodingCreeper();
+    explosion();
+};
+
+var mouseClicked = function() {
+    startExplosion = true;
+};

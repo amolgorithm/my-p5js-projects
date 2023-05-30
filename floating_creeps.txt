@@ -1,0 +1,56 @@
+var floatRect = function(x, y) {
+    this.x = x;
+    this.y = y;
+    this.w = 50;
+    this.h = 50;
+    this.display = function() {
+        fill(100, 200, 50),
+        rect(this.x, this.y, this.w, this.h);
+        ellipse(this.x+15, this.y+15, this.w/5, this.h/5);
+        ellipse(this.x+35, this.y+15, this.w/5, this.h/5);
+        arc(this.x+25, this.y+35, this.w/5, this.h/5, 0, 180);
+    };
+    this.move = function() {
+        this.x -= 1;
+        if (this.x < 100) {
+            this.y += 1;
+            this.x = 99;
+        }
+        if (this.y > 430) {
+            this.x = x;
+            this.y = y;
+        }
+    };
+    this.collide = function(self, other) {
+        if (self.x < other.x + this.w && self.x + this.w > other.x && self.y < other.y + this.h && self.y + this.h > other.y) {
+            fill(150, 0, 0);
+            textSize(50);
+            textAlign(CENTER);
+            text("Collision!", 200, 100);
+        }
+    };
+};
+
+var rectArray = [];
+rectArray.push(new floatRect(200, 100));
+rectArray.push(new floatRect(300, 250));
+
+var rectConstructor = function() {
+    rectArray.forEach(function(rectangle) {
+        rectangle.display();
+        rectangle.move();
+        rectangle.collide(rectArray[0], rectArray[1]);
+    });
+};
+
+
+
+var draw = function() {
+    background();
+    rectConstructor();
+};
+
+
+var mouseClicked = function() {
+    rectArray.push(new floatRect(mouseX, mouseY));
+};

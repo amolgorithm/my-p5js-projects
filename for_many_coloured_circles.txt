@@ -1,0 +1,10 @@
+for (var i = 0; i < 400; i++) {
+    var randomX = random(0, 400);
+    var randomY = random(0, 190);
+    fill(0, 0, 255, random(0, 255));
+    ellipse(randomX, randomY, 50, 50);
+    fill(255, 255, 1, random(0, 255));
+    text(i, randomX, randomY);
+    fill(0, 0, 255, random(0, 255));
+    rect(random(0, 400), random(210, 400), 50, 50);
+}

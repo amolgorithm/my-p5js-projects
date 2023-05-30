@@ -1,0 +1,33 @@
+var squareSize = width/8;
+
+
+var Square = function(x, y) {
+    this.x = x;
+    this.y = y;
+};
+
+var squares = [];
+
+
+for (var i = 0; i < 400; i += squareSize) {
+    for (var j = 0; j < 400; j+= squareSize) {
+        squares.push(new Square(i, j));
+    }
+}
+
+for (var i = 0; i < squares.length; i++) {
+    fill(255);
+    stroke(0);
+    strokeWeight(3);
+    rect(squares[i].x, squares[i].y, squareSize, squareSize);
+}
+
+var mouseClicked = function() {
+    var x = floor(mouseX / squareSize) * squareSize;
+    var y = floor(mouseY / squareSize) * squareSize;
+    
+    
+    fill(random(255), random(255), random(255));
+    rect(x, y, squareSize, squareSize);
+    
+};

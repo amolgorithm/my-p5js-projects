@@ -1,0 +1,36 @@
+var nationalAnthemY = 400;
+var nationalAnthemSpeed = 0;
+
+noStroke();
+
+var stripes = function() {
+    fill(0, 85, 164, 45);
+    rect(0, 0, 133.3, 400);
+    fill(239, 65, 53, 45);
+    rect(266.7, 0, 133.3, 400);
+};
+
+
+
+var nationalAnthem = function() {
+    nationalAnthemY += nationalAnthemSpeed;
+    
+    if (nationalAnthemY >= -100) {
+        nationalAnthemSpeed = -0.5;
+    } else {
+        nationalAnthemY = 400;
+    }
+    
+    fill(0);
+    textSize(15);
+    textAlign(CENTER);
+    text("O Canada! \n Our home an native land! \n True patriot love in all of us command! \n With the glowing heartswe see thee rise, \n The True North strong and Free! \n From far and wide, \n O Canada, we stand on guard for thee.\n God keep our land glorious and free! \n O Canada, we stand on guard for thee! \n O Canada, we stand on guard for thee!", 200, nationalAnthemY);
+};
+
+
+var draw = function() {
+    fill(255, 20);
+    rect(0, 0, 400, 400);
+    stripes();
+    nationalAnthem();
+};

@@ -1,0 +1,79 @@
+var RedArr = [];
+var GrnArr = [];
+var BlueArr = [];
+var numOfColor = 40;
+
+var colorBattlefield = function(x) {
+    for (var y = 0; y < 40; y++) {
+        RedArr[x][y] = random(0, 255);
+        GrnArr[x][y] = random(0, 255);
+        BlueArr[x][y] = random(0, 255);
+    }
+};
+
+var setupBattlefield = function() {
+    noStroke();
+    
+    for (var x = 0; x < 40; x++) {
+        RedArr[x] = [];
+        GrnArr[x] = [];
+        BlueArr[x] = [];
+        
+        colorBattlefield(x);
+    }
+};
+setupBattlefield();
+
+var fight = function(x1, y1, x2, y2) {
+    if (x2 >= 0 && x2 < 40 && y2 >= 0 && y2 < 40) {
+        switch(floor(random() * 3) + 1) {
+            case 0:
+                RedArr[x1][y1] = RedArr[x2][y2];
+                GrnArr[x1][y1] = GrnArr[x2][y2];
+                BlueArr[x1][y1] = BlueArr[x2][y2];
+                break;
+                
+            case 1:
+                RedArr[x2][y2] = RedArr[x1][y1];
+                GrnArr[x2][y2] = GrnArr[x1][y1];
+                BlueArr[x2][y2] = BlueArr[x1][y1];
+                break;
+        }
+    }
+};
+
+
+var setFights = function() {
+    var xPos = 0;
+    var yPos = 0;
+
+    for (var x = 0; x < 40; x++) {
+       xPos = floor(random()*40);
+       for (var y = 0; y < 40; y++) {
+           yPos = floor(random()*40);
+           fight(xPos, yPos, xPos-1, yPos);
+           fight(xPos, yPos, xPos+1, yPos);
+           fight(xPos, yPos, xPos, yPos-1);
+           fight(xPos, yPos, xPos, yPos+1);
+       }
+    } 
+};
+
+var drawBattlefield = function() {
+    for (var x = 0; x < 40; x++) {
+        for (var y = 0; y < 40; y++) {
+            fill(RedArr[x][y], GrnArr[x][y], BlueArr[x][y]);
+            ellipse(x*10, y*10, 10, 10);
+        }
+    }
+};
+
+var draw = function() {
+    drawBattlefield();
+    setFights();
+};
+
+var mouseClicked = function() {
+    
+    setupBattlefield();
+};

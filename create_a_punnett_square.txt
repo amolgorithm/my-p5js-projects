@@ -1,0 +1,32 @@
+var punnettSquare = function() {
+    line(125, 50, 350, 50);
+    line(350, 350, 350, 50);
+    line(350, 350, 50, 350);
+    line(50, 125, 50, 350);
+    line(350, 350, 50, 350);
+    line(125, 50, 125, 350);
+    line(50, 125, 350, 125);
+    line(235, 50, 235, 350);
+    line(50, 240, 350, 240);
+    
+};
+
+var draw = function() {
+    background();
+    punnettSquare();
+    noLoop();
+    var alle1e1a = prompt("Parent 1 Aelle 1.");
+    var alle1e1b = prompt("Parent 1 Aelle 2.");
+    var alle1e2a = prompt("Parent 2 Aelle 1.");
+    var alle1e2b = prompt("Parent 2 Aelle 2.");
+    fill(0);
+    textSize(40);
+    text(alle1e1a, 160, 100);
+    text(alle1e1b, 270, 100);
+    text(alle1e2a, 76, 200);
+    text(alle1e2b, 76, 310);
+    text(alle1e1a + alle1e2a, 147, 196);
+    text(alle1e1a + alle1e2b, 147, 311);
+    text(alle1e1b + alle1e2a, 257, 196);
+    text(alle1e1b + alle1e2b, 257, 311);
+};

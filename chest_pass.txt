@@ -1,0 +1,64 @@
+var ballX = 80;
+var ballY = 330;
+var ballPerspective = 30;
+
+var ballWithSteve = true; //false means with charmander
+var stevePos = 80;
+var charmanderPos = 310;
+
+var dx = 0;
+
+
+var drawCharacter = function(x, y, imagex, w, h) {
+    imageMode(CENTER);
+    strokeWeight(2);
+    image(imagex, x, y, w, h);
+};
+
+var drawBall = function(x, y) {
+    ballX += dx;
+    ballPerspective = x/4;
+    fill(y, x, 0);
+    ellipse(x, y-10, ballPerspective, ballPerspective);
+    
+    if (dx !== 0) {
+        if (ballX < stevePos) {
+            dx = 0;
+            ballWithSteve = true;
+        }
+        else if (ballX > charmanderPos) {
+            dx = 0;
+            ballWithSteve = false;
+        }
+    } 
+};
+
+var drawGround = function() {
+    strokeWeight(3);
+    fill(50, 200, 50);
+    rect(0, 270, 400, 130);
+};
+
+var draw = function() {
+    background(90, 200, 200, 120);
+    
+    
+    drawGround();
+    drawCharacter(80, 300, getImage("minecraft/steve"), 80, 80);
+    drawCharacter(320, 300, getImage("pokemon/charmander"), 120, 120);
+    drawBall(ballX, ballY);
+};
+
+
+var keyPressed = function() {
+    var spacebar = 32;
+    if (keyCode === spacebar && dx === 0) {
+        if (ballWithSteve) {
+            dx = 6;
+            ballX = stevePos;
+        } else {
+            dx = -6;
+            ballX = charmanderPos;
+        }
+    }
+};

@@ -1,0 +1,73 @@
+var numOfSpokes = 10;
+var rotation = 45;
+var snowflakesList = [];
+var chance = 40;
+
+var snowflakes = function() {
+    this.xPos = random(0, 390);
+    this.yPos = -20;
+    this.speed = random(1, 2);
+    this.rotation = random(1, 3);
+    this.scaled = random(0.2, 0.5);
+};
+
+
+
+var drawSetup = function() {
+    background();
+    //translate(200, 200);
+   // scale(0.2, 0.2);
+    stroke(89, 184, 235);
+};
+
+var drawSpoke = function() {
+    strokeWeight(10);
+    line(0, 5, 0, 120);
+    strokeWeight(8);
+    line(0, 23, 17, 32);
+    line(0, 23, -17, 32);
+    line(0, 48, 21, 76);
+    line(0, 48, -21, 76);
+    strokeWeight(5);
+    line(0, 80, 12, 106);
+    line(0, 80, -12, 106);
+};
+
+var drawSnowflakes = function() {
+    rotate(rotation);
+    for (var i = 0; i < numOfSpokes; i++) {
+        drawSpoke();
+        rotate(360/numOfSpokes);
+    }
+    rotation++;
+};
+
+var moveSnowflakes = function() {
+    for (var i = 0; i < snowflakesList.length; i++) {
+        snowflakesList[i].yPos += snowflakesList[i].speed;
+        snowflakesList[i].rotation -= random(1, 3);
+        translate(snowflakesList[i].xPos, snowflakesList[i].yPos);
+        rotate(snowflakesList[i].rotation);
+        scale(snowflakesList[i].scaled, snowflakesList[i].scaled);
+        drawSnowflakes();
+        
+
+        resetMatrix();
+    }
+};
+
+var startSnowflakes = function() {
+    var trial = random(0, chance);
+    var roundedTrial = round(trial);
+    
+    if (roundedTrial === 1) {
+        snowflakesList.push(new snowflakes());
+    }
+};
+
+var draw = function() {
+    drawSetup();
+    //drawSnowflakes();
+    startSnowflakes();
+    moveSnowflakes();
+};

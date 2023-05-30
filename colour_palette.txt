@@ -1,0 +1,76 @@
+var colour = [255, 255, 255];
+
+background(0);
+
+var draw = function() {
+    noStroke();
+    fill(255, 0, 0);
+    rect(5, 100, 35, 35);
+    fill(255, 190, 0);
+    rect(40, 100, 35, 35);    
+    fill(255, 255, 0);
+    rect(75, 100, 35, 35);    
+    fill(0, 255, 0);
+    rect(110, 100, 35, 35);
+    fill(0, 255, 100);
+    rect(145, 100, 35, 35);
+    fill(0, 255, 200);
+    rect(175, 100, 35, 35);
+    fill(0, 200, 255);
+    rect(210, 100, 35, 35);
+    fill(0, 0, 255);
+    rect(245, 100, 35, 35);
+    fill(130, 0, 255);
+    rect(280, 100, 35, 35);
+    fill(255, 0, 255);
+    rect(315, 100, 35, 35);
+    
+    fill(colour[0], colour[1], colour[2]);
+    ellipse(200, 250, 100, 100);
+};
+
+
+var mouseClicked = function() {
+    
+    if (mouseX >= 2 && mouseX <= 39 && mouseY >= 20 && mouseY <= 136) {
+        colour = [255, 0, 0];
+    }
+    else if (mouseX >= 40 && mouseX <= 74 && mouseY >= 20 && mouseY <= 136) {
+        colour = [255, 190, 0];
+    }
+    else if (mouseX >= 74 && mouseX <= 108 && mouseY >= 20 && mouseY <= 136) {
+        colour = [255, 255, 0];
+    }
+    else if (mouseX >= 109 && mouseX <= 143 && mouseY >= 20 && mouseY <= 136) {
+        colour = [0, 255, 0];
+    }
+    else if (mouseX >= 144 && mouseX <= 174 && mouseY >= 20 && mouseY <= 136) {
+        colour = [0, 255, 100];
+    }
+    else if (mouseX >= 175 && mouseX <= 208 && mouseY >= 20 && mouseY <= 136) {
+        colour = [0, 255, 200];
+    }
+    else if (mouseX >= 209 && mouseX <= 243 && mouseY >= 20 && mouseY <= 136) {
+        colour = [0, 200, 255];
+    }
+    else if (mouseX >= 244 && mouseX <= 277 && mouseY >= 20 && mouseY <= 136) {
+        colour = [0, 0, 255];
+    }
+    else if (mouseX >= 288 && mouseX <= 312 && mouseY >= 20 && mouseY <= 136) {
+        colour = [130, 0, 255];
+    }
+    else if (mouseX >= 313 && mouseX <= 348 && mouseY >= 20 && mouseY <= 136) {
+        colour = [255, 0, 255];
+    }
+    else {
+        //colour = [0, 0, 0];
+        fill(colour[0], colour[1], colour[2]);
+        ellipse(mouseX, mouseY, 40, 40);
+    }
+};
+
+
+var mouseDragged = function() {
+    fill(colour[0], colour[1], colour[2]);
+    ellipse(mouseX, mouseY, 40, 40);
+};

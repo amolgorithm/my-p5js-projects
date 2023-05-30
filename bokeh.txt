@@ -1,0 +1,54 @@
+var manyLights = [];
+var lightSize = 55;
+
+rectMode(CENTER);
+translate(200, -100);
+rotate(45);
+
+var light = function(x, y) {
+    this.x = x;
+    this.y = y;
+    this.animated = false;
+    this.brightness = 0;
+    this.fadeAmount = 4;
+    this.color = color(random(100, 255), 255, random(150, 255));
+};
+
+var createLights = function() {
+    for (var x = 0; x <= 400; x += lightSize) {
+        for (var y = 0; y <= 400; y += lightSize) {
+            manyLights.push(new light(x, y));
+        }
+    }
+};
+createLights();
+
+var drawLights = function() {
+    for (var i = 0; i < manyLights.length; i++) {
+        fill(manyLights[i].color, manyLights[i].brightness);
+        rect(manyLights[i].x, manyLights[i].y, lightSize, lightSize, 10);
+    }
+};
+
+var updateLights = function() {
+    manyLights[round(random(0, manyLights.length-1))].animated = true;
+    
+    for (var i = 0; i < manyLights.length; i++) {
+        if (manyLights[i].animated === true) {
+            manyLights[i].brightness += manyLights[i].fadeAmount;
+            if (manyLights[i].brightness > 255) {
+                manyLights[i].fadeAmount = -manyLights[i].fadeAmount;
+            }
+            if (manyLights[i].brightness < 0) {
+                manyLights[i].fadeAmount = -manyLights[i].fadeAmount;
+                manyLights[i].animated = false;
+            }
+        }
+    }
+};
+
+var draw = function() {
+    background(0);
+    updateLights();
+    drawLights();
+};

@@ -1,0 +1,26 @@
+var posX = 10;
+var dx = 2;
+
+var draw = function(){
+    posX += dx;
+    background(50, 155, 0);
+    stroke(0);
+    strokeWeight(2);
+    translate(posX, 0);
+    if (posX >= 100) {
+        dx = -2;
+    }
+    if (posX <= -20) {
+        dx = 2;
+    }
+    fill(255, 50, 8);
+    ellipse(170, 200, 300, 130);
+    stroke();
+    strokeWeight(10);
+    arc(275, 200, 20, 80, -270, -90);
+    arc(65, 200, 20, 80, -80, 90);
+    arc(170, 180, 140, 20, -180, 0);
+    line(127, 149, 137, 190);
+    line(170, 145, 171, 186);
+    line(209, 145, 199, 186);
+};

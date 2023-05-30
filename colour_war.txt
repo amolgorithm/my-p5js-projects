@@ -1,0 +1,37 @@
+var speed = 10;
+var xPos = [];
+var yPos = [];
+var r = 255;
+
+var storePosition = function() {
+    for (var i = 0; i < 400; i += 10) {
+        xPos.push(i);
+        yPos.push(i);
+    }
+};
+
+
+var drawBoxes = function() {
+    noStroke();
+    fill(random(130, 180), random(0, 255), random(0, 255));
+    
+    for (var i = 0; i < speed; i++) {
+
+        rect(xPos[round(random(19, 39))], yPos[round(random(0, 39))], 10, 10);
+        ellipse(xPos[round(random(0, 19))], yPos[round(random(0, 39))], 10, 10);
+    }
+};
+
+var draw = function() {
+    colorMode(HSB, r, r, r);
+    storePosition();
+    drawBoxes();
+};
+
+var keyPressed = function() {
+    if (keyCode === 38) {
+        r -= 10;
+    } else if (keyCode === 40) {
+        r += 10;
+    }
+};

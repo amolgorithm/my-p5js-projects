@@ -1,0 +1,60 @@
+background(0);
+imageMode(CENTER);
+
+var planet = getImage("seasonal/disco-ball");
+
+
+var draw = function() {
+    background(0);
+    stroke(190);
+    strokeWeight(3);
+    fill(100);
+    ellipse(130, 130, 150, 150);
+    ellipse(160, 160, 50, 50);
+    fill();
+    textSize(25);
+    text("In my experience there is no such", 20, 300);
+    text("thing as luck..", 20, 330);
+    
+    
+    noStroke();
+    fill(190, 255, 10);
+    image(planet, 300, 100, 50, 50);
+    
+    fill(255, 0, 0);
+    translate(mouseX - 10, mouseY);
+    beginShape();
+    vertex(39, 17);
+    vertex(68, 72);
+    vertex(74, 187);
+    vertex(107, 225);
+    vertex(0, 225);
+    vertex(21, 187);
+    vertex(21, 72);
+    vertex(39, 17);
+    endShape(CLOSE);
+    fill();
+    ellipse(45, 100, 40, 40);
+};
+
+//drawDeatchStar();
+
+var mouseDragged = function() {
+    stroke(0, 255, 0);
+    strokeWeight(20);
+    line(155, 155, mouseX, mouseY);
+    
+    if (mouseX >= 273 && mouseX <= 326 && mouseY >= 71 && mouseY <= 125) {
+        planet = getImage("minecraft/tnt");
+    }
+};
+
+var mouseClicked = function() {
+    stroke(0, 255, 0, 90);
+    strokeWeight(10);
+    line(155, 155, mouseX, mouseY);
+    
+    if (mouseX >= 273 && mouseX <= 326 && mouseY >= 71 && mouseY <= 125) {
+        planet = getImage("minecraft/tnt");
+    }
+};

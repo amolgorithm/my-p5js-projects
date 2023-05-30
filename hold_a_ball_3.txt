@@ -1,0 +1,15 @@
+var draw = function() {
+    var ballInfo = {
+        ballX: mouseX,
+        ballY: mouseY,
+        ballWidth: 50,
+        ballHeight: 50,
+        ballColour: [250, 255, 0]
+    };
+
+    background(255);
+    fill(ballInfo.ballColour[0], ballInfo.ballColour[1], ballInfo.ballColour[2]);
+    rect(ballInfo.ballX, ballInfo.ballY, ballInfo.ballWidth, ballInfo.ballHeight);
+    fill(ballInfo.ballColour[2], ballInfo.ballColour[0], ballInfo.ballColour[1]);
+    rect(ballInfo.ballX - 100, ballInfo.ballY + 100, ballInfo.ballWidth + 40, ballInfo.ballHeight + 40);
+};

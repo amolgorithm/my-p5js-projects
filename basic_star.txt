@@ -1,0 +1,24 @@
+var draw = function() {
+    background(0);
+    noLoop();
+    fill(random(0, 255), random(0, 255), random(0, 255));
+    var vect1Size = 100;
+    var vect2Size = 50;
+    beginShape();
+    vertex(vect1Size, vect2Size);
+    vertex(vect1Size + 14, vect2Size + 30);
+    vertex(vect1Size + 47, vect2Size + 35);
+    vertex(vect1Size + 23, vect2Size + 57);
+    vertex(vect1Size + 29, vect2Size + 90);
+    vertex(vect1Size, vect2Size + 75);
+    vertex(vect1Size - 29, vect2Size + 90);
+    vertex(vect1Size - 23, vect2Size + 57);
+    vertex(vect1Size - 47, vect2Size + 35);
+    vertex(vect1Size - 14, vect2Size + 30);
+    endShape(CLOSE);
+    
+    for (var i = 0; i < 100; i++) {
+        fill(255);
+        ellipse(random(width), random(height), 5, 5);
+    }
+};

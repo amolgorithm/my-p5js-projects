@@ -1,0 +1,55 @@
+var counter = 3;
+var cursorMove = "arrow";
+var randomCursor = 0;
+var cursors = ["arrow", "move", "cross"];
+var score = 0;
+var room = 1;
+
+var draw = function() {
+    if (room === 1) {
+        counter -= 0.018;
+        
+        background(0);
+        stroke(255);
+        line(133, 0, 133, 400);
+        line(267, 0, 267, 400);
+        textSize(20);
+        text("Hand cursor", 10, 30);
+        text("Text cursor", 144, 30);
+        text("Loading cursor", 267, 30);
+        text(cursors[randomCursor], 30, 360);
+        text(counter, 30, 70);
+        
+        if (counter >= 1) {
+            randomCursor = round(random(0, 2));
+        }
+        
+        if (counter >= 0 && cursorMove === cursors[randomCursor]) {
+            score++;
+            counter = 3;
+        } else {
+            room = 2;
+        }
+    }
+    
+    if (room === 2) {
+        background(0);
+        text("You Lost!", 100, 60);
+        text("You total score was\n" + score, 70, 90);
+    }
+};
+
+var mouseClicked = function() {
+    if (room === 1) {
+        if (mouseX < 133) {
+            cursor(ARROW);
+            cursorMove = "arrow";
+        } else if (mouseX > 133 && mouseX < 267) {
+            cursor(MOVE);
+            cursorMove = "move";
+        } else {
+            cursor(CROSS);
+            cursorMove = "cross";
+        }
+    }
+};

@@ -1,0 +1,49 @@
+var translateX = 100;
+var translateY = 100;
+var dx = 2;
+
+
+var drawGround = function() {
+    noStroke();
+    fill(0, 255, 0);
+    rect(200, 300, 400, 200);
+    fill(40);
+    rect(200, 280, 400, 100);
+};
+
+
+var drawCar = function() {
+    translateX += dx;
+    translate(translateX, translateY);
+    
+    if (translateX >= 200) {
+        translateX = -220;
+    }
+    
+    fill(255, 0, 0);
+    rect(200, 200, 60, 20);
+    rect(200, 182, 30, 15);
+    fill(0);
+    ellipse(185, 210, 15, 15);
+    ellipse(215, 210, 15, 15);
+};
+
+
+var drawSky = function() {
+    fill(255, 255, 0);
+    ellipse(50, 50, 60, 60);
+    fill();
+    ellipse(90, 72, 45, 45);
+    ellipse(120, 65, 60, 60);
+    ellipse(150, 72, 45, 45);
+};
+
+
+
+var draw = function() {
+    background(130, 255, 255);
+    rectMode(CENTER);
+    drawGround();  
+    drawSky();
+    drawCar();
+};

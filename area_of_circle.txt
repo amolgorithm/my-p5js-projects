@@ -1,0 +1,46 @@
+var posX = 200;
+var posY = 200;
+var diameter = 0;
+var radius = 0;
+var area = [];
+var circumference = [];
+
+
+var areaOfCircle = function(radius) {
+    return (Math.PI * radius * radius);
+};
+
+var circumferenceOfCircle = function(radius) {
+    return (2 * Math.PI * radius);
+};
+
+var drawCircle = function() {
+    diameter = abs(mouseX-posX);
+    textSize(50);
+    fill();
+    text("Area of a circle", 35, 50);
+    fill(area[area.length - 1] / 1000, area[area.length - 1] / 1000, mouseX);
+    ellipse(posX, posY, diameter, diameter);
+};
+
+var calculations = function() {
+    radius = diameter / 2;
+    area.push(areaOfCircle(radius).toFixed(2));
+    circumference.push(circumferenceOfCircle(radius).toFixed(2));
+};
+
+var displayCalculations = function() {
+    fill();
+    textSize(20);
+    text("Radius = "  + radius.toFixed(2), 130, 310);
+    text("Area = "  + area[area.length - 1], 130, 335);
+    text("Area of canvas = "  + width*height, 90, 360);
+    text("Circumference = "  + circumference[circumference.length - 1], 90, 385);
+};
+
+var draw = function() {
+    background(70, 20, 190);
+    drawCircle();
+    calculations();
+    displayCalculations();
+};

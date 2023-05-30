@@ -1,0 +1,48 @@
+var tintImageColour = [255, 255, 255];
+
+function Ball() {
+    this.posX = 0;
+    this.dx = 3;
+    this.colour = [255, 0, 0];
+    this.size = 50;
+    this.reachesHalfOfCanvas = function() {
+        return this.posX >= 150;
+    };
+    this.reachesEndOfCanvas = function() {
+        return this.posX >= 400;
+    };
+    
+}
+
+
+var ball = new Ball();
+
+var draw = function() {
+    background(0, 0, 0, 90);
+    ball.posX += ball.dx;
+    
+    imageMode(CENTER);
+    tint(tintImageColour[0], tintImageColour[1], tintImageColour[2]);
+    
+    ball.size += 0.5;
+    image(getImage("pokemon/ball-closed"), ball.posX, 250, ball.size, ball.size);
+    image(getImage("pokemon/ball-3d"), 400 - ball.posX, 150, ball.size, ball.size);
+    
+    if (ball.reachesEndOfCanvas()) {
+        ball.posX = -35;
+        tintImageColour = [255, 255, 255];
+        ball.size = 50;
+        ball.dx = 3;
+    }
+    
+    if (ball.reachesHalfOfCanvas()) {
+        tintImageColour[0] = 0;
+        tintImageColour[1] -= 1;
+        tintImageColour[2] = 0;
+    }
+    
+};
+
+var mouseClicked = function() {
+    ball.dx++;
+};

@@ -1,0 +1,36 @@
+background(190, 250, 250);
+
+
+var drawBricks = function() {
+   for (var i = 1; i < 16; i++) {
+        var brickWidth = 24;
+        var brickHeight = 15;
+        fill(random(i, 255), random(i, 255), random(i, 255));
+        ellipse(i * brickWidth, 20, brickWidth, brickHeight);
+        for (var j = 1; j < 10; j++) {
+            fill(random(j, 255), random(j, 255), random(j, 255));
+            ellipse(i * brickWidth, j * brickHeight + (brickHeight + 6), brickWidth, brickHeight);
+        }
+    }
+};
+
+
+var posX = 200;
+var dx = 0;
+
+var draw = function() {
+    background(190, 250, 250);
+    posX += dx;
+    fill(0);
+    rect(posX, 300, 100, 15);
+    drawBricks();
+};
+
+var keyPressed = function() {
+    if (event.keyCode === 37) {
+        dx = -4;
+    }
+    if (event.keyCode === 39) {
+        dx = 4;
+    }
+};

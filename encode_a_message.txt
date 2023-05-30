@@ -1,0 +1,48 @@
+var message = "Enter a message";
+var alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+var encode = function(str) {
+    str = str.toLowerCase();
+    var array = str.split("");
+    for (var i = 0; i < array.length; i++) {
+        for (var a = 0; a < alphabet.length; a++) {
+            if (array[i] === alphabet[a]) {
+                var nextLetter = (a + 2) % 26;
+                array[i] = alphabet[nextLetter];
+                break;
+            }
+        }
+    }
+    
+    return array.join("");
+};
+
+var decode = function(str) {
+    str = str.toLowerCase();
+    var array = str.split("");
+    for (var i = 0; i < array.length; i++) {
+        for (var a = 0; a < alphabet.length; a++) {
+            if (array[i] === alphabet[a]) {
+                //adding 26 as a - 2 can be negative
+                var nextLetter = ((a - 2) + 26 )% 26;
+                array[i] = alphabet[nextLetter];
+                break;
+            }
+        }
+    }
+    return array.join("");
+};
+
+var draw = function() {
+    background();
+    textSize(40);
+    fill(120, 0, 0);
+    textAlign(CENTER, CENTER);
+    var encodedMessage = encode(message);
+    text(encodedMessage, 200, 200);
+    text(decode(encode(message)), 200, 270);
+};
+
+var mouseClicked = function() {
+    message = prompt("Enter a message");
+};

@@ -1,0 +1,46 @@
+var posY = 200;
+var dy = 0;
+var pongX = 50;
+var pongY = 50;
+var pdy = 2;
+var pdx = 0;
+var score1 = 0;
+
+var draw = function() {
+    posY += dy;
+    pongX += pdx;
+    pongY += pdy;
+    background(90, 255, 255, 90);
+    fill(mouseX, mouseY, mouseX + mouseY);
+    rect(50, mouseY, 100, 20);
+    fill(mouseY, mouseX, mouseX - mouseY);
+    rect(250, posY, 100, 20);
+    fill();
+    ellipse(pongX, pongY, 50, 50);
+    
+    if (posY === pongY) {
+        score1++;
+        pdy = -1;
+        
+    }
+    
+    fill(0);
+    text('Score: ' + score1, 50, 50);
+    // text(); // Question for next 1:1 meeting
+};
+
+var keyPressed = function() {
+    switch(keyCode) {
+        case 38:
+            dy = -4;
+            break;
+            
+        case 40:
+            dy = 4;
+            break;
+            
+        case 32:
+            dy = 0;
+            break;
+    }
+};

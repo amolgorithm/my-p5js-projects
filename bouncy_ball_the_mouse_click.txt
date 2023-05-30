@@ -1,0 +1,71 @@
+var Ball = function() {
+    this.radius = 10;
+    this.x = random(this.radius, width-this.radius);
+    this.y = random(this.radius, height-this.radius);
+    this.xSpeed = 3;
+    this.ySpeed = 5;
+    this.color = color(random(255), random(255), random(255));
+};
+
+var ball = new Ball();
+var balls = [];
+
+var moveBall = function() {
+    ball.x += ball.xSpeed;
+    ball.y += ball.ySpeed;
+    
+    fill(ball.color);
+    ellipse(ball.x, ball.y, ball.radius*2, ball.radius*2);
+    
+    for (var i = 0; i < balls.length; i++) {
+        balls[i].x += balls[i].xSpeed;
+        balls[i].y += balls[i].ySpeed;
+        
+        fill(balls[i].color);
+        ellipse(balls[i].x, balls[i].y, balls[i].radius*2, balls[i].radius*2);
+        
+        if (balls[i].x <= balls[i].radius || balls[i].x >= width-balls[i].radius) {
+            balls[i].xSpeed = -balls[i].xSpeed;
+        }
+        if (balls[i].y <= balls[i].radius || balls[i].y >= width-balls[i].radius) {
+            balls[i].ySpeed = -balls[i].ySpeed;
+        }
+    }
+};
+
+var createNewBall = function() {
+    var numOfBalls = parseInt(prompt("Enter how many more balls you want"));
+    
+    for (var i = 0; i < numOfBalls; i++) {
+        balls.push(new Ball());
+    }
+};
+
+var bounceBall = function() {
+    if (ball.x <= ball.radius || ball.x >= width-ball.radius) {
+        ball.xSpeed = -ball.xSpeed;
+    }
+    if (ball.y <= ball.radius || ball.y >= width-ball.radius) {
+        ball.ySpeed = -ball.ySpeed;
+    }
+};
+
+var clickBall = function() {
+    ball.x = mouseX;
+    ball.y = mouseY;
+    
+    ball.xSpeed = random(-3, 3);
+    ball.ySpeed = random(-5, 5);
+    ball.color = color(random(255), random(255), random(255));
+};
+
+var draw = function() {
+    background(50, 200, 200, 150);
+    moveBall();
+    bounceBall();
+};
+
+var mouseClicked = function() {
+    clickBall();
+    createNewBall();
+};

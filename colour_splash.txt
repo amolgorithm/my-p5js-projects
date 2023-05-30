@@ -1,0 +1,36 @@
+var radius = 0;
+var colour = color(random(255), random(255), random(255));
+var bgCol = 230;
+
+noStroke();
+
+frameRate(10);
+var draw = function() {
+    fill(bgCol, bgCol, bgCol, 10);
+    rect(0, 0, 400, 400);
+    
+    for (var i = 0; i < 40; i++) {
+        resetMatrix();
+        translate(200, 200);
+        rotate(i * random(15, 20));
+        fill(colour);
+        ellipse(radius, radius, radius/8, radius/8);
+        radius+=0.3;
+        colour = color(random(255), random(255), random(255), 100);
+    }
+    bgCol-=20;
+};
+
+var mouseClicked = function() {
+    radius = 0;
+    colour = color(random(255), random(255), random(255));
+    bgCol = 230;
+    for (var i = 0; i < 40; i++) {
+        fill(colour);
+        ellipse(radius, radius, radius/8, radius/8);
+        radius+=0.3;
+        colour = color(random(255), random(255), random(255), 100);
+    }
+    
+    
+};

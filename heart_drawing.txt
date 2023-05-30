@@ -1,0 +1,27 @@
+var drawHeart = function() {
+    background(0, 130, 130);
+    fill(0, 200, 255);
+    noStroke();
+    triangle(200, 300, 102, 207, 303, 202);
+    ellipse(149, 183, 110, 90);
+    ellipse(251, 183, 110, 90);
+    ellipse(200, 200, 20, 20);
+    
+    fill(200, 0, 0);
+    triangle(81, 65, 231, 65, 151, 124);
+    ellipse(120, 53, 78, 60);
+    ellipse(197, 53, 71, 55);
+    ellipse(160, 60, 20, 20);
+};
+
+var drawText = function() {
+    fill(255);
+    textSize(25);
+    textAlign(CENTER, CENTER);
+    text("I love Hatch!", 200, 200);
+    textSize(17);
+    text("I love Coding!", 155, 70);
+};
+
+drawHeart();
+drawText();

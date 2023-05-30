@@ -1,0 +1,25 @@
+var colors = [color(255, 0, 0), color(255, 255, 0), color(255, 0, 255), color(255), color(0), color(255, 100, 100), color(0, 255, 255), color(255, 0, 255), color(255), color(0), color(255, 0, 0), color(255, 255, 0), color(255, 0, 255), color(255), color(0), color(255, 100, 100), color(0, 255, 255), color(255, 0, 255), color(255), color(0)];
+var rotation = 45;
+
+strokeWeight(2.5);
+
+var draw = function() {
+    background();
+    
+    for (var i = 20; i >= 0; i--) {
+        fill(colors[i]);
+        stroke(0);
+        rectMode(CENTER);
+        rect(200, 200, i * 20, i * 20);
+    }
+    
+    noFill();
+    translate(200, 200);
+    rotate(rotation);
+    ellipseMode(CORNER);
+    stroke(0, 155, 0);
+    rect(0, 0, 280, 280);
+    
+    rotation++;
+        
+};

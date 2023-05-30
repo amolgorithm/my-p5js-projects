@@ -1,0 +1,50 @@
+var numOfPetals = 6;
+
+var drawSetup = function() {
+    noStroke();
+    translate(0, height/2-25);
+    scale(1.4, 1.4);
+};
+drawSetup();
+
+var drawBackground = function() {
+    background(0, 0, 255);
+    fill(0, 255, 0);
+    rect(0, 65, 290, 100);
+};
+drawBackground();
+
+var drawStem = function() {
+    var angle = random(-250, -170);
+    
+    stroke(random(100), random(100, 255), random(100));
+    strokeWeight(10);
+    noFill();
+    arc(5, 70, 25, 115, angle, -90);
+};
+
+var drawPetal = function() {
+    noStroke();
+    fill(255, 255, 0);
+    ellipse(0, -20, 25, 40);
+};
+
+var drawFlower = function() {
+    for (var i = 0; i < numOfPetals; i++) {
+        rotate(60);
+
+        drawPetal();
+    }
+};
+
+var drawCenter = function() {
+    fill(60, 20, 0);
+    ellipse(0, 0, 20, 20);
+};
+
+for (var i = 0; i < 3; i++) {
+    translate(80, 0);
+    drawStem();
+    drawFlower();
+    drawCenter();
+}

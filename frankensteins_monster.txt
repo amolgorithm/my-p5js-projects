@@ -1,0 +1,35 @@
+background(45);
+rectMode(CENTER);
+
+var drawFrankenstien = function() {
+    noStroke();
+    fill(0);
+    rect(200, 200, 200, 260, 50);
+    fill(130, 50, 50);
+    rect(200, 205, 200, 250, 50);
+    fill(0);
+    ellipse(150, 170, 20, 40);
+    ellipse(250, 170, 20, 40);
+    stroke(100, 30, 30);
+    strokeWeight(22);
+    line(120, 160, 280, 160);
+    line(190, 270, 210, 270);
+    stroke(0);
+    line(170, 250, 230, 250);
+    fill(120);
+    noStroke();
+    rect(80, 260, 20, 40);
+    rect(320, 260, 20, 40);
+    strokeWeight(3);
+    stroke(100, 30, 30);
+    line(250, 95, 275, 135);
+    line(250, 115, 267, 100);
+    line(257, 127, 278, 110);
+    fill();
+    stroke(0);
+    ellipse(300, 40, 130, 70);
+    fill(0);
+    textSize(30);
+    text("Roar!", 265, 50);
+};
+drawFrankenstien();

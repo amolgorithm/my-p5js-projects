@@ -1,0 +1,35 @@
+var barWidth = 10;
+var randomColors = [color(random(255), random(255), random(255)), color(random(255), random(255), random(255)), color(random(255), random(255), random(255)), color(random(255), random(255), random(255)), color(random(255), random(255), random(255))];
+
+var drawBand = function(v, w, x, y, z, startY, startX) {
+    var num = 5;
+    var colors = [v, w, x, y, z];
+    
+    for (var i = 0; i < width/2; i += barWidth*num) {
+        for (var j = 0; j < num; j++) {
+            noStroke();
+            fill(colors[j]);
+            rect(i+j*barWidth+startX, startY, barWidth, height/2);
+        }
+    }
+};
+
+var draw = function() {
+    background();
+    drawBand(randomColors[0], randomColors[1], randomColors[2], randomColors[3], randomColors[4], 0, 0);
+    drawBand(randomColors[2], randomColors[3], randomColors[0], randomColors[1], randomColors[4], 200, 0);
+    drawBand(randomColors[3], randomColors[4], randomColors[2], randomColors[1], randomColors[0], 0, 200);
+    drawBand(randomColors[1], randomColors[4], randomColors[0], randomColors[3], randomColors[2], 200, 200);
+    stroke(0);
+    line(0, 200, 400, 200);
+    line(200, 0, 200, 400);
+    fill();
+    noStroke();
+    ellipse(30, 30, 40, 40);
+};
+
+var mouseClicked = function() {
+    if (mouseX >= 10 && mouseX <= 50 && mouseY >= 10 && mouseY <= 50) {
+        randomColors = [color(random(255), random(255), random(255)), color(random(255), random(255), random(255)), color(random(255), random(255), random(255)), color(random(255), random(255), random(255)), color(random(255), random(255), random(255))];
+    }
+};

@@ -1,0 +1,39 @@
+var colour = [round(random(255)), round(random(255)), round(random(255))];
+var depth = 10;
+var counter = 0;
+
+background(18);
+
+
+var updateColours = function() {
+    for (var i = 0; i <= 2; i++) {
+        colour[i] += round(random(-10, 10));
+    }
+};
+
+translate(200, 200);
+scale((400-depth)/500);
+ellipseMode(CORNER);
+
+var drawTree = function(x1, y1, angle, depth) {
+    if (depth !== 0) {
+        var x2 = x1 + (cos(angle * PI / 180) * depth * 7);
+        var y2 = y1 + (sin(angle * PI / 180) * depth * 8);
+        noStroke();
+        fill(colour[0], colour[1], colour[2]);
+        updateColours();
+        
+        if (counter % 2 === 0) {
+            rect(x1, y1, x2-x1, y2-y1);
+        } else {
+            ellipse(x1, y1, x2-x1, y2-y1);
+        }
+        drawTree(x2, y2, angle - 20, depth - 1);
+        var x2 = x1 + (cos(angle * PI / 180) * depth * 7);
+        var y2 = y1 + (sin(angle * PI / 180) * depth * 8);
+        drawTree(x2, y2, angle + 20, depth - 1);
+        counter++;
+    }
+    
+};
+drawTree(200-200, 400-200, -90, depth);

@@ -1,0 +1,38 @@
+var posX = 0;
+var posY = 200;
+var dx = 3;
+var dy = 4;
+var big = 50;
+
+var drawBall = function(x, y, speed1, speed2) {
+    stroke(255, 0, 0);
+    strokeWeight(15);
+    image(getImage("minecraft/tnt"), x, y, big, big);
+    posX += speed1;
+    posY += speed2;
+    
+    big++;
+    
+    
+};
+
+
+var loopBall = function() {
+    if (posX > 412) {
+        posX = -12;
+        big = 50;
+    }
+    if (posY > 412) {
+        posY = -12;
+        big = 50;
+    }
+};
+
+
+var draw = function() {
+    background(100);
+    drawBall(posX + 100, posY - 50, dx, dy-3);
+    drawBall(posX, posY - 50, -dx, -dy);
+    drawBall(posX - 100, posY - 50, 3, 4);
+    loopBall();
+};

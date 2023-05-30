@@ -1,0 +1,55 @@
+var blockSize = 50;
+var dirt = "";
+dirt = getImage("minecraft/block-grass");
+
+imageMode(CENTER);
+
+fill(255, 255, 0, 20);
+rect(300, 50, 80, 300);
+fill(0);
+textSize(30);
+text("Menu", 303, 80);
+image(getImage("minecraft/block-grass"), 340, 130, 50, 50);
+image(getImage("minecraft/block-lava"), 340, 190, 50, 50);
+image(getImage("minecraft/block-water"), 340, 250, 50, 50);
+image(getImage("minecraft/slime"), 340, 310, 50, 50);
+
+
+var mouseClicked = function() {
+    if (mouseX >= 0 && mouseX <= 286) {
+        image(dirt, mouseX, mouseY, blockSize, blockSize);
+    }
+    
+    
+    if (mouseX >= 311 && mouseX <= 364 && mouseY >= 102 && mouseY <= 154) {
+        dirt = getImage("minecraft/block-grass");
+    }
+    
+    if (mouseX >= 311 && mouseX <= 364 && mouseY >= 161 && mouseY <= 215) {
+        dirt = getImage("minecraft/block-lava");
+    }
+    
+    if (mouseX >= 311 && mouseX <= 364 && mouseY >= 222 && mouseY <= 275) {
+        dirt = getImage("minecraft/block-water");
+    }
+    
+    if (mouseX >= 311 && mouseX <= 364 && mouseY >= 279 && mouseY <= 339) {
+        dirt = getImage("minecraft/slime");
+    }
+};
+
+var mouseDragged = function() {
+    image(dirt, mouseX, mouseY, blockSize, blockSize);
+};
+
+var keyPressed = function() {
+    switch(keyCode) {
+        case 38:
+            blockSize += 10;
+            break;
+            
+        case 40:
+            blockSize -= 10;
+            break;
+    }
+};
