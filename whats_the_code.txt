@@ -1,0 +1,47 @@
+var normalColour = color(0, 200, 30);
+var otherColour = color(0, 140, 255);
+var keys = [];
+
+textAlign(CENTER, CENTER);
+noStroke();
+
+var displayInstruction = function() {
+    fill(0);
+    textSize(15);
+    text("-click the screen and press a key to begin-", 200, 200);
+};
+
+displayInstruction();
+
+
+var displayNewBackground = function(col) {
+    fill(col);
+    rect(0, 0, 400, 400);
+};
+
+
+var displayKeyCode = function() {
+    keys.push(keyCode);
+    
+    if (key === 'a' || key === 'e' || key === 'i' || key === 'o' || key === 'u') {
+        displayNewBackground(normalColour);
+    } else {
+        displayNewBackground(otherColour);
+    }
+    
+    fill(0);
+    textSize(70);
+    textFont(createFont("comic sans ms"));
+    text(key, 200, 140);
+    textSize(35);
+    text("that key's code is " + keyCode, 200, 250);
+    
+    if (keys[keys.length - 2] !== undefined) {
+        textSize(30);
+        text("that last key's code is " + keys[keys.length - 2], 200, 300);
+    }
+};
+
+var keyPressed = function() {
+    displayKeyCode();
+};

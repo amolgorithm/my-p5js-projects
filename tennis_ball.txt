@@ -1,0 +1,29 @@
+var y = 20;
+var dy = 0;
+var gravity = 8;
+dy = 3;
+
+var draw = function() {
+    y += dy;
+    if (y >= 120) {
+        dy = -gravity;
+        gravity--;
+    }
+    if (y < gravity) {
+        dy = 3;
+    }
+    if (gravity <= 0) {
+        y = 120;
+        dy = 0;
+    }
+    background(0, 20, 0);
+    noStroke();
+    fill(255);
+    translate(0, y);
+    ellipse(200, 200, 200, 200);
+    stroke(255, 0, 0);
+    strokeWeight(5);
+    fill(255, 255, 255, 0);
+    arc(265, 200, 50, 140, 90, 270);
+    arc(133, 200, 50, 140, -90, 90);
+};

@@ -1,0 +1,15 @@
+for (var i = 0; i < 11; i++) {
+    ellipseMode(CORNER);
+    noStroke();
+    if (i >= 0 && i < 3) {
+        fill(150, 150, 255);
+    }
+    if (i >= 3 && i < 6) {
+        fill(10, 150, 255);
+    }
+    if (i >= 6 && i < 9) {
+        fill(190, 10, 0);
+    }
+    
+    ellipse(0, i*40, width, 40);
+}

@@ -1,0 +1,59 @@
+var whistleImage = loadImage("https://image.shutterstock.com/image-vector/red-block-flute-flat-style-600w-1142681552.jpg");
+
+var whistle = function() {
+    imageMode(CENTER);
+    image(whistleImage, 200, 200, 150, 180);
+    fill(0);
+    text("Press the Up and Down keys to play the whistle", 4, 20);
+};
+
+
+
+var playSound = function() {
+    var backgroundMusic = "http://amolhub.fun/Flap/Version_1/the_kraken.mp3";
+    var down = "http://amolhub.fun/Flap/Version_1/wing.mp3";
+    var up = "http://amolhub.fun/Flap/Version_1/die.mp3";
+    var slideDown = new Audio(down);
+    var slideUp = new Audio(up);
+    var bgmusic = new Audio(backgroundMusic);
+    
+    if (keyCode === 40) {
+        slideDown.play();
+    }
+    
+    if (keyCode === 38) {
+        slideUp.play();
+    }
+    
+    bgmusic.play();
+    
+    
+};
+
+
+var playWhistle = function() {
+    if (keyCode === 40) {
+        line(200, 200, 200, 350);
+        ellipse(200, 350, 10, 10);
+    }
+    
+    if (keyCode === 38) {
+        line(200, 200, 200, 380);
+        ellipse(200, 380, 10, 10);
+    }
+};
+
+
+var keyPressed = function() {
+    background(255);
+    whistle();
+    playSound();
+    playWhistle();
+};
+
+var mouseDragged = function() {
+    background(255);
+    whistle();
+    playSound();
+    playWhistle();
+};

@@ -1,0 +1,107 @@
+var xPos = 140;
+var yPos = 245;
+var yPos2 = 100;
+var xPos2 = 240;
+var xSpeed = 0;
+
+noStroke();
+
+
+
+var drawTrainHead = function() {
+    xPos += xSpeed;
+    
+    noStroke();
+    fill(225, 66, 67);
+    rect(xPos, yPos, 45, 100);
+    rect(xPos-90, yPos+30, 110, 70, 20);
+    rect(xPos-70,yPos+10,20,20);
+    rect(xPos + 50, yPos + 30, 100, 80);
+    rect(xPos + 155, yPos + 30, 100, 80);
+    fill(0);
+    rect(xPos-75,yPos+5, 30, 10, 5);
+    ellipse(xPos+15,yPos+105, 50, 50);
+    ellipse(xPos-65,yPos+110, 30, 30);
+    ellipse(xPos-30,yPos+110, 30, 30);
+    ellipse(xPos + 70, yPos + 110, 30, 30);
+    ellipse(xPos + 130, yPos + 110, 30, 30);
+    ellipse(xPos + 175, yPos + 110, 30, 30);
+    ellipse(xPos + 235, yPos + 110, 30, 30);
+    rect(xPos + 40, yPos + 85, 13, 6);
+    rect(xPos + 145, yPos + 85, 13, 6);
+    
+};
+
+
+var drawTrainHead2 = function() {
+    noStroke();
+    fill(66, 225, 67);
+    rect(xPos2, yPos2, 45, 100);
+    rect(xPos2-90, yPos2+30, 110, 70, 20);
+    rect(xPos2-70,yPos2+10,20,20);
+    fill(0);
+    rect(xPos2-75,yPos2+5, 30, 10, 5);
+    ellipse(xPos2+15,yPos2+105, 50, 50);
+    ellipse(xPos2-65,yPos2+110, 30, 30);
+    ellipse(xPos2-30,yPos2+110, 30, 30);
+    
+};
+
+var drawStation = function() {
+    fill(60, 100, 200);
+    rect(0, 0, 400, 150);
+    fill(100, 100, 50);
+    rect(0, 150, 400, 250);
+    
+    for (var i = 0; i < 500; i += 50) {
+        stroke(0, 0, 255);
+        strokeWeight(3);
+        
+        for (var j = 0; j < 200; j += 50) {
+            line(i + 10, 0, i + 10, 150);
+            line(0, j, 400, j);
+            
+        }
+    }
+    
+    noStroke();
+    fill(50);
+    rect(0, 170, 400, 60);
+    rect(0, 320, 400, 60);
+    
+    for (var k = 0; k < 400; k += 40) {
+        strokeWeight(5);
+        stroke(180, 150, 50);
+        line(k, 168, k, 232);
+        line(k, 315, k, 380);
+    }
+    
+    line(0, 171, 400, 171);
+    line(0, 232, 400, 232);
+    line(0, 318, 400, 318);
+    line(0, 380, 400, 380);
+    
+    
+};
+
+
+var draw = function() {
+    background();
+    drawStation();
+    drawTrainHead();
+    drawTrainHead2();
+};
+
+var keyPressed = function() {
+    switch(keyCode) {
+        case 37:
+            xSpeed = -3;
+            break;
+        case 39:
+            xSpeed = 3;
+            break;
+        case 32:
+            xSpeed = 0;
+            break;
+    }
+};

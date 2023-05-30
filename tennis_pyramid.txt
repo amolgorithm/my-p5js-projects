@@ -1,0 +1,25 @@
+var numRows = 11;
+var radius = (400/numRows)/2.5;
+var translateX = radius * 2;
+var translateY = sqrt(4)*radius;
+
+
+var drawSetup = function() {
+    background(80, 100, 200, 150);
+    strokeWeight(2);
+    translate(30, -293);
+};
+
+var drawTennisBalls = function() {
+    for (var i = numRows; i >= 0; i--) {
+        fill(i * random(0, 30) - random(0, 30), i * random(0, 30), i * random(0, 30));
+        for (var j = 0; j < i; j++) {
+            var x = radius*(j*2+1);
+            ellipse(x, 400-radius, radius*2, radius*2);
+        }
+        translate(translateX, translateY);
+    }
+};
+
+drawSetup();
+drawTennisBalls();

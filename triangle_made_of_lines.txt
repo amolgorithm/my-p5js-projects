@@ -1,0 +1,9 @@
+var draw = function() {
+    background(255, 255, 255);
+    for (var i = 0; i < 1000; i++) {
+        pushMatrix();
+        stroke(random(0, 255), random(0, 255), random(0, 255));
+        line(mouseX, mouseY, mouseX + mouseY, i);
+        popMatrix();
+    }
+};

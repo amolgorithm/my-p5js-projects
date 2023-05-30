@@ -1,0 +1,12 @@
+var draw = function() {
+    background(random(255), random(255), random(255));
+    strokeWeight(10);
+    fill(255, 2);
+    rect(55, 55, 300, 300);
+    strokeWeight(20);
+    fill(255, 0, 0);
+    ellipse(200, 200, 200, 200);
+    line(200, 110, 270, 270);
+    line(200, 110, 130, 270);
+    line(170, 200, 230, 200);
+};

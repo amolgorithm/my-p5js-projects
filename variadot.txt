@@ -1,0 +1,18 @@
+var circleSize = 1;
+var dx = 100;
+
+var draw = function() {
+    circleSize++;
+    
+    if (circleSize >= 200) {
+        circleSize--;
+    }
+    background(255);
+    ellipse(dx, 100, circleSize, circleSize);
+    ellipse(dx + 200, 300, circleSize, circleSize);
+};
+
+var mouseClicked = function() {
+    dx += 10;
+    circleSize++;
+};

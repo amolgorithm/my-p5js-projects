@@ -1,0 +1,37 @@
+var posX = 100, 
+    posY = 100,
+    dx = 0,
+    dy = 0;
+
+
+var translateCanvas = function() {
+    posX += dx;
+    posY += dy;
+    
+    translate(mouseX, mouseY);
+};
+
+
+var drawShapes = function() {
+    fill(0, 0, 0);
+    text("(-100, -100)", -112, -120);
+    ellipse(-100, -100, 30, 30);
+    text("(0, 0)", -12, -20);
+    ellipse(0, 0, 30, 30);
+    text("(100, 100)", 100-25, 100-25);
+    ellipse(100, 100, 30, 30);
+    noFill();
+    rect(0, 0, 400, 400);
+};
+
+
+var mouseClicked = function() {
+    resetMatrix();
+    translateCanvas();
+};
+
+
+var draw = function() {
+    background(90, 190, 255, 90);
+    drawShapes();
+};

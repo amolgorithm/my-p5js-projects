@@ -1,0 +1,40 @@
+var lines = [];
+var index = 0;
+
+colorMode(HSB, 255, 255, 255);
+
+var myLine = function(x, length) {
+    this.x = x;
+    this.y = -length;
+    this.length = length;
+    this.speed = random(5, 10);
+    this.weight = random(1, 4);
+    this.color = color(random(150, 220), random(150, 220), random(150, 220));
+};
+
+
+var createLines = function() {
+    lines[index] = new myLine(random(0, 400), random(10, 400));
+    index++;
+    
+    if (index > 600) {
+        index = 0;
+    }
+};
+
+
+var drawLines = function() {
+    for (var i = 0; i < lines.length; i++) {
+        stroke(lines[i].color);
+        strokeWeight(lines[i].weight);
+        line(lines[i].x, lines[i].y, lines[i].x, lines[i].y+lines[i].length);
+        
+        lines[i].y += lines[i].speed;
+    }
+};
+
+var draw = function() {
+    background(0);
+    createLines();
+    drawLines();
+};

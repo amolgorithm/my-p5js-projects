@@ -1,0 +1,16 @@
+background(100);
+
+imageMode(CENTER);
+
+image(getImage("minecraft/block-lava"), 200, 200);
+
+var mouseClicked = function() {
+    for (var i = 0; i < random(2, 6); i++) {
+        var randCoord = random(70, 150);
+        fill(255, random(100, 190), 0, 90);
+        image(getImage("minecraft/chicken"), random(width), random(height), randCoord, randCoord);
+        fill(0);
+        textSize(30);
+        text("BOOM!", randCoord * i, randCoord * i);
+    }
+};

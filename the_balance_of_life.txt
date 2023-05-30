@@ -1,0 +1,80 @@
+var mode = "none";
+var tipAmount = 0;
+var tipSpeed = 1;
+var gameOver = false;
+var balance1 = getImage("misc/tim-berners-lee-webpage");
+var balance2 = getImage("seasonal/xmas-tree-with-presents");
+var score = 0;
+
+textAlign(CENTER);
+
+var drawScale = function() {
+    translate(200, 200);
+    strokeWeight(1);
+    fill(200, 167, 200);
+    triangle(0, 0, -100, 190, 100, 190);
+    strokeWeight(10);
+    fill(0);
+    textSize(30);
+    text("Score: "+ score, 110, -150);
+    rotate(tipAmount);
+    image(balance1, -130, -90, 80, 80);
+    image(balance2, 60, -90, 80, 80);
+    line(-150, 0, 150, 0);
+    resetMatrix();
+};
+
+var moveScale = function() {
+    if (mode === "left") {
+        tipAmount -= 0.5+tipSpeed;
+    }
+    if (mode === "right") {
+        tipAmount += 0.5+tipSpeed;
+    }
+    
+    tipSpeed+=0.20;
+};
+
+var checkGameState = function() {
+    if (tipAmount > 50 || tipAmount < -50) {
+        gameOver = true;
+    }
+    if (gameOver === true) {
+        fill(0);
+        text("GAME OVER!", 120, 50);
+        
+        if (mode === "left") {
+            tipAmount = -50;
+        } else if (mode === "right") {
+            tipAmount = 50;
+        }
+        mode = "none";
+    }
+};
+
+var draw = function() {
+    background(255, 255, 220);
+    drawScale();
+    moveScale();
+    checkGameState();
+};
+
+var keyPressed = function() {
+    if (keyCode === LEFT) {
+        mode = "left";
+        tipSpeed = 0;
+        score++;
+    }
+    if (keyCode === RIGHT) {
+        mode = "right";
+        tipSpeed = 0;  
+    }
+};
+
+var mouseClicked = function() {
+    mode = "none";
+    gameOver = false;
+    tipAmount = 0;
+    tipSpeed = 1;
+    score = 0;
+};

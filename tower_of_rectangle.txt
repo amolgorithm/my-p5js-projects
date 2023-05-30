@@ -1,0 +1,5 @@
+for (var i = 1; i < 8; i++) {
+    fill(random(0, 255), random(0, 255), random(0, 255));
+    ellipse(200, (i + 8)*25, i*30, 30); 
+    ellipse(200, 200-i*25, i*30, 30); 
+}

@@ -1,0 +1,66 @@
+var character = getImage("pokemon/ball-closed");
+var characters = [getImage("pokemon/ball-closed"), getImage("pokemon/ball-closed"), getImage("pokemon/ball-closed")];
+var characterName = "";
+var bulbasaur = getImage("pokemon/ball-bulbasaur");
+var pikachu = getImage("pokemon/ball-pikachu");
+var squirtle = getImage("pokemon/ball-squirtle");
+var charmander = getImage("pokemon/charmander");
+var eevee = getImage("pokemon/eevee");
+var listOfRandomCharacterImages = [bulbasaur, pikachu, squirtle, charmander, eevee];
+
+var draw = function() {
+    imageMode(CENTER);
+    background();
+    image(character, 300, 200, 170, 170);
+    image(characters[0], 50, 200, 50, 50);
+    image(characters[1], 110, 200, 50, 50);
+    image(characters[2], 170, 200, 50, 50);
+    fill(0);
+    textSize(30);
+    text(characterName, 100, 40);
+};
+
+var keyPressed = function() {
+    if (keyCode === 83) {
+       character = getImage("pokemon/ball-squirtle");
+       characterName = "Squirtle";
+    }
+    else if (keyCode === 80) {
+       character = getImage("pokemon/ball-pikachu");
+       characterName = "Pikachu";
+    }
+    else if (keyCode === 66) {
+       character = getImage("pokemon/ball-bulbasaur");
+       characterName = "Bulbasaur";
+    }
+    else if (keyCode === 69) {
+       character = getImage("pokemon/eevee");
+       characterName = "Eevee";
+    }
+    else if (keyCode === 77) {
+       character = getImage("pokemon/mew");
+       characterName = "Mew";
+    }
+    else if (keyCode === 67) {
+       character = getImage("pokemon/charmander");
+       characterName = "Charmander";
+    }
+    else {
+        character = getImage("pokemon/ball-closed");
+        characterName = "";
+    }
+};
+
+var mouseClicked = function() {
+    if (mouseX >= 23 && mouseX <= 74 && mouseY >= 172 && mouseY <= 224) {
+        characters[0] = listOfRandomCharacterImages[round(random(0, listOfRandomCharacterImages.length - 1))];
+    }
+    
+    if (mouseX >= 82 && mouseX <= 135 && mouseY >= 172 && mouseY <= 224) {
+        characters[1] = listOfRandomCharacterImages[round(random(0, listOfRandomCharacterImages.length - 1))];
+    }
+    
+    if (mouseX >= 141 && mouseX <= 195 && mouseY >= 172 && mouseY <= 224) {
+        characters[2] = listOfRandomCharacterImages[round(random(0, listOfRandomCharacterImages.length - 1))];
+    }
+};

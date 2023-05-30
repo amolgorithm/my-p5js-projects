@@ -1,0 +1,21 @@
+var draw = function() {
+    rectMode(CENTER);
+    background(255, 50, 50);
+    stroke(0);
+    strokeWeight(7);
+    translate(0, 100);
+    fill(255, 0);
+    ellipse(200, 0, 200, 150);
+    rect(200, 260, 200, 400);
+    fill(random(255), random(255), random(255));
+    ellipse(200, 200, 150, 150);
+    strokeWeight(2);
+    fill(random(255));
+    translate(0, -100);
+    triangle(264, 272, 216, 290, 233, 324);
+    triangle(136, 272, 181, 280, 182, 317);
+    rect(200, 300, 70, 40);
+    ellipse(200, 270, 40, 40);
+    triangle(162, 317, 164, 343, 187, 320);
+    triangle(230, 322, 226, 343, 206, 320);
+};

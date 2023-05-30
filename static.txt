@@ -1,0 +1,13 @@
+var draw = function() {
+    for (var x = 0; x < 500; x++) {
+       var num = round(random(0, 1));
+       noStroke();
+       if (num === 0) {
+           fill(mouseX, mouseY, random(mouseX, mouseY), 400-x);
+       }
+       else {
+           fill(mouseY, mouseX - mouseY, random(0, 100), 400-x);
+       }
+       rect(random(0, 400), random(0, 400), 2, 2);
+    }
+};

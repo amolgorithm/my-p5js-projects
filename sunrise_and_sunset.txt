@@ -1,0 +1,41 @@
+var posY = 0;
+var dy = 15;
+var posX = 0;
+var dx = 2;
+
+var draw = function() {
+    noStroke();
+    background(90, 190, 250);
+    
+    posY += dy;
+    posX += dx;
+    
+    if (posY >= 200) {
+        dy = -15;
+    }
+    
+    if (posY >= 30) {
+        background(250, 0, 0);
+    }
+    
+    if (posY >= 150) {
+        background(0, 0, 80);
+        fill();
+        ellipse(200, 100, 20, 20);
+    }
+    
+    
+    if (posY <= -5) {
+        dy = 15;
+    }
+    
+    if (posX >= 400) {
+        posX = -5;
+    }
+    
+    fill(255, 255, 0);
+    ellipse(posX, posY, 50, 50);
+    
+    fill(0, 255, 90);
+    rect(0, 200, 400, 200);
+};

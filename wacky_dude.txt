@@ -1,0 +1,145 @@
+var yMin = 50;
+var counter = 0;
+var pullOver = false;
+var pulls = [];
+
+
+var Pull = function() {
+    this.x = random(30, 370);
+    this.y = 50;
+    this.counter = 0;
+    this.pullOver = false;
+};
+
+var pull = new Pull();
+
+
+for (var i = 0; i < 20; i++) {
+    pulls.push(new Pull());
+}
+
+
+var drawPull = function() {
+    for (var i = 0; i < pulls.length; i++) {
+        strokeWeight(3);
+        line(pulls[i].x, 0, pulls[i].x, pulls[i].y);
+    
+        fill(89, 66, 32);
+        ellipse(pulls[i].x, pulls[i].y+20, 20, 50);
+    }
+};
+
+var drawDude = function() {
+    fill(255);
+    ellipse(265, 200, 120, 160);
+    ellipse(235, 200, 40, 40);
+    ellipse(295, 200, 40, 40);
+    
+    fill(0);
+    ellipse(235, 200, 10, 10);
+    ellipse(295, 200, 10, 10);
+};
+
+var drawDude2 = function() {
+    fill(255);
+    ellipse(105, 200, 120, 160);
+    ellipse(75, 200, 40, 40);
+    ellipse(135, 200, 40, 40);
+    
+    fill(0);
+    ellipse(75, 200, 10, 10);
+    ellipse(135, 200, 10, 10);
+};
+
+
+var drawWackyDude = function() {
+    fill(255);
+    ellipse(random(263, 267), random(193, 203), 120, 160);
+    ellipse(235, 200, 40, 40);
+    ellipse(295, 200, 40, 40);
+    
+    fill(0);
+    ellipse(random(220, 245), random(270, 290), 10, 10);
+    ellipse(random(290, 310), random(270, 290), 10, 10);
+    
+    fill(random(255), random(255), random(255));
+    ellipse(265, 230, 30, 30);
+    arc(265, 250, 80, 50,0, 180);
+    
+    
+};
+
+
+var drawWackyDude2 = function() {
+    fill(255);
+    ellipse(random(103, 107), random(193, 203), 120, 160);
+    ellipse(75, 200, 40, 40);
+    ellipse(135, 200, 40, 40);
+    
+    fill(0);
+    ellipse(random(60, 165), random(190, 210), 10, 10);
+    ellipse(random(130, 230), random(190, 210), 10, 10);
+    
+    fill(random(255), random(255), random(255));
+    ellipse(105, 230, 30, 30);
+    arc(105, 250, 80, 50,0, 180);
+};
+
+
+var checkPull = function() {
+    for (var i = 0; i < pulls.length; i++) {
+        if (pulls[i].counter % 2 === 1) {
+            pulls[i].y = pulls[i].y-5;
+            
+            if (pulls[i].y <= yMin) {
+                pulls[i].y = yMin;
+                
+                
+                if (pulls[i].pullOver === false) {
+                    pulls[i].counter++;
+                    pulls[i].pullOver = true;
+                }
+            }
+            
+            if (pulls[i].y > yMin) {
+                pulls[i].pullOver = false;
+                background(random(255), random(255), random(255));
+                drawWackyDude();
+                drawWackyDude2();
+                drawPull();
+            }
+            
+            
+        }
+    }
+};
+
+
+var draw = function() {
+    background(147, 191, 184);
+    drawPull();
+    drawDude();
+    drawDude2();
+    checkPull();
+};
+
+
+var mouseDragged = function() {
+    for (var i = 0; i < pulls.length; i++) {
+        if (pulls[i].counter % 2 === 0 && (mouseX >= pulls[i].x-10 && mouseX <= pulls[i].x+10)) {
+            pulls[i].y = mouseY;
+        }
+    }
+};
+
+var mouseReleased = function() {
+    for (var i = 0; i < pulls.length; i++) {
+        pulls[i].counter++;
+    }
+};
+
+
+var keyPressed = function() {
+    pull.y = 400;
+    counter++;
+};

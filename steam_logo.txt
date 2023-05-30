@@ -1,0 +1,107 @@
+var transparency = 170;
+var scaleValue = 1;
+var minusWidth = 0;
+var minusHeight = 0;
+var room = 1;
+
+var Game = function(img, text) {
+    this.img = img;
+    this.text = text;
+};
+
+var base = function() {
+    fill(32, transparency);
+    ellipse(200, 200, 325, 325);
+    noStroke();
+    fill(255, transparency);
+    ellipse(152, 261, 92, 92);
+    ellipse(257, 157, 124, 124);
+};
+
+var details = function() {
+    quad(156, 215, 200, 260, 270, 210, 201, 150);
+    stroke(32, transparency);
+    strokeWeight(10);
+    ellipse(152, 260, 60, 60);
+    ellipse(258, 157, 81, 81);
+    noStroke();
+    quad(33, 186, 41, 244, 148, 285, 155, 235);
+};
+
+var img1 = loadImage("https://img.itch.zone/aW1nLzEzODkxODEucG5n/original/N3Ay%2BX.png");
+var img2 = loadImage("https://steamcdn-a.akamaihd.net/steam/apps/493490/capsule_616x353.jpg?t=1595996887");
+var img3 = loadImage("https://steamuserimages-a.akamaihd.net/ugc/30724340102941364/227C5C30230C75A923240C2AF50A31F6A3562C0D/");
+var img4 = loadImage("https://steamcdn-a.akamaihd.net/steam/apps/274480/capsule_616x353.jpg?t=1536792013");
+
+var drawGame = function(game, x, y) {
+    var w = 150;
+    var h = 120;
+    
+    if (game === "tower defense") {
+        fill(0, 180, 0);
+        rect(x, y, w, h, 20);
+        image(new Game(img1).img, x + 10, y + 13, w - 20, h - 20);
+        fill();
+        text(game, x + 10, y + 10);
+    }
+    
+    if (game === "driving") {
+        fill(180, 0, 0);
+        rect(x, y, w, h, 20);
+        image(new Game(img2).img, x + 10, y + 13, w - 20, h - 20);
+        fill();
+        text(game, x + 10, y + 10);
+    }
+    
+    if (game === "GameMaker") {
+        fill(180, 0, 180);
+        rect(x, y, w, h, 20);
+        image(new Game(img3).img, x + 10, y + 13, w - 20, h - 20);
+        fill();
+        text(game, x + 10, y + 10);
+    }
+    
+    if (game === "4X") {
+        fill(180, 180, 180);
+        rect(x, y, w, h, 20);
+        image(new Game(img4).img, x + 10, y + 13, w - 20, h - 20);
+        fill();
+        text(game, x + 10, y + 10);
+    }
+};
+
+var draw = function() {
+    if (room === 1) {
+        background();
+        scale(scaleValue);
+        translate(minusWidth, minusHeight);
+        base();
+        details();
+        
+        if (mouseX >= 33 && mouseX <= 361 && mouseY >= 35 && mouseY <= 362) {
+            transparency = 255;
+            scaleValue = 1.1;
+            minusWidth = -20;
+            minusHeight = -20;
+        } else {
+            transparency = 170;
+            scaleValue = 1;
+            minusWidth = 0;
+            minusHeight = 0;
+        }
+    } else if (room === 2) {
+        background(0, 0, 100);
+        drawGame("tower defense", 40, 30);
+        drawGame("driving", 220, 30);
+        drawGame("GameMaker", 40, 170);
+        drawGame("4X", 220, 170);
+    }
+};
+
+var mouseClicked = function() {
+    if (room === 1) {
+        if (mouseX >= 33 && mouseX <= 361 && mouseY >= 35 && mouseY <= 362) {
+            room = 2;
+        }
+    }
+};

@@ -1,0 +1,36 @@
+var audio = "";
+var pict = loadImage("https://st2.depositphotos.com/3223811/7707/i/950/depositphotos_77071611-stock-photo-easy-button.jpg");
+
+
+fill(0);
+textSize(40);
+text("Press the button!", 50, 100);
+
+imageMode(CENTER);
+
+var draw = function() {
+    image(pict, 200, 220, 120, 100);
+};
+
+
+var mouseClicked = function() {
+   
+
+    var playAudio = new Audio(audio);
+    
+    if (mouseX >= 157 && mouseX <= 241 && mouseY >= 155 && mouseY <= 249) {
+        background();
+        fill(0);
+        textSize(40);
+        text("That Was Easy!", 50, 100);
+        textSize(25);
+        text("Easy!", 170, 205);
+        audio = "http://amolhub.fun/Flap/Version_1/wing.mp3";
+        playAudio.play();
+        pict = loadImage("https://www.nicepng.com/png/detail/817-8178689_easy-button-png-orocash.png");
+    }
+    else {
+        audio = "http://amolhub.fun/Flap/Version_1/die.mp3";
+        playAudio.play();
+    }
+};

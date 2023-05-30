@@ -1,0 +1,45 @@
+var windowY = 200;
+var img = getImage("avatars/duskpin-sapling");
+var showImg = true;
+var imgX = 200;
+
+imageMode(CENTER);
+
+var drawWindow = function() {
+    fill(100);
+    stroke();
+    strokeWeight(5);
+    rect(50, 30, 310, 350);
+    if (showImg) {
+        image(img, imgX, 300);
+        
+        imgX++;
+        
+        if (imgX >= 320) {
+            imgX = 100;
+        }
+    }
+    fill(255, 50);
+    rect(50, 30, 310, 175);
+    rect(50, windowY, 310, 175);
+};
+
+var draw = function() {
+    background(60);
+    drawWindow();
+};
+
+var mouseMoved = function() {
+    windowY = mouseY;
+    
+    if (windowY <= 30) {
+        windowY = 30;
+        showImg = false;
+    } else {
+        showImg = true;
+    }
+    
+    if (windowY >= 200) {
+        windowY = 200;
+    }
+};

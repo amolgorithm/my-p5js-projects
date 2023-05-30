@@ -1,0 +1,44 @@
+var name = "";
+var instructionsRoute = "Click the canvas to write your name";
+var fontSize = 40;
+
+var draw = function() {
+    textAlign(CENTER);
+    imageMode(CENTER);
+    background(255, 255, 0, 30);
+    fill(90, 0, 0);
+    textSize(23);
+    text(instructionsRoute, 200, 100);
+    fill(0, 0, 255);
+    textSize(fontSize);
+    text(name, 200, 220);
+    image(getImage("creatures/winston"), 200, 50, 50, 50);
+    
+    if (name !== "") {
+        instructionsRoute = "Click the canvas to change your name";
+    }
+    
+    textSize(40);
+    fill();
+    rect(50, 320, 50, 50);
+    rect(120, 320, 50, 50);
+    rect(220, 320, 130, 50);
+    fill(0);
+    text("+", 75, 360);
+    text("-", 145, 355);
+    textSize(30);
+    text("Font: " + fontSize, 285, 355);
+    
+};
+
+var mouseClicked = function() {
+    if (mouseX >= 47 && mouseX <= 100 && mouseY >= 317 && mouseY <= 371) {
+        fontSize += 2; 
+    }
+    else if (mouseX >= 117 && mouseX <= 169 && mouseY >= 317 && mouseY <= 371) {
+        fontSize -= 2; 
+    }
+    else {
+        name = prompt("Write your name...");
+    }
+};

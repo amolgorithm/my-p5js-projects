@@ -1,0 +1,13 @@
+var textX = 100;
+var textY = 150;
+
+
+var draw = function() {
+    background();
+    if (mouseX >= textX && mouseX <= textX + 40 && mouseY >= textY && mouseY <= textY + 100) {
+        image(getImage("minecraft/egg"), random(textX, textX + 50), random(textY, textY + 50));
+    }
+    else {
+        image(getImage("minecraft/egg"), textX, textY);
+    }
+};

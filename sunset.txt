@@ -1,0 +1,32 @@
+var posY = 50;
+var posX = 340;
+var dy = 0.5;
+var dark = 0;
+var sunColor = color(255, 255, 0);
+
+var draw = function() {
+    posY += dy;
+    posX -= dy;
+    dark += dy + 0.1;
+    noStroke();
+    background(90, 200, 255);
+    fill(sunColor);
+    ellipse(posX, posY, 50, 50);
+    fill(0, 255, 0);
+    rect(0, 200, 400, 200);
+    if (posX >= 200) {
+        fill(posX, 0, 0, dark);
+        rect(0, 0, 400, 400);
+        
+    }
+    else {
+        fill(posX - 255, 0, 0, dark);
+        rect(0, 0, 400, 400);
+    }
+    
+    if (posY >= 225) {
+        sunColor = color(255);
+        dy = -dy;
+        dark = 255;
+    }
+};

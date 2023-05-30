@@ -1,0 +1,31 @@
+var drawBody = function() {
+    fill(152, 234, 175);
+    ellipse(200, 200, 300, 300);
+};
+
+var drawEyes = function(x, y) {
+    fill(255);
+    ellipse(x, y, 80, 80);
+    fill(0);
+    ellipse(x, y, 20, 20);
+};
+
+var drawSmile = function() {
+    fill(0);
+    arc(200, 200, 200, 200, 0, 180);
+};
+
+var drawLegs = function(x, y) {
+    fill(152, 234, 175);
+    rect(x, y, 50, 90);
+};
+
+
+drawBody();
+drawEyes(150, 50);
+drawEyes(60, 90);
+drawEyes(250, 50);
+drawEyes(340, 90);
+drawSmile();
+drawLegs(260, 300);
+drawLegs(90, 300);

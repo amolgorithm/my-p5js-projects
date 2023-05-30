@@ -1,0 +1,32 @@
+var name = "";
+
+var draw = function() {
+    background(100, 100, 0);
+    fill(255);
+    rect(25, 100, 350, 200, 30);
+    fill(255, 0, 0);
+    rect(25, 100, 350, 50, 30, 20, 0, 0);
+    fill(255);
+    text("Hello my name is..", 45, 140);
+    fill(0);
+    textSize(75);
+    text(name, 105, 240);
+    fill(255, 0, 0);
+    textSize(25);
+    text("STAPLES", 255, 290);
+    fill();
+    rect(50, 330, 300, 60);
+    fill(0);
+    textSize(30);
+    text(String.fromCharCode("9829"), 100, 370);
+};
+
+var mouseClicked = function() {
+    
+    if (mouseX >= 90 && mouseX <= 124 && mouseY >= 343 && mouseY <= 377) {
+        name += String.fromCharCode("9829");
+    }
+    else {
+        name = prompt("What is your name?...");
+    }
+};

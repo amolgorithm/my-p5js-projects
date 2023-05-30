@@ -1,0 +1,38 @@
+var writeText = "";
+var textfont = "arialblack";
+var font = 20;
+
+var displayText = function() {
+    background(90, 20, 200, 90);
+    fill();
+    textSize(font);
+    textFont(createFont(textfont));
+    text(writeText, 10, 30);
+    textSize(20);
+    text("Georgia", 20, 380);
+};
+
+var keyTyped = function() {
+    switch(key+0) {
+        case 8 && 7:
+            if (writeText.length > 0) {
+                writeText += writeText.slice(0, -1);
+            }
+            break;
+        case 13 && 10:
+            writeText += "\n";
+            break;
+        default:
+        writeText += key.toString();
+    }
+    displayText();
+};
+
+var mouseClicked = function() {
+    if (mouseX >= 8 && mouseX <= 96 && mouseY >= 350 && mouseY <= 392) {
+        textfont = "georgia";
+    }
+    else {
+        font += 2;
+    }
+};
